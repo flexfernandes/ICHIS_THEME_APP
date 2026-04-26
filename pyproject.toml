@@ -3,7 +3,7 @@ name = "ichis"
 version = "0.0.1"
 description = "Camada visual moderna e Home principal customizada para ERPNext."
 authors = [
-    {name = "GREEN FARMS", email = "flexfernandes@gmail.com"}
+    { name = "GREEN FARMS", email = "flexfernandes@gmail.com" }
 ]
 readme = "README.md"
 requires-python = ">=3.10"
