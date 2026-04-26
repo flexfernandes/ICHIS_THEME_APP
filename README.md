@@ -1,149 +1,63 @@
 # ICHIS Theme App para ERPNext
 
-Camada visual moderna para ERPNext/Frappe Cloud, com tema global e Home principal customizada no estilo portal corporativo.
+Camada visual moderna para ERPNext/Frappe Cloud com tema global e Home principal customizada.
 
 ## Objetivo
 
-O app ICHIS aplica uma camada visual sobre o ERPNext sem alterar o core do sistema.
+Este app aplica uma identidade visual moderna ao ERPNext sem alterar o core do sistema.
 
-Ele preserva a barra superior nativa do ERPNext, incluindo busca, notificações, avatar e menus, e substitui apenas o conteúdo central do Workspace inicial por uma Home moderna e organizada.
-
-## Estrutura Base
+## Estrutura
 
 ```text
-ichis/
-    ichis/
-        __init__.py
-        hooks.py
-    public/
-        css/
-            gf_theme.css
-        js/
-            gf_global.js
-    README.md
-    setup.py
-    pyproject.toml
-    MANIFEST.in
+ICHIS_THEME_APP/
+├── ichis/
+│   ├── __init__.py
+│   ├── hooks.py
+│   ├── patches.txt
+│   └── public/
+│       ├── css/
+│       │   └── gf_theme.css
+│       └── js/
+│           └── gf_global.js
+├── MANIFEST.in
+├── README.md
+├── pyproject.toml
+└── setup.py
 ```
 
-## Arquivos principais
+## Instalação no Frappe Cloud
 
-### `ichis/hooks.py`
+1. Subir este projeto para o GitHub.
+2. Adicionar o app no Private Bench.
+3. Fazer Deploy do Bench.
+4. Instalar o app no Site.
+5. Limpar cache e reiniciar o site.
 
-Registra os arquivos globais no Desk:
+## Personalização
 
-```python
-app_include_css = "/assets/ichis/css/gf_theme.css"
-app_include_js = "/assets/ichis/js/gf_global.js"
-```
+### Alterar cores
 
-### `public/css/gf_theme.css`
-
-Contém:
-
-- variáveis globais de cor;
-- fonte padrão;
-- ajustes visuais leves em formulários, botões, grids e cards;
-- estilos completos da Home principal ICHIS.
-
-### `public/js/gf_global.js`
-
-Contém:
-
-- controle de ativação da Home;
-- detecção de rota do Workspace;
-- renderização da Home;
-- cards principais por área;
-- navegação interna com `frappe.set_route`;
-- fallback seguro.
-
-## Como personalizar cores
-
-Abra:
-
-```text
-public/css/gf_theme.css
-```
-
-Altere as variáveis em `:root`:
+Edite as variáveis no início do arquivo:
 
 ```css
---gf-primary: #0f766e;
---gf-accent: #2563eb;
---gf-bg-page: #f4f7fb;
+ichis/public/css/gf_theme.css
 ```
 
-## Como personalizar fonte
+### Ativar ou desativar a Home
 
-No mesmo arquivo, altere:
-
-```css
---gf-font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-```
-
-## Como adicionar novo card
-
-Abra:
-
-```text
-public/js/gf_global.js
-```
-
-Localize `GF_HOME_SECTIONS` e adicione um novo item:
+Edite no arquivo:
 
 ```javascript
-{ title: "Novo Acesso", description: "Descrição do acesso.", icon: "⭐", route: ["List", "Nome do DocType"] }
+ichis/public/js/gf_global.js
 ```
-
-## Como desativar temporariamente a Home customizada
-
-Abra:
-
-```text
-public/js/gf_global.js
-```
-
-Altere:
 
 ```javascript
 const GF_ENABLE_CUSTOM_HOME = true;
 ```
 
-para:
+Troque para `false` para manter o Workspace padrão do ERPNext.
 
-```javascript
-const GF_ENABLE_CUSTOM_HOME = false;
-```
+## Segurança
 
-## Como ativar logs para teste
-
-Altere:
-
-```javascript
-const GF_DEBUG = false;
-```
-
-para:
-
-```javascript
-const GF_DEBUG = true;
-```
-
-## Instalação no Frappe Cloud
-
-1. Suba este app para um repositório GitHub.
-2. No Frappe Cloud, adicione o app customizado na Bench.
-3. Instale o app no site desejado.
-4. Rode build/restart conforme o painel solicitar.
-5. Limpe cache do site.
-
-## Cuidados
-
-- Este app não altera o core do ERPNext.
-- A barra superior padrão é preservada.
-- A Home é aplicada apenas em rotas de Workspace definidas no JavaScript.
-- Caso o ERPNext altere classes internas em futuras versões, o script possui fallback para não travar o sistema.
-
-## Versão
-
-0.0.1
+Este app não altera arquivos nativos do ERPNext.
+Toda a customização é aplicada como camada visual por CSS e JavaScript globais.

@@ -1,0 +1,2 @@
+# Patches do app ICHIS
+# Mantido propositalmente vazio nesta versão inicial.
