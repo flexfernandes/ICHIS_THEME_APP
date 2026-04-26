@@ -8,7 +8,7 @@ O app ICHIS aplica uma camada visual sobre o ERPNext sem alterar o core do siste
 
 Ele preserva a barra superior nativa do ERPNext, incluindo busca, notificações, avatar e menus, e substitui apenas o conteúdo central do Workspace inicial por uma Home moderna e organizada.
 
-## Estrutura
+## Estrutura Base
 
 ```text
 ichis/
