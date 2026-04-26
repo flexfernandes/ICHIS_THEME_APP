@@ -1,0 +1,14 @@
+:root {
+    --gf-primary: #0f766e;
+    --gf-bg: #f4f7fb;
+    --gf-text: #1f2937;
+}
+
+body {
+    background-color: var(--gf-bg);
+    font-family: Inter, Arial, sans-serif;
+}
+
+.navbar {
+    background-color: var(--gf-primary) !important;
+}
