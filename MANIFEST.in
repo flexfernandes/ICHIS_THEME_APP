@@ -1,0 +1,3 @@
+recursive-include ichis *
+recursive-include public *
+include README.md
