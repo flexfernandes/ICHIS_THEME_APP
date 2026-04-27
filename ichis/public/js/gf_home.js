@@ -1,3 +1,4 @@
+console.log("GF HOME JS CARREGADO COM SUCESSO");
 frappe.ready(function () {
 
     function render_home() {
