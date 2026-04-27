@@ -13,43 +13,47 @@
     --gf-font: Inter, "Segoe UI", Arial, sans-serif;
 }
 
-/* Base visual geral */
-body {
+/* Não mexe no sistema todo. Só ativa fonte quando a Home customizada estiver ativa */
+body.gf-home-active {
     font-family: var(--gf-font);
 }
 
-/* Ajustes seguros de contraste no Desk */
-body,
-.desk-page,
-.layout-main-section,
-.page-container {
-    color: var(--gf-text);
+/* Esconde o conteúdo padrão somente quando a Home customizada estiver ativa */
+body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
+    display: none !important;
 }
 
-/* Tela principal moderna */
-.gf-modern-home {
+/* Home moderna isolada do visual herdado do ERPNext */
+body.gf-home-active .gf-modern-home {
+    all: initial;
+    display: block;
     width: 100%;
+    box-sizing: border-box;
     padding: 24px;
+    margin-bottom: 24px;
+    font-family: var(--gf-font);
+    color: var(--gf-text);
     background:
         radial-gradient(circle at top left, rgba(22, 163, 74, 0.16), transparent 34%),
         linear-gradient(135deg, #f8fafc 0%, #eefdf3 100%);
     border-radius: var(--gf-radius-lg);
     border: 1px solid var(--gf-border);
     box-shadow: var(--gf-shadow);
-    margin-bottom: 24px;
 }
 
-/* Quando a home personalizada estiver ativa, escondemos o conteúdo padrão do workspace */
-body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
-    display: none !important;
+/* Garante box-sizing apenas dentro da Home */
+body.gf-home-active .gf-modern-home,
+body.gf-home-active .gf-modern-home * {
+    box-sizing: border-box;
 }
 
-.gf-home-hero {
+/* Cabeçalho principal */
+body.gf-home-active .gf-home-hero {
     min-height: 190px;
     padding: 34px;
     border-radius: var(--gf-radius-lg);
     background:
-        linear-gradient(135deg, rgba(22, 101, 52, 0.96), rgba(22, 163, 74, 0.88)),
+        linear-gradient(135deg, rgba(22, 101, 52, 0.98), rgba(22, 163, 74, 0.92)),
         linear-gradient(135deg, #166534, #16a34a);
     color: #ffffff;
     display: flex;
@@ -60,7 +64,7 @@ body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
     position: relative;
 }
 
-.gf-home-hero::after {
+body.gf-home-active .gf-home-hero::after {
     content: "";
     position: absolute;
     right: -80px;
@@ -68,15 +72,15 @@ body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
     width: 260px;
     height: 260px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.14);
 }
 
-.gf-home-kicker {
+body.gf-home-active .gf-home-kicker {
     display: inline-flex;
     align-items: center;
     padding: 7px 12px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.18);
     color: #f0fdf4;
     font-size: 12px;
     font-weight: 700;
@@ -85,25 +89,27 @@ body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
     margin-bottom: 18px;
 }
 
-.gf-home-hero h1 {
+body.gf-home-active .gf-home-hero h1 {
     margin: 0;
     color: #ffffff;
+    font-family: var(--gf-font);
     font-size: clamp(28px, 4vw, 46px);
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1.05;
 }
 
-.gf-home-hero p {
+body.gf-home-active .gf-home-hero p {
     max-width: 760px;
     margin: 16px 0 0;
     color: #ecfdf5;
+    font-family: var(--gf-font);
     font-size: 16px;
     line-height: 1.65;
     font-weight: 400;
 }
 
-.gf-home-badge {
+body.gf-home-active .gf-home-badge {
     position: relative;
     z-index: 1;
     display: inline-flex;
@@ -112,14 +118,15 @@ body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
     flex: 0 0 auto;
     padding: 10px 14px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
     color: #ffffff;
+    font-family: var(--gf-font);
     font-size: 13px;
     font-weight: 700;
     white-space: nowrap;
 }
 
-.gf-home-badge span {
+body.gf-home-active .gf-home-badge span {
     width: 9px;
     height: 9px;
     border-radius: 999px;
@@ -127,14 +134,17 @@ body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
     box-shadow: 0 0 0 5px rgba(187, 247, 208, 0.18);
 }
 
-.gf-home-grid {
+/* Grade dos cartões */
+body.gf-home-active .gf-home-grid {
     margin-top: 22px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
 }
 
-.gf-home-card {
+/* Cartões */
+body.gf-home-active .gf-home-card {
+    appearance: none;
     width: 100%;
     min-height: 150px;
     padding: 20px;
@@ -142,19 +152,25 @@ body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
     border-radius: var(--gf-radius-md);
     background: var(--gf-card);
     color: var(--gf-text);
+    font-family: var(--gf-font);
     text-align: left;
     cursor: pointer;
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
-.gf-home-card:hover {
+body.gf-home-active .gf-home-card:hover {
     transform: translateY(-3px);
     border-color: rgba(22, 163, 74, 0.45);
     box-shadow: 0 18px 38px rgba(15, 23, 42, 0.11);
 }
 
-.gf-home-card-icon {
+body.gf-home-active .gf-home-card:focus {
+    outline: 3px solid rgba(22, 163, 74, 0.22);
+    outline-offset: 2px;
+}
+
+body.gf-home-active .gf-home-card-icon {
     width: 42px;
     height: 42px;
     border-radius: 14px;
@@ -166,7 +182,7 @@ body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
     margin-bottom: 16px;
 }
 
-.gf-home-card-icon svg {
+body.gf-home-active .gf-home-card-icon svg {
     width: 22px;
     height: 22px;
     fill: none;
@@ -176,55 +192,48 @@ body.gf-home-active .layout-main-section > *:not(#gf-modern-home) {
     stroke-linejoin: round;
 }
 
-.gf-home-card-title {
+body.gf-home-active .gf-home-card-title {
     display: block;
     color: var(--gf-text);
+    font-family: var(--gf-font);
     font-size: 17px;
     font-weight: 800;
     letter-spacing: -0.02em;
     margin-bottom: 8px;
 }
 
-.gf-home-card-desc {
+body.gf-home-active .gf-home-card-desc {
     display: block;
     color: var(--gf-muted);
+    font-family: var(--gf-font);
     font-size: 13px;
     line-height: 1.55;
     font-weight: 500;
 }
 
-/* Ajustes leves no topo do ERPNext */
-.navbar {
-    border-bottom: 1px solid rgba(229, 231, 235, 0.9);
-}
-
-.page-head {
-    background: #ffffff;
-}
-
 /* Responsividade */
 @media (max-width: 1100px) {
-    .gf-home-grid {
+    body.gf-home-active .gf-home-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 720px) {
-    .gf-modern-home {
+    body.gf-home-active .gf-modern-home {
         padding: 14px;
         border-radius: 18px;
     }
 
-    .gf-home-hero {
+    body.gf-home-active .gf-home-hero {
         padding: 24px;
         flex-direction: column;
     }
 
-    .gf-home-grid {
+    body.gf-home-active .gf-home-grid {
         grid-template-columns: 1fr;
     }
 
-    .gf-home-badge {
+    body.gf-home-active .gf-home-badge {
         white-space: normal;
     }
 }
