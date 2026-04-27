@@ -2,12 +2,12 @@
 
 app_name = "ichis"
 app_title = "ICHIS"
-app_publisher = "GREEN FARMS"
+app_publisher = "GREENFARMS"
 app_description = "Camada visual moderna e Home principal customizada para ERPNext."
 app_email = "flexfernandes@gmail.com"
 app_license = "MIT"
 
-app_include_css = [
+app_include_css = [ 
     "/assets/ichis/css/gf_theme.css"
 ]
 
