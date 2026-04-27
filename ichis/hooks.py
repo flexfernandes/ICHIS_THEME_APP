@@ -7,5 +7,11 @@ app_description = "Camada visual moderna e Home principal customizada para ERPNe
 app_email = "flexfernandes@gmail.com"
 app_license = "MIT"
 
-app_include_css = "/assets/ichis/css/gf_theme.css"
-app_include_js = "/assets/ichis/js/gf_global.js"
+app_include_css = [
+    "/assets/ichis/css/gf_theme.css"
+]
+
+app_include_js = [
+    "/assets/ichis/js/gf_global.js",
+    "/assets/ichis/js/gf_home.js"
+]
