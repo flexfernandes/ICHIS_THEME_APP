@@ -135,3 +135,48 @@ body[data-theme="dark"],
     --gf-field-help-font-size: 10px;
     --gf-field-help-color: var(--gf-muted);
 }
+
+/* ==========================================================
+   GF V16 OVERRIDES 02
+   Controles mais evidentes para diferenciar visualmente o Desk.
+   ========================================================== */
+:root {
+    --gf-primary: #16a34a;
+    --gf-primary-light: #22c55e;
+    --gf-primary-dark: #166534;
+    --gf-primary-soft: #dcfce7;
+
+    --gf-bg: #eefaf2;
+    --gf-bg-soft: #e4f7ea;
+    --gf-surface: #ffffff;
+    --gf-surface-green: #f0fdf4;
+    --gf-border: #bbf7d0;
+    --gf-border-strong: #86efac;
+    --gf-text: #0f172a;
+    --gf-text-secondary: #334155;
+    --gf-muted: #64748b;
+    --gf-link: #15803d;
+
+    --gf-navbar-bg: #f0fdf4;
+    --gf-sidebar-bg: #ecfdf5;
+    --gf-dashboard-bg: #eefaf2;
+    --gf-card-bg: #ffffff;
+    --gf-card-green-bg: #f0fdf4;
+
+    --gf-table-font-size: 11px;
+    --gf-table-line-height: 1.08;
+    --gf-table-padding-y: 2px;
+    --gf-table-padding-x: 6px;
+    --gf-table-header-padding-y: 3px;
+    --gf-table-header-padding-x: 6px;
+    --gf-table-header-bg: #dcfce7;
+    --gf-table-row-hover-bg: #f0fdf4;
+
+    --gf-btn-padding-y: 5px;
+    --gf-btn-padding-x: 11px;
+    --gf-btn-sm-padding-y: 3px;
+    --gf-btn-sm-padding-x: 8px;
+
+    --gf-label-font-size: 10.5px;
+    --gf-label-margin-bottom: 2px;
+}

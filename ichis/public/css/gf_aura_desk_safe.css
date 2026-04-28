@@ -3,7 +3,7 @@
    CSS genérico inspirado no Aura Theme.
    Foco: cores, fontes, botões, fundos, cards, tabelas,
    formulários, menus, modais e pequenos refinamentos visuais.
-   ==========================================================  */
+   ========================================================== */
 
 html,
 body {
@@ -931,4 +931,357 @@ label.reqd::after {
 .standard-sidebar-label {
     color: var(--gf-primary-dark) !important;
     text-transform: none !important;
+}
+
+/* ==========================================================
+   GF V16 DESK FORCE OVERRIDES 02
+   Foco: tela principal pós-login, workspace, menu, dashboard,
+   formulários, tabelas compactas e distinção em verde.
+   ========================================================== */
+
+html,
+body,
+body.gf-aura-v16-safe,
+body.gf-theme-active {
+    background: var(--gf-dashboard-bg) !important;
+}
+
+body.gf-aura-v16-safe .page-container,
+body.gf-aura-v16-safe .layout-main,
+body.gf-aura-v16-safe .layout-main-section,
+body.gf-aura-v16-safe .main-section,
+body.gf-aura-v16-safe .page-body,
+body.gf-aura-v16-safe .desk-page,
+body.gf-aura-v16-safe .workspace,
+body.gf-aura-v16-safe .workspace-page,
+body.gf-aura-v16-safe .workspace-body,
+body.gf-aura-v16-safe .standard-page,
+body.gf-aura-v16-safe .container.page-body,
+body.gf-aura-v16-safe .body-sidebar-container,
+body.gf-aura-v16-safe .page-content {
+    background: var(--gf-dashboard-bg) !important;
+}
+
+/* Barra superior */
+body.gf-aura-v16-safe .navbar,
+body.gf-aura-v16-safe header.navbar,
+body.gf-aura-v16-safe .navbar.navbar-expand {
+    background: linear-gradient(90deg, #ecfdf5 0%, #ffffff 55%, #dcfce7 100%) !important;
+    border-bottom: 1px solid var(--gf-border-strong) !important;
+    box-shadow: 0 4px 18px rgba(22, 101, 52, 0.08) !important;
+}
+
+body.gf-aura-v16-safe .navbar a,
+body.gf-aura-v16-safe #navbar-breadcrumbs a,
+body.gf-aura-v16-safe #navbar-breadcrumbs li,
+body.gf-aura-v16-safe .navbar .nav-link {
+    color: #14532d !important;
+}
+
+/* Menu lateral e áreas de navegação */
+body.gf-aura-v16-safe .layout-side-section,
+body.gf-aura-v16-safe .desk-sidebar,
+body.gf-aura-v16-safe .sidebar-column,
+body.gf-aura-v16-safe .standard-sidebar,
+body.gf-aura-v16-safe .sidebar-menu,
+body.gf-aura-v16-safe .list-sidebar,
+body.gf-aura-v16-safe .module-sidebar,
+body.gf-aura-v16-safe .workspace-sidebar {
+    background: var(--gf-sidebar-bg) !important;
+    border-right: 1px solid var(--gf-border) !important;
+}
+
+body.gf-aura-v16-safe .sidebar-item,
+body.gf-aura-v16-safe .standard-sidebar-item,
+body.gf-aura-v16-safe .desk-sidebar-item,
+body.gf-aura-v16-safe .workspace-sidebar-item,
+body.gf-aura-v16-safe .sidebar-menu a,
+body.gf-aura-v16-safe .standard-sidebar a {
+    border-radius: 10px !important;
+    color: #14532d !important;
+}
+
+body.gf-aura-v16-safe .sidebar-item:hover,
+body.gf-aura-v16-safe .standard-sidebar-item:hover,
+body.gf-aura-v16-safe .desk-sidebar-item:hover,
+body.gf-aura-v16-safe .workspace-sidebar-item:hover,
+body.gf-aura-v16-safe .sidebar-menu a:hover,
+body.gf-aura-v16-safe .standard-sidebar a:hover {
+    background: #dcfce7 !important;
+    color: #166534 !important;
+}
+
+body.gf-aura-v16-safe .sidebar-item.selected,
+body.gf-aura-v16-safe .standard-sidebar-item.selected,
+body.gf-aura-v16-safe .desk-sidebar-item.selected,
+body.gf-aura-v16-safe .workspace-sidebar-item.selected,
+body.gf-aura-v16-safe .selected {
+    background: #bbf7d0 !important;
+    color: #14532d !important;
+    font-weight: 700 !important;
+}
+
+/* Cabeçalho de páginas e dashboard */
+body.gf-aura-v16-safe .page-head,
+body.gf-aura-v16-safe .page-head.flex,
+body.gf-aura-v16-safe .page-title,
+body.gf-aura-v16-safe .page-title-area,
+body.gf-aura-v16-safe .title-area {
+    background: rgba(240, 253, 244, 0.92) !important;
+    border-bottom: 1px solid var(--gf-border) !important;
+}
+
+body.gf-aura-v16-safe .page-title .title-text,
+body.gf-aura-v16-safe .title-text,
+body.gf-aura-v16-safe h1,
+body.gf-aura-v16-safe h2,
+body.gf-aura-v16-safe h3 {
+    color: #14532d !important;
+}
+
+/* Cards, widgets e blocos do workspace */
+body.gf-aura-v16-safe .card,
+body.gf-aura-v16-safe .widget,
+body.gf-aura-v16-safe .widget-card,
+body.gf-aura-v16-safe .number-card,
+body.gf-aura-v16-safe .dashboard-card,
+body.gf-aura-v16-safe .workspace-card,
+body.gf-aura-v16-safe .shortcut-widget-box,
+body.gf-aura-v16-safe .links-widget-box,
+body.gf-aura-v16-safe .form-dashboard-section,
+body.gf-aura-v16-safe .section-body,
+body.gf-aura-v16-safe .frappe-card,
+body.gf-aura-v16-safe .report-card,
+body.gf-aura-v16-safe .dashboard-widget-box {
+    background: var(--gf-card-bg) !important;
+    border: 1px solid var(--gf-border) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 22px rgba(22, 101, 52, 0.06) !important;
+}
+
+body.gf-aura-v16-safe .widget-title,
+body.gf-aura-v16-safe .card-title,
+body.gf-aura-v16-safe .section-head,
+body.gf-aura-v16-safe .head-title {
+    color: #14532d !important;
+}
+
+/* Formulários */
+body.gf-aura-v16-safe .form-layout,
+body.gf-aura-v16-safe .form-page,
+body.gf-aura-v16-safe .form-section,
+body.gf-aura-v16-safe .form-dashboard,
+body.gf-aura-v16-safe .form-column,
+body.gf-aura-v16-safe .control-input-wrapper,
+body.gf-aura-v16-safe .frappe-control {
+    background-color: transparent !important;
+}
+
+body.gf-aura-v16-safe .form-control,
+body.gf-aura-v16-safe input[type="text"],
+body.gf-aura-v16-safe input[type="search"],
+body.gf-aura-v16-safe input[type="email"],
+body.gf-aura-v16-safe input[type="number"],
+body.gf-aura-v16-safe input[type="password"],
+body.gf-aura-v16-safe select,
+body.gf-aura-v16-safe textarea,
+body.gf-aura-v16-safe .input-with-feedback {
+    background: #ffffff !important;
+    border: 1px solid var(--gf-border) !important;
+    border-radius: 9px !important;
+    color: var(--gf-text) !important;
+    min-height: 30px !important;
+}
+
+body.gf-aura-v16-safe .form-control:focus,
+body.gf-aura-v16-safe input:focus,
+body.gf-aura-v16-safe select:focus,
+body.gf-aura-v16-safe textarea:focus {
+    border-color: var(--gf-primary) !important;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.16) !important;
+}
+
+/* Botões */
+body.gf-aura-v16-safe .btn,
+body.gf-aura-v16-safe button,
+body.gf-aura-v16-safe .btn.btn-default,
+body.gf-aura-v16-safe .btn-secondary {
+    border-radius: var(--gf-btn-radius) !important;
+    padding: var(--gf-btn-padding-y) var(--gf-btn-padding-x) !important;
+    font-size: var(--gf-btn-font-size) !important;
+    line-height: var(--gf-btn-line-height) !important;
+    border: 1px solid var(--gf-border) !important;
+}
+
+body.gf-aura-v16-safe .btn-primary,
+body.gf-aura-v16-safe button.btn-primary,
+body.gf-aura-v16-safe .primary-action {
+    background: linear-gradient(135deg, #16a34a, #15803d) !important;
+    border-color: #15803d !important;
+    color: #ffffff !important;
+}
+
+body.gf-aura-v16-safe .btn-primary:hover,
+body.gf-aura-v16-safe .primary-action:hover {
+    background: linear-gradient(135deg, #15803d, #166534) !important;
+}
+
+/* Labels */
+body.gf-aura-v16-safe label,
+body.gf-aura-v16-safe .control-label,
+body.gf-aura-v16-safe .form-label,
+body.gf-aura-v16-safe .field-label {
+    font-size: var(--gf-label-font-size) !important;
+    line-height: var(--gf-label-line-height) !important;
+    margin-bottom: var(--gf-label-margin-bottom) !important;
+    color: #166534 !important;
+    font-weight: 700 !important;
+}
+
+body.gf-aura-v16-safe .reqd::after,
+body.gf-aura-v16-safe .control-label.req::after,
+body.gf-aura-v16-safe .mandatory::after {
+    color: var(--gf-label-required) !important;
+}
+
+/* Tabelas HTML padrão */
+body.gf-aura-v16-safe table,
+body.gf-aura-v16-safe .table {
+    border-collapse: collapse !important;
+    background: var(--gf-surface) !important;
+}
+
+body.gf-aura-v16-safe .table th,
+body.gf-aura-v16-safe .table td,
+body.gf-aura-v16-safe table th,
+body.gf-aura-v16-safe table td {
+    padding: var(--gf-table-padding-y) var(--gf-table-padding-x) !important;
+    font-size: var(--gf-table-font-size) !important;
+    line-height: var(--gf-table-line-height) !important;
+    vertical-align: middle !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+body.gf-aura-v16-safe .table thead th,
+body.gf-aura-v16-safe table thead th {
+    background: var(--gf-table-header-bg) !important;
+    color: #14532d !important;
+    padding: var(--gf-table-header-padding-y) var(--gf-table-header-padding-x) !important;
+    font-weight: 700 !important;
+}
+
+body.gf-aura-v16-safe .table tbody tr:hover,
+body.gf-aura-v16-safe table tbody tr:hover {
+    background: var(--gf-table-row-hover-bg) !important;
+}
+
+/* Grid filho dos formulários */
+body.gf-aura-v16-safe .grid-row,
+body.gf-aura-v16-safe .grid-body .rows .grid-row,
+body.gf-aura-v16-safe .form-grid .grid-row {
+    min-height: 24px !important;
+    background: #ffffff !important;
+}
+
+body.gf-aura-v16-safe .grid-row > .row,
+body.gf-aura-v16-safe .grid-heading-row > .row {
+    min-height: 24px !important;
+}
+
+body.gf-aura-v16-safe .grid-static-col,
+body.gf-aura-v16-safe .row-index,
+body.gf-aura-v16-safe .grid-heading-row .grid-static-col {
+    padding: 2px 6px !important;
+    min-height: 24px !important;
+    height: auto !important;
+    line-height: 1.1 !important;
+    font-size: 11px !important;
+}
+
+body.gf-aura-v16-safe .grid-heading-row,
+body.gf-aura-v16-safe .grid-heading-row .grid-static-col {
+    background: #dcfce7 !important;
+    color: #14532d !important;
+    font-weight: 700 !important;
+}
+
+/* List View e Report View */
+body.gf-aura-v16-safe .list-row,
+body.gf-aura-v16-safe .list-row-container,
+body.gf-aura-v16-safe .report-list-row,
+body.gf-aura-v16-safe .list-row-head {
+    min-height: 28px !important;
+}
+
+body.gf-aura-v16-safe .list-row-col,
+body.gf-aura-v16-safe .list-subject,
+body.gf-aura-v16-safe .list-row .level-item,
+body.gf-aura-v16-safe .list-row-head .level-item {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    font-size: 12px !important;
+    line-height: 1.15 !important;
+}
+
+body.gf-aura-v16-safe .list-row:hover,
+body.gf-aura-v16-safe .list-row-container:hover {
+    background: #f0fdf4 !important;
+}
+
+/* DataTable do Frappe */
+body.gf-aura-v16-safe .datatable,
+body.gf-aura-v16-safe .dt-scrollable,
+body.gf-aura-v16-safe .dt-row,
+body.gf-aura-v16-safe .dt-cell {
+    font-size: var(--gf-table-font-size) !important;
+}
+
+body.gf-aura-v16-safe .dt-cell,
+body.gf-aura-v16-safe .datatable .dt-cell,
+body.gf-aura-v16-safe .dt-cell__content,
+body.gf-aura-v16-safe .dt-header .dt-cell {
+    padding: 2px 6px !important;
+    line-height: 1.08 !important;
+    min-height: 22px !important;
+    height: 22px !important;
+}
+
+body.gf-aura-v16-safe .dt-row,
+body.gf-aura-v16-safe .datatable .dt-row {
+    min-height: 22px !important;
+    height: 22px !important;
+}
+
+body.gf-aura-v16-safe .dt-header,
+body.gf-aura-v16-safe .datatable .dt-header,
+body.gf-aura-v16-safe .dt-row-header {
+    background: #dcfce7 !important;
+    color: #14532d !important;
+    font-weight: 700 !important;
+}
+
+/* Após login: workspace principal */
+body.gf-aura-v16-safe[data-route^="Workspaces"],
+body.gf-aura-v16-safe .workspace-container,
+body.gf-aura-v16-safe .workspace-content,
+body.gf-aura-v16-safe .workspace-footer {
+    background: var(--gf-dashboard-bg) !important;
+}
+
+/* Pequena marca visual para confirmar que o tema carregou */
+body.gf-aura-v16-safe .navbar::after {
+    content: "GF";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    width: 26px;
+    height: 22px;
+    border-radius: 999px;
+    background: #16a34a;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
 }

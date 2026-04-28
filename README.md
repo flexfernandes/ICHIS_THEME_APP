@@ -82,3 +82,16 @@ Edite em `public/css/gf_aura_tokens.css`:
 ## Observação
 
 Este pacote evita copiar telas específicas do Aura. Ele usa apenas uma base segura de aparência global, com foco em compatibilidade e manutenção.
+
+## Versão 0.0.2
+
+Esta versão reforça a aplicação no Desk v16 com:
+
+- `web_include_css` e `web_include_js` adicionais no hooks.py
+- carregamento por `<link>` e também injeção inline via JavaScript
+- classe `gf-aura-v16-safe` aplicada ao body
+- overrides específicos para Workspace, dashboard, menu lateral, navbar, cards, formulários, List View, Report View, DataTable e grids filhos
+- tabelas mais compactas em todo o sistema
+- marca visual `GF` na barra superior para confirmar que o tema carregou
+
+Se a marca `GF` não aparecer na barra superior, o JS/CSS do app ainda não está sendo carregado pelo Frappe. Nesse caso, execute rebuild/clear cache no ambiente ou reinstale o app no site.
