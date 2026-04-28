@@ -1,6 +1,11 @@
+include README.md
+include requirements.txt
+include pyproject.toml
+include setup.py
+include MANIFEST.in
+recursive-include ichis *.py
+recursive-include ichis *.txt
 recursive-include ichis/public *
 recursive-include ichis/templates *
 recursive-include ichis/config *
-include README.md
-include pyproject.toml
-include setup.py
+recursive-include ichis/ichis_theme_app *
