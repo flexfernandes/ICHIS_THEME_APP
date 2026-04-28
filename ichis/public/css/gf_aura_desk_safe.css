@@ -1,0 +1,934 @@
+/* ==========================================================
+   GF Aura V16 Safe
+   CSS genérico inspirado no Aura Theme.
+   Foco: cores, fontes, botões, fundos, cards, tabelas,
+   formulários, menus, modais e pequenos refinamentos visuais.
+   ==========================================================  */
+
+html,
+body {
+    font-family: var(--gf-font-family) !important;
+    font-size: var(--gf-font-size) !important;
+    line-height: var(--gf-line-height) !important;
+    background: var(--gf-bg) !important;
+    color: var(--gf-text) !important;
+}
+
+body {
+    color-scheme: light;
+}
+
+[data-theme="dark"] body,
+body[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+    transition: background-color var(--gf-transition), border-color var(--gf-transition), color var(--gf-transition), box-shadow var(--gf-transition);
+}
+
+a,
+a:visited {
+    color: var(--gf-link) !important;
+}
+
+a:hover {
+    color: var(--gf-primary-dark) !important;
+}
+
+/* Scrollbar */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--gf-scroll-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--gf-scroll-thumb);
+    border-radius: var(--gf-pill);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--gf-primary);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gf-scroll-thumb) var(--gf-scroll-bg);
+}
+
+/* Fundos principais */
+.page-container,
+.layout-main,
+.layout-main-section,
+.main-section,
+.desk-page,
+.page-body,
+body .content,
+body .main-body {
+    background: var(--gf-bg) !important;
+}
+
+/* Navbar superior */
+.navbar,
+.navbar.navbar-expand,
+header.navbar {
+    min-height: var(--gf-navbar-height) !important;
+    background: var(--gf-surface) !important;
+    border-bottom: 1px solid var(--gf-border) !important;
+    box-shadow: var(--gf-shadow-sm) !important;
+}
+
+.navbar .navbar-nav a.nav-link,
+.navbar a,
+#navbar-breadcrumbs a,
+#navbar-breadcrumbs li,
+#navbar-breadcrumbs .breadcrumb-item {
+    color: var(--gf-text-secondary) !important;
+    font-weight: 500 !important;
+}
+
+.navbar .navbar-nav a.nav-link:hover,
+.navbar a:hover,
+#navbar-breadcrumbs a:hover {
+    color: var(--gf-primary) !important;
+}
+
+.navbar svg,
+.navbar svg.icon,
+.navbar use,
+.navbar .icon {
+    color: var(--gf-text-secondary) !important;
+    fill: var(--gf-text-secondary) !important;
+}
+
+.navbar svg:hover,
+.navbar .icon:hover {
+    color: var(--gf-primary) !important;
+    fill: var(--gf-primary) !important;
+}
+
+/* Cabeçalho de página */
+.page-head,
+.page-head.flex {
+    min-height: var(--gf-page-head-height) !important;
+    background: var(--gf-surface) !important;
+    border-bottom: 1px solid var(--gf-border) !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+}
+
+.page-title,
+.title-text,
+h1, h2, h3, h4, h5, h6 {
+    color: var(--gf-heading) !important;
+}
+
+.text-muted,
+.text-extra-muted,
+.small.text-muted,
+.control-value.text-muted {
+    color: var(--gf-muted) !important;
+}
+
+/* Sidebar e menus laterais */
+.layout-side-section,
+.list-sidebar,
+.standard-sidebar,
+.desk-sidebar,
+.sidebar-menu {
+    background: var(--gf-surface) !important;
+    border-color: var(--gf-border) !important;
+}
+
+.layout-side-section .sidebar-label,
+.standard-sidebar-label,
+.sidebar-label {
+    color: var(--gf-primary-dark) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.01em;
+}
+
+.sidebar-item,
+.standard-sidebar-item,
+.desk-sidebar-item,
+.list-sidebar-button,
+.module-link,
+.dropdown-item {
+    border-radius: var(--gf-radius-sm) !important;
+    color: var(--gf-text-secondary) !important;
+}
+
+.sidebar-item:hover,
+.standard-sidebar-item:hover,
+.desk-sidebar-item:hover,
+.list-sidebar-button:hover,
+.module-link:hover,
+.dropdown-item:hover {
+    background: var(--gf-hover) !important;
+    color: var(--gf-primary) !important;
+}
+
+/* Superfícies, cards e widgets */
+.card,
+.widget,
+.widget-body,
+.widget-head,
+.widget.shortcut-widget-box,
+.widget.dashboard-widget-box,
+.form-dashboard-section,
+.form-section,
+.section-body,
+.dashboard-card,
+.number-card,
+.chart-wrapper,
+.comment-box,
+.timeline-item,
+.list-row-container,
+.report-wrapper,
+.frappe-card {
+    background: var(--gf-surface) !important;
+    border: 1px solid var(--gf-border) !important;
+    border-radius: var(--gf-radius) !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+}
+
+.widget,
+.form-section,
+.form-dashboard-section,
+.dashboard-card,
+.number-card,
+.chart-wrapper,
+.frappe-card {
+    padding: 1rem !important;
+}
+
+.widget:hover,
+.widget.shortcut-widget-box:hover,
+.card:hover,
+.dashboard-card:hover,
+.number-card:hover {
+    box-shadow: var(--gf-shadow-sm) !important;
+    border-color: color-mix(in srgb, var(--gf-primary) 28%, var(--gf-border)) !important;
+}
+
+/* Formulários */
+.form-control,
+.input-with-feedback,
+.awesomplete .input-with-feedback,
+.control-input input,
+.control-input select,
+.control-input textarea,
+.ql-editor,
+.comment-input-container .ql-editor,
+.duration-picker .duration-input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+    background: var(--gf-control) !important;
+    color: var(--gf-text) !important;
+    border: 1px solid var(--gf-border) !important;
+    border-radius: var(--gf-radius-sm) !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+}
+
+.form-control:focus,
+.input-with-feedback:focus,
+.control-input input:focus,
+.control-input select:focus,
+.control-input textarea:focus,
+.ql-editor:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none !important;
+    border-color: var(--gf-primary) !important;
+    box-shadow: var(--gf-focus-ring), var(--gf-shadow-xs) !important;
+}
+
+.form-control:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled,
+.disabled,
+.read-only {
+    background: var(--gf-disabled) !important;
+    color: var(--gf-muted) !important;
+    border-color: var(--gf-border) !important;
+}
+
+.control-label,
+.form-label,
+label,
+.like-disabled-input,
+.help-box,
+.help {
+    color: var(--gf-text-secondary) !important;
+}
+
+.control-label,
+.form-label,
+label {
+    font-weight: 500 !important;
+}
+
+/* Botões */
+.btn {
+    border-radius: var(--gf-radius-sm) !important;
+    font-weight: 600 !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+    border-color: var(--gf-border) !important;
+}
+
+.btn:hover {
+    box-shadow: var(--gf-shadow-sm) !important;
+}
+
+.btn-primary,
+.btn.btn-primary,
+button.btn-primary {
+    background: var(--gf-primary) !important;
+    color: var(--gf-white) !important;
+    border-color: var(--gf-primary-dark) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: var(--gf-primary-dark) !important;
+    color: var(--gf-white) !important;
+    border-color: var(--gf-primary-dark) !important;
+}
+
+.btn-secondary,
+.btn-default,
+.btn-light {
+    background: var(--gf-surface) !important;
+    color: var(--gf-text-secondary) !important;
+    border: 1px solid var(--gf-border) !important;
+}
+
+.btn-secondary:hover,
+.btn-default:hover,
+.btn-light:hover {
+    background: var(--gf-hover) !important;
+    color: var(--gf-primary) !important;
+    border-color: var(--gf-primary-light) !important;
+}
+
+.btn-info,
+.btn-xs,
+.btn.btn-xs {
+    border-radius: var(--gf-pill) !important;
+}
+
+/* Dropdowns */
+.dropdown-menu,
+.popover,
+.menu-btn-group .dropdown-menu {
+    background: var(--gf-surface) !important;
+    color: var(--gf-text) !important;
+    border: 1px solid var(--gf-border) !important;
+    border-radius: var(--gf-radius) !important;
+    box-shadow: var(--gf-shadow-md) !important;
+}
+
+.dropdown-divider {
+    border-color: var(--gf-border) !important;
+}
+
+/* Tabelas, listas, grids e datatable */
+.table,
+.list-view-container,
+.report-list-view,
+.form-grid,
+.grid-body,
+.datatable,
+.dt-scrollable,
+.dt-cell,
+.dt-row,
+.list-row,
+.result,
+.frappe-list {
+    background: var(--gf-surface) !important;
+    color: var(--gf-text) !important;
+    border-color: var(--gf-border) !important;
+}
+
+.table thead,
+.table thead th,
+.grid-heading-row,
+.datatable .dt-header,
+.dt-header,
+.list-header,
+.report-list-header {
+    background: var(--gf-hover) !important;
+    color: var(--gf-heading) !important;
+    border-color: var(--gf-border) !important;
+    font-weight: 700 !important;
+}
+
+.table td,
+.table th,
+.grid-row,
+.grid-static-col,
+.dt-cell,
+.list-row {
+    border-color: var(--gf-border) !important;
+}
+
+.grid-row:hover,
+.dt-row:hover,
+.list-row:hover,
+.list-row-container:hover {
+    background: var(--gf-hover) !important;
+}
+
+.form-grid,
+.datatable {
+    border-radius: var(--gf-radius) !important;
+    overflow: hidden !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+}
+
+/* Modais */
+.modal-backdrop {
+    background: rgba(17, 24, 39, 0.42) !important;
+    backdrop-filter: blur(7px);
+}
+
+.modal-content {
+    background: var(--gf-surface) !important;
+    color: var(--gf-text) !important;
+    border: 1px solid var(--gf-border) !important;
+    border-radius: var(--gf-radius-lg) !important;
+    box-shadow: var(--gf-shadow-md) !important;
+    overflow: hidden !important;
+}
+
+.modal-header,
+.modal-footer {
+    background: var(--gf-surface) !important;
+    border-color: var(--gf-border) !important;
+}
+
+.modal-body {
+    background: var(--gf-bg) !important;
+}
+
+.modal-title {
+    color: var(--gf-heading) !important;
+    font-weight: 700 !important;
+}
+
+/* Busca/autocomplete */
+.awesomplete > ul,
+.search-dialog .search-results,
+.search-results {
+    background: var(--gf-surface) !important;
+    color: var(--gf-text) !important;
+    border: 1px solid var(--gf-border) !important;
+    border-radius: var(--gf-radius) !important;
+    box-shadow: var(--gf-shadow-md) !important;
+}
+
+.awesomplete > ul > li,
+.search-results .result {
+    color: var(--gf-text) !important;
+}
+
+.awesomplete > ul > li:hover,
+.awesomplete > ul > li[aria-selected="true"],
+.search-results .result:hover {
+    background: var(--gf-hover) !important;
+    color: var(--gf-primary) !important;
+}
+
+/* Indicadores e pills */
+.indicator-pill,
+.indicator-pill-right,
+.indicator,
+.status-pill,
+.badge {
+    border-radius: var(--gf-pill) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Alertas */
+.alert,
+.msgprint,
+.frappe-toast,
+.toast,
+.toast-message {
+    border-radius: var(--gf-radius) !important;
+    border-color: var(--gf-border) !important;
+    box-shadow: var(--gf-shadow-sm) !important;
+}
+
+.alert-info {
+    background: color-mix(in srgb, var(--gf-info) 12%, var(--gf-surface)) !important;
+    color: var(--gf-text) !important;
+}
+
+.alert-success {
+    background: color-mix(in srgb, var(--gf-success) 12%, var(--gf-surface)) !important;
+    color: var(--gf-text) !important;
+}
+
+.alert-warning {
+    background: color-mix(in srgb, var(--gf-warning) 14%, var(--gf-surface)) !important;
+    color: var(--gf-text) !important;
+}
+
+.alert-danger {
+    background: color-mix(in srgb, var(--gf-danger) 12%, var(--gf-surface)) !important;
+    color: var(--gf-text) !important;
+}
+
+/* Workspace/Menu principal */
+.workspace,
+.workspace-body,
+.workspace-sidebar,
+.workspace-page,
+.workspace-section,
+.shortcut-widget-box,
+.onboarding-widget-box,
+.links-widget-box,
+.dashboard-widget-box {
+    background-color: var(--gf-surface) !important;
+    color: var(--gf-text) !important;
+    border-color: var(--gf-border) !important;
+}
+
+.shortcut-widget-box,
+.onboarding-widget-box,
+.links-widget-box,
+.dashboard-widget-box {
+    border-radius: var(--gf-radius) !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+}
+
+.shortcut-widget-box:hover,
+.onboarding-widget-box:hover,
+.links-widget-box:hover,
+.dashboard-widget-box:hover {
+    border-color: var(--gf-primary-light) !important;
+    box-shadow: var(--gf-shadow-sm) !important;
+}
+
+/* Kanban */
+.kanban-board,
+.kanban-column,
+.kanban-card,
+.kanban-card-wrapper {
+    background: var(--gf-surface) !important;
+    color: var(--gf-text) !important;
+    border-color: var(--gf-border) !important;
+}
+
+.kanban-card,
+.kanban-column {
+    border-radius: var(--gf-radius) !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+}
+
+/* Calendário */
+.fc,
+.fc-view,
+.fc-scrollgrid,
+.fc-daygrid-day,
+.fc-timegrid-slot,
+.fc-theme-standard td,
+.fc-theme-standard th {
+    background: var(--gf-surface) !important;
+    color: var(--gf-text) !important;
+    border-color: var(--gf-border) !important;
+}
+
+.fc-button-primary {
+    background: var(--gf-primary) !important;
+    border-color: var(--gf-primary-dark) !important;
+}
+
+/* Pequeno reforço para telas que usam branco fixo */
+.bg-white,
+.bg-light,
+.white-card,
+.page-card {
+    background-color: var(--gf-surface) !important;
+}
+
+.border,
+.border-top,
+.border-bottom,
+.border-left,
+.border-right {
+    border-color: var(--gf-border) !important;
+}
+
+/* ==========================================================
+   GF CONTROLE TOTAL DE TABELAS
+   Controla tabelas HTML, grids de formulário, List View,
+   Report View e Datatable do Frappe/ERPNext.
+   ========================================================== */
+.table,
+.table-bordered,
+.table-hover,
+.form-grid,
+.grid-body,
+.grid-heading-row,
+.grid-row,
+.list-view-container,
+.report-list-view,
+.datatable,
+.dt-scrollable,
+.frappe-list,
+.result-list,
+.list-row-container {
+    border-color: var(--gf-table-border) !important;
+}
+
+.table,
+.form-grid,
+.datatable,
+.list-view-container,
+.report-list-view {
+    border-radius: var(--gf-table-radius) !important;
+    overflow: hidden !important;
+    background: var(--gf-surface) !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+}
+
+.table th,
+.table td,
+.table > :not(caption) > * > *,
+.grid-static-col,
+.row-index,
+.dt-cell,
+.dt-cell__content,
+.list-row,
+.list-row-col,
+.report-list-row,
+.result {
+    font-size: var(--gf-table-font-size) !important;
+    line-height: var(--gf-table-line-height) !important;
+    color: var(--gf-text) !important;
+    border-color: var(--gf-table-border) !important;
+}
+
+.table th,
+.table thead th,
+.table > thead > tr > th,
+.grid-heading-row,
+.grid-heading-row .grid-static-col,
+.datatable .dt-header,
+.dt-header,
+.dt-row-header,
+.list-header,
+.report-list-header {
+    padding: var(--gf-table-header-padding-y) var(--gf-table-header-padding-x) !important;
+    background: var(--gf-table-header-bg) !important;
+    color: var(--gf-table-header-text) !important;
+    font-size: var(--gf-table-font-size) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.01em !important;
+    border-color: var(--gf-table-border) !important;
+}
+
+.table td,
+.table > tbody > tr > td,
+.grid-row .grid-static-col,
+.datatable .dt-cell,
+.datatable .dt-cell__content,
+.list-row,
+.list-row-col,
+.report-list-row,
+.result {
+    padding: var(--gf-table-padding-y) var(--gf-table-padding-x) !important;
+    background: var(--gf-table-row-bg) !important;
+}
+
+.table tbody tr:nth-child(even) td,
+.grid-row:nth-child(even) .grid-static-col,
+.datatable .dt-row:nth-child(even) .dt-cell,
+.list-row-container:nth-child(even) .list-row,
+.report-list-row:nth-child(even) {
+    background: var(--gf-table-row-alt-bg) !important;
+}
+
+.table tbody tr:hover td,
+.grid-row:hover .grid-static-col,
+.datatable .dt-row:hover .dt-cell,
+.list-row-container:hover .list-row,
+.report-list-row:hover,
+.result:hover {
+    background: var(--gf-table-row-hover-bg) !important;
+}
+
+.table .text-right,
+.table .text-end,
+.datatable .dt-cell--col[data-dt-cell] .dt-cell__content,
+.grid-static-col[data-fieldtype="Currency"],
+.grid-static-col[data-fieldtype="Float"],
+.grid-static-col[data-fieldtype="Int"] {
+    font-variant-numeric: tabular-nums !important;
+}
+
+.grid-empty,
+.no-result,
+.no-data,
+.empty-state {
+    background: var(--gf-surface) !important;
+    color: var(--gf-muted) !important;
+    border-color: var(--gf-border) !important;
+}
+
+/* ==========================================================
+   GF CONTROLE TOTAL DE BOTÕES
+   Controla botões principais, secundários, tamanhos pequenos,
+   estados hover/focus/disabled e botões de ação do Desk.
+   ========================================================== */
+.btn,
+button,
+button.btn,
+.btn-default,
+.btn-secondary,
+.btn-primary,
+.btn-light,
+.btn-info,
+.btn-success,
+.btn-warning,
+.btn-danger,
+.page-actions .btn,
+.form-actions .btn,
+.standard-actions .btn,
+.actions-btn-group .btn,
+.menu-btn-group .btn,
+.custom-actions .btn,
+.grid-add-row,
+.grid-remove-rows,
+.btn-modal-primary,
+.btn-modal-close {
+    min-height: auto !important;
+    padding: var(--gf-btn-padding-y) var(--gf-btn-padding-x) !important;
+    border-radius: var(--gf-btn-radius) !important;
+    font-size: var(--gf-btn-font-size) !important;
+    font-weight: var(--gf-btn-font-weight) !important;
+    line-height: var(--gf-btn-line-height) !important;
+    letter-spacing: 0.01em !important;
+    box-shadow: var(--gf-shadow-xs) !important;
+    transition: var(--gf-transition) !important;
+}
+
+.btn-xs,
+.btn.btn-xs,
+button.btn-xs,
+.grid-add-row,
+.grid-remove-rows {
+    padding: var(--gf-btn-xs-padding-y) var(--gf-btn-xs-padding-x) !important;
+    border-radius: var(--gf-btn-radius-pill) !important;
+    font-size: 11px !important;
+}
+
+.btn-sm,
+.btn.btn-sm,
+button.btn-sm {
+    padding: var(--gf-btn-sm-padding-y) var(--gf-btn-sm-padding-x) !important;
+    border-radius: var(--gf-btn-radius) !important;
+    font-size: 12px !important;
+}
+
+.btn-primary,
+.btn.btn-primary,
+button.btn-primary,
+.primary-action,
+.btn-modal-primary {
+    background: var(--gf-btn-primary-bg) !important;
+    color: var(--gf-btn-primary-text) !important;
+    border: 1px solid var(--gf-primary-dark) !important;
+}
+
+.btn-primary:hover,
+.btn.btn-primary:hover,
+button.btn-primary:hover,
+.primary-action:hover,
+.btn-modal-primary:hover,
+.btn-primary:focus,
+.btn.btn-primary:focus,
+button.btn-primary:focus,
+.primary-action:focus {
+    background: var(--gf-btn-primary-hover-bg) !important;
+    color: var(--gf-btn-primary-text) !important;
+    border-color: var(--gf-btn-primary-hover-bg) !important;
+    box-shadow: var(--gf-focus-ring), var(--gf-shadow-sm) !important;
+}
+
+.btn-secondary,
+.btn-default,
+.btn-light,
+.btn.btn-secondary,
+.btn.btn-default,
+.btn.btn-light,
+button.btn-secondary,
+button.btn-default,
+button.btn-light,
+.page-actions .btn:not(.btn-primary),
+.standard-actions .btn:not(.btn-primary),
+.menu-btn-group .btn:not(.btn-primary),
+.custom-actions .btn:not(.btn-primary) {
+    background: var(--gf-btn-secondary-bg) !important;
+    color: var(--gf-btn-secondary-text) !important;
+    border: 1px solid var(--gf-btn-border) !important;
+}
+
+.btn-secondary:hover,
+.btn-default:hover,
+.btn-light:hover,
+.page-actions .btn:not(.btn-primary):hover,
+.standard-actions .btn:not(.btn-primary):hover,
+.menu-btn-group .btn:not(.btn-primary):hover,
+.custom-actions .btn:not(.btn-primary):hover {
+    background: var(--gf-btn-secondary-hover-bg) !important;
+    color: var(--gf-primary) !important;
+    border-color: var(--gf-primary-light) !important;
+    box-shadow: var(--gf-shadow-sm) !important;
+}
+
+.btn-success {
+    background: var(--gf-success) !important;
+    border-color: var(--gf-success) !important;
+    color: #ffffff !important;
+}
+
+.btn-warning {
+    background: var(--gf-warning) !important;
+    border-color: var(--gf-warning) !important;
+    color: #111827 !important;
+}
+
+.btn-danger {
+    background: var(--gf-danger) !important;
+    border-color: var(--gf-danger) !important;
+    color: #ffffff !important;
+}
+
+.btn-info {
+    background: var(--gf-info) !important;
+    border-color: var(--gf-info) !important;
+    color: #ffffff !important;
+}
+
+.btn:disabled,
+.btn.disabled,
+button:disabled,
+button.disabled {
+    opacity: 0.58 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+.btn svg,
+.btn .icon,
+button svg,
+button .icon {
+    color: currentColor !important;
+    fill: currentColor !important;
+}
+
+/* ==========================================================
+   GF CONTROLE TOTAL DE LABELS
+   Controla labels de campos, obrigatórios, ajuda, descrições,
+   labels de sidebar, etiquetas e badges/pills.
+   ========================================================== */
+label,
+.form-label,
+.control-label,
+.frappe-control .control-label,
+.field-label,
+.grid-heading-row .static-area,
+.like-disabled-input,
+.sidebar-label,
+.standard-sidebar-label,
+.section-head,
+.form-section .section-head {
+    color: var(--gf-label-text) !important;
+    font-size: var(--gf-label-font-size) !important;
+    font-weight: var(--gf-label-font-weight) !important;
+    line-height: var(--gf-label-line-height) !important;
+}
+
+.frappe-control .control-label,
+.control-label,
+.form-label,
+.field-label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    margin-bottom: var(--gf-label-margin-bottom) !important;
+}
+
+.reqd,
+.required,
+.mandatory,
+.control-label.reqd::after,
+.form-label.reqd::after,
+label.reqd::after {
+    color: var(--gf-label-required) !important;
+    font-weight: 800 !important;
+}
+
+.help,
+.help-box,
+.field-description,
+.small.text-muted,
+.control-input .help,
+.frappe-control .help,
+.description,
+.text-muted {
+    color: var(--gf-field-help-color) !important;
+    font-size: var(--gf-field-help-font-size) !important;
+    line-height: 1.35 !important;
+}
+
+.indicator,
+.indicator-pill,
+.indicator-pill-right,
+.status-pill,
+.badge,
+.label,
+.tag,
+.es-icon,
+.status,
+.workflow-state {
+    border-radius: var(--gf-pill) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    padding: 3px 8px !important;
+    letter-spacing: 0.02em !important;
+}
+
+.badge,
+.label,
+.tag {
+    background: var(--gf-primary-soft) !important;
+    color: var(--gf-primary-dark) !important;
+    border: 1px solid color-mix(in srgb, var(--gf-primary) 18%, var(--gf-border)) !important;
+}
+
+.section-head,
+.form-section .section-head,
+.sidebar-label,
+.standard-sidebar-label {
+    color: var(--gf-primary-dark) !important;
+    text-transform: none !important;
+}

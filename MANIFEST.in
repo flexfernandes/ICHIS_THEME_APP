@@ -1,2 +1,6 @@
 recursive-include ichis/public *
+recursive-include ichis/templates *
+recursive-include ichis/config *
 include README.md
+include pyproject.toml
+include setup.py
