@@ -1,0 +1,127 @@
+/* GF HOME FORCE - camada adicionada, sem alterar o tema base */
+#gf-home-force-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 56px;
+    bottom: 0;
+    z-index: 998;
+    overflow: auto;
+    background: #f8fafc;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    color: #111827;
+}
+
+.gf-home-force-shell {
+    min-height: 100%;
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+.gf-home-force-hero {
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 28px;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 48%, #ecfeff 100%);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    padding: 30px;
+    margin-bottom: 22px;
+}
+
+.gf-home-force-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #166534;
+    margin-bottom: 10px;
+}
+
+.gf-home-force-title {
+    font-size: 30px;
+    line-height: 1.12;
+    font-weight: 750;
+    color: #111827;
+    margin: 0 0 10px;
+}
+
+.gf-home-force-subtitle {
+    max-width: 820px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #475569;
+    margin: 0;
+}
+
+.gf-home-force-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.gf-home-force-card {
+    min-height: 138px;
+    border: 1px solid rgba(148, 163, 184, 0.32);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+    padding: 18px;
+    cursor: pointer;
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+
+.gf-home-force-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.10);
+    border-color: rgba(22, 101, 52, 0.28);
+}
+
+.gf-home-force-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    background: #dcfce7;
+    color: #166534;
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+.gf-home-force-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 7px;
+}
+
+.gf-home-force-card-text {
+    font-size: 12px;
+    line-height: 1.55;
+    color: #64748b;
+}
+
+#gf-home-force-debug {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 9999;
+    border-radius: 999px;
+    background: #166534;
+    color: #ffffff;
+    padding: 8px 12px;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, .18);
+}
+
+@media (max-width: 1100px) {
+    .gf-home-force-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+    #gf-home-force-overlay { top: 0; }
+    .gf-home-force-shell { padding: 16px; }
+    .gf-home-force-grid { grid-template-columns: 1fr; }
+    .gf-home-force-title { font-size: 23px; }
+}
