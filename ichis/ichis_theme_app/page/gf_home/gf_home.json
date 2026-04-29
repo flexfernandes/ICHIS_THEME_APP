@@ -1,1 +1,16 @@
-{"doctype":"Page","name":"gf-home","page_name":"gf-home","title":"GF Home","module":"IChis Theme App","standard":"Yes","system_page":0,"roles":[]}
+{
+ "creation": "2026-04-29 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2026-04-29 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Ichis Theme App",
+ "name": "gf-home",
+ "owner": "Administrator",
+ "page_name": "gf-home",
+ "roles": [],
+ "standard": "Yes",
+ "system_page": 0,
+ "title": "GF Home"
+}
