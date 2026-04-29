@@ -1,0 +1,302 @@
+/* ==========================================================
+   GF Home Overlay
+   Arquivo novo. Não altera tokens, cores, fontes ou arquivos
+   originais do tema ICHIS_THEME_APP_V260428.
+   ========================================================== */
+
+.gf-home-wrapper {
+    padding: 0 !important;
+}
+
+body.gf-home-active .page-head,
+body.gf-home-active .layout-side-section {
+    display: none !important;
+}
+
+.gf-home-page {
+    min-height: calc(100vh - var(--gf-navbar-height));
+    padding: 28px;
+    background:
+        radial-gradient(circle at top left, color-mix(in srgb, var(--gf-primary) 16%, transparent), transparent 32%),
+        linear-gradient(135deg, var(--gf-bg) 0%, var(--gf-bg-soft, var(--gf-bg)) 100%);
+    color: var(--gf-text);
+    font-family: var(--gf-font-family);
+}
+
+.gf-home-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 22px;
+    align-items: stretch;
+    margin-bottom: 22px;
+}
+
+.gf-home-hero-content,
+.gf-home-user-card,
+.gf-home-grid-wrap {
+    background: var(--gf-surface);
+    border: 1px solid var(--gf-border);
+    border-radius: var(--gf-radius-lg);
+    box-shadow: var(--gf-shadow-md);
+}
+
+.gf-home-hero-content {
+    padding: 34px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gf-home-hero-content::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    right: -90px;
+    top: -90px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--gf-primary) 12%, transparent);
+    pointer-events: none;
+}
+
+.gf-home-brand-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.gf-home-brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gf-primary);
+    color: var(--gf-btn-primary-text);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    box-shadow: var(--gf-shadow-sm);
+}
+
+.gf-home-brand-text {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gf-primary-dark);
+    letter-spacing: 0.14em;
+}
+
+.gf-home-kicker,
+.gf-home-section-head p,
+.gf-home-user-label {
+    margin: 0;
+    color: var(--gf-muted);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.gf-home-hero h1 {
+    max-width: 760px;
+    margin: 8px 0 12px;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+    color: var(--gf-heading);
+}
+
+.gf-home-subtitle {
+    max-width: 680px;
+    margin: 0;
+    color: var(--gf-text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.gf-home-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+}
+
+.gf-home-primary,
+.gf-home-secondary,
+.gf-home-link,
+.gf-home-module {
+    font-family: var(--gf-font-family);
+    cursor: pointer;
+}
+
+.gf-home-primary,
+.gf-home-secondary,
+.gf-home-link {
+    min-height: 38px;
+    border-radius: var(--gf-btn-radius-pill);
+    padding: 0 16px;
+    font-size: var(--gf-btn-font-size);
+    font-weight: var(--gf-btn-font-weight);
+    transition: var(--gf-transition);
+}
+
+.gf-home-primary {
+    border: 1px solid var(--gf-btn-primary-bg);
+    background: var(--gf-btn-primary-bg);
+    color: var(--gf-btn-primary-text);
+}
+
+.gf-home-secondary,
+.gf-home-link {
+    border: 1px solid var(--gf-btn-border);
+    background: var(--gf-btn-secondary-bg);
+    color: var(--gf-btn-secondary-text);
+}
+
+.gf-home-primary:hover {
+    background: var(--gf-btn-primary-hover-bg);
+    border-color: var(--gf-btn-primary-hover-bg);
+}
+
+.gf-home-secondary:hover,
+.gf-home-link:hover {
+    background: var(--gf-btn-secondary-hover-bg);
+    color: var(--gf-primary);
+}
+
+.gf-home-user-card {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 240px;
+    background:
+        linear-gradient(160deg, color-mix(in srgb, var(--gf-primary) 9%, var(--gf-surface)), var(--gf-surface));
+}
+
+.gf-home-user-card strong {
+    margin-top: 12px;
+    color: var(--gf-heading);
+    font-size: 22px;
+    line-height: 1.15;
+}
+
+.gf-home-user-card small {
+    margin-top: 8px;
+    color: var(--gf-muted);
+    font-size: 12px;
+}
+
+.gf-home-grid-wrap {
+    padding: 22px;
+}
+
+.gf-home-section-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.gf-home-section-head h2 {
+    margin: 4px 0 0;
+    font-size: 21px;
+    letter-spacing: -0.03em;
+    color: var(--gf-heading);
+}
+
+.gf-home-modules {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.gf-home-module {
+    min-height: 132px;
+    border: 1px solid var(--gf-border);
+    border-radius: var(--gf-radius);
+    background: var(--gf-surface);
+    padding: 18px;
+    text-align: left;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    color: var(--gf-text);
+    box-shadow: var(--gf-shadow-xs);
+    transition: var(--gf-transition);
+}
+
+.gf-home-module:hover {
+    transform: translateY(-2px);
+    border-color: var(--gf-border-strong, var(--gf-primary));
+    box-shadow: var(--gf-shadow-sm);
+    background: var(--gf-card-green-bg, var(--gf-surface));
+}
+
+.gf-home-module-icon {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: var(--gf-primary-soft);
+    color: var(--gf-primary-dark);
+}
+
+.gf-home-module-icon svg {
+    width: 23px;
+    height: 23px;
+    fill: currentColor;
+}
+
+.gf-home-module-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gf-home-module-text strong {
+    color: var(--gf-heading);
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.gf-home-module-text small {
+    color: var(--gf-muted);
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+@media (max-width: 1100px) {
+    .gf-home-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .gf-home-modules {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .gf-home-page {
+        padding: 16px;
+    }
+
+    .gf-home-hero-content,
+    .gf-home-user-card,
+    .gf-home-grid-wrap {
+        padding: 18px;
+    }
+
+    .gf-home-modules {
+        grid-template-columns: 1fr;
+    }
+
+    .gf-home-section-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

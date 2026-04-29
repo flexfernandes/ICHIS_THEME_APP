@@ -9,10 +9,12 @@ app_license = "mit"
 app_include_css = [
     "/assets/ichis/css/gf_aura_tokens.css",
     "/assets/ichis/css/gf_aura_desk_safe.css",
+    "/assets/ichis/css/gf_home.css",
 ]
 
 app_include_js = [
     "/assets/ichis/js/gf_aura_loader.js",
+    "/assets/ichis/js/gf_home.js",
 ]
 
 # Compatibilidade adicional para Desk/Web em versões novas do Frappe.
@@ -20,8 +22,10 @@ app_include_js = [
 web_include_css = [
     "/assets/ichis/css/gf_aura_tokens.css",
     "/assets/ichis/css/gf_aura_desk_safe.css",
+    "/assets/ichis/css/gf_home.css",
 ]
 
 web_include_js = [
     "/assets/ichis/js/gf_aura_loader.js",
+    "/assets/ichis/js/gf_home.js",
 ]
