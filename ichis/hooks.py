@@ -5,25 +5,23 @@ app_description = "Tema visual genérico inspirado no Aura para Frappe/ERPNext v
 app_email = "contato@greenfarms.com.br"
 app_license = "mit"
 
-# Carregado no Desk do Frappe/ERPNext.
-# Referências sem barra inicial, conforme padrão documentado do Frappe para app_include_js/app_include_css.
+# Carregado no Desk do Frappe/ERPNext
 app_include_css = [
-    "assets/ichis/css/gf_aura_tokens.css",
-    "assets/ichis/css/gf_aura_desk_safe.css",
-    "assets/ichis/css/gf_home_force.css",
+    "/assets/ichis/css/gf_aura_tokens.css",
+    "/assets/ichis/css/gf_aura_desk_safe.css",
 ]
 
 app_include_js = [
-    "assets/ichis/js/gf_aura_loader.js",
-    "assets/ichis/js/gf_home_force.js",
+    "/assets/ichis/js/gf_aura_loader.js",
 ]
 
-# Mantido para compatibilidade com telas web/portal, sem substituir o tema base.
+# Compatibilidade adicional para Desk/Web em versões novas do Frappe.
+# Mantém os includes originais e reforça o carregamento dos mesmos arquivos.
 web_include_css = [
-    "assets/ichis/css/gf_aura_tokens.css",
-    "assets/ichis/css/gf_aura_desk_safe.css",
+    "/assets/ichis/css/gf_aura_tokens.css",
+    "/assets/ichis/css/gf_aura_desk_safe.css",
 ]
 
 web_include_js = [
-    "assets/ichis/js/gf_aura_loader.js",
+    "/assets/ichis/js/gf_aura_loader.js",
 ]

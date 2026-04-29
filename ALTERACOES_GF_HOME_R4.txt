@@ -1,0 +1,18 @@
+R4 - Ajuste focado somente no Desk/Home.
+
+O arquivo original ichis/public/js/gf_aura_loader.js foi preservado e recebeu apenas um bloco adicional no final:
+GF HOME DESK OVERLAY - R4.
+
+Motivo técnico:
+As versões anteriores criavam novos arquivos JS/CSS, mas eles não carregaram no Desk.
+Como o tema base já estava funcionando, esta versão usa o mesmo ponto de entrada já comprovado: gf_aura_loader.js.
+
+Não foram alterados:
+- cores do tema base existente;
+- fontes do tema base existente;
+- tamanhos do tema base existente;
+- arquivos CSS existentes;
+- estrutura do hooks.py.
+
+Objetivo:
+Sobrepor visualmente a tela inicial/workspace padrão do ERPNext quando a rota for /app, /desk ou workspace.
