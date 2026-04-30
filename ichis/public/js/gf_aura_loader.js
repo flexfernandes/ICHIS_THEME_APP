@@ -1,7 +1,4 @@
 (function () {
-    window.gfVersion = "GF_ROUTE_FIX_R11";
-    window.gfversion = "GF_ROUTE_FIX_R11";
-
     var CSS_FILES = [
         "/assets/ichis/css/gf_aura_tokens.css",
         "/assets/ichis/css/gf_aura_desk_safe.css"
@@ -112,50 +109,22 @@
         return [];
     }
 
-    function normalizeRouteText(value) {
-        return String(value || "")
-            .replace(/%20/g, " ")
-            .replace(/_/g, " ")
-            .toLowerCase();
-    }
-
-    function isNativePageRoute(routeText) {
-        return (
-            routeText.indexOf("form/") === 0 ||
-            routeText.indexOf("list/") === 0 ||
-            routeText.indexOf("query-report/") === 0 ||
-            routeText.indexOf("report/") === 0 ||
-            routeText.indexOf("dashboard-view/") === 0 ||
-            routeText.indexOf("print/") === 0 ||
-            routeText.indexOf("file/") === 0
-        );
-    }
-
     function isDeskHomeRoute() {
-        var path = normalizeRouteText(window.location.pathname || "");
-        var hash = normalizeRouteText(window.location.hash || "");
+        var path = window.location.pathname || "";
+        var hash = window.location.hash || "";
         var route = getRouteParts();
-        var routeText = normalizeRouteText(route.join("/"));
-        var first = normalizeRouteText(route[0] || "");
+        var first = route[0] || "";
+        var second = route[1] || "";
 
-        // Telas nativas do ERPNext devem continuar abrindo normalmente.
-        if (isNativePageRoute(routeText)) return false;
+        if (path === "/desk" || path === "/app" || path === "/app/") return true;
+        if (hash === "#" || hash === "#!/" || hash === "#/" || hash === "") {
+            if (path.indexOf("/app") === 0 || path.indexOf("/desk") === 0) return true;
+        }
 
-        // Entrada principal do Desk.
-        if (path === "/desk" || path === "/desk/" || path === "/app" || path === "/app/") return true;
-
-        // Qualquer chamada antiga ou quebrada para Desk/Desc/Desktop deve voltar para a GF Home.
-        if (path.indexOf("/desk") === 0) return true;
-        if (hash.indexOf("desk") >= 0 || hash.indexOf("desc") >= 0 || hash.indexOf("desktop") >= 0) return true;
-        if (routeText.indexOf("desk") >= 0 || routeText.indexOf("desc") >= 0 || routeText.indexOf("desktop") >= 0) return true;
-
-        // Workspaces e módulos antigos, como Manufacturing, devem ser sobrepostos pela GF Home.
-        if (first === "workspace" || first === "workspaces") return true;
-        if (routeText.indexOf("workspace/") === 0) return true;
-        if (routeText === "manufacturing" || routeText.indexOf("manufacturing") >= 0) return true;
-
-        // Quando a rota vem vazia dentro de /app ou /desk, ainda é a tela inicial.
-        if (!routeText && (path.indexOf("/app") === 0 || path.indexOf("/desk") === 0)) return true;
+        if (!first && (path.indexOf("/app") === 0 || path.indexOf("/desk") === 0)) return true;
+        if (first === "workspace") return true;
+        if (first === "Workspaces") return true;
+        if (first === "app" && (!second || second === "workspace")) return true;
 
         return false;
     }
@@ -512,4 +481,186 @@
         scheduleApply();
         return result;
     };
+})();
+
+/* ==========================================================================
+   GF HOME DESK ROUTE GUARD - R12
+   Correção cirúrgica: mantém a GF Home em primeiro plano em qualquer chamada
+   de Desk/Workspace/módulo, sem depender de uma rota exata do ERPNext.
+   ========================================================================== */
+(function () {
+    "use strict";
+
+    var OVERLAY_ID = "gf-home-desk-overlay";
+    var ACTIVE_CLASS = "gf-home-desk-active";
+    var NATIVE_CLASS = "gf-home-show-native";
+    var LOGO_SRC = "/assets/ichis/images/app_logo.png";
+
+    window.gfversion = "GF_DESK_R12_ROUTE_GUARD";
+    window.gfVersion = "GF_DESK_R12_ROUTE_GUARD";
+    window.__gf_app_logo_src = LOGO_SRC;
+
+    function norm(value) {
+        return String(value || "").trim().toLowerCase();
+    }
+
+    function getRoutePartsSafe() {
+        try {
+            if (window.frappe && frappe.get_route) {
+                var route = frappe.get_route();
+                if (Array.isArray(route)) return route;
+                if (route) return [route];
+            }
+        } catch (e) {}
+        return [];
+    }
+
+    function getCurrentSignature() {
+        var route = getRoutePartsSafe();
+        var routeText = norm(route.join("/"));
+        var path = norm(window.location.pathname || "");
+        var hash = norm(window.location.hash || "");
+        var full = [path, hash, routeText].join(" ");
+        return { route: route, routeText: routeText, path: path, hash: hash, full: full };
+    }
+
+    function isNativeInternalPage(sig) {
+        var first = norm(sig.route[0]);
+        var full = sig.full;
+
+        if (first === "form" || first === "list" || first === "report") return true;
+        if (first === "query-report" || first === "print" || first === "calendar") return true;
+        if (first === "kanban" || first === "tree" || first === "dashboard-view") return true;
+
+        if (full.indexOf("/app/form/") >= 0) return true;
+        if (full.indexOf("/app/list/") >= 0) return true;
+        if (full.indexOf("/app/query-report/") >= 0) return true;
+        if (full.indexOf("/app/report/") >= 0) return true;
+
+        return false;
+    }
+
+    function isGFDeskRoute() {
+        var sig = getCurrentSignature();
+        var first = norm(sig.route[0]);
+        var second = norm(sig.route[1]);
+        var full = sig.full;
+
+        if (isNativeInternalPage(sig)) return false;
+
+        if (sig.path === "/app" || sig.path === "/app/" || sig.path === "/desk" || sig.path === "/desk/") return true;
+        if (sig.path.indexOf("/desk") === 0) return true;
+
+        if (first === "workspace" || first === "workspaces") return true;
+        if (first === "desk" || first === "desc" || first === "desktop" || first === "home") return true;
+        if (first === "app" && (!second || second === "workspace" || second === "desk" || second === "desc")) return true;
+
+        if (full.indexOf("desk") >= 0 || full.indexOf("desc") >= 0 || full.indexOf("workspace") >= 0) return true;
+
+        var moduleNames = [
+            "manufacturing", "stock", "selling", "buying", "accounts", "crm", "projects",
+            "quality", "support", "assets", "hr", "payroll", "website", "users", "settings",
+            "customize", "integrations", "tools", "build", "automation", "maintenance"
+        ];
+
+        if (sig.path.indexOf("/app") === 0 && first && moduleNames.indexOf(first) >= 0) return true;
+        if (sig.path.indexOf("/app") === 0 && sig.route.length <= 1 && !first) return true;
+
+        return false;
+    }
+
+    function strengthenOverlayStyle() {
+        if (document.getElementById("gf-home-desk-route-guard-style")) return;
+        var style = document.createElement("style");
+        style.id = "gf-home-desk-route-guard-style";
+        style.textContent = "\n" +
+            "body.gf-home-desk-active #gf-home-desk-overlay { display:block !important; visibility:visible !important; opacity:1 !important; z-index:9999 !important; }\n" +
+            "body.gf-home-desk-active #gf-home-desk-overlay * { visibility:visible !important; }\n" +
+            "body.gf-home-desk-active .layout-main-section,\n" +
+            "body.gf-home-desk-active .page-container,\n" +
+            "body.gf-home-desk-active .workspace,\n" +
+            "body.gf-home-desk-active .desk-page,\n" +
+            "body.gf-home-desk-active .page-content { visibility:hidden !important; }\n" +
+            "body.gf-home-desk-active [data-gf-native-desk] { display:none !important; }\n";
+        document.head.appendChild(style);
+    }
+
+    function createFallbackOverlayIfNeeded() {
+        if (document.getElementById(OVERLAY_ID)) return;
+        if (!document.body) return;
+
+        var overlay = document.createElement("div");
+        overlay.id = OVERLAY_ID;
+        overlay.innerHTML = "" +
+            "<div class='gf-home-shell'>" +
+                "<section class='gf-home-hero'>" +
+                    "<div>" +
+                        "<img src='" + LOGO_SRC + "' style='max-height:54px;max-width:260px;margin-bottom:22px;' alt='App Logo'>" +
+                        "<div class='gf-home-kicker'>GREENFARMS • ERPNext</div>" +
+                        "<h1 class='gf-home-title'>Central operacional personalizada</h1>" +
+                        "<p class='gf-home-subtitle'>Tela inicial personalizada carregada sobre o Desk padrão do ERPNext.</p>" +
+                    "</div>" +
+                    "<aside class='gf-home-status-card'>" +
+                        "<div>" +
+                            "<div class='gf-home-status-title'>Status da interface</div>" +
+                            "<div class='gf-home-status-main'>GF HOME ativa</div>" +
+                            "<div class='gf-home-status-sub'>Rota protegida por guard global.</div>" +
+                        "</div>" +
+                    "</aside>" +
+                "</section>" +
+                "<section class='gf-home-grid'>" +
+                    "<article class='gf-home-card' data-gf-route='List/Sales Order/List'><div class='gf-home-icon'>📄</div><div class='gf-home-card-title'>Pedidos</div><div class='gf-home-card-text'>Acesso rápido aos pedidos e documentos comerciais.</div></article>" +
+                    "<article class='gf-home-card' data-gf-route='List/Item/List'><div class='gf-home-icon'>⚙️</div><div class='gf-home-card-title'>Itens e serviços</div><div class='gf-home-card-text'>Consulta e gestão dos itens cadastrados no ERP.</div></article>" +
+                    "<article class='gf-home-card' data-gf-route='List/Customer/List'><div class='gf-home-icon'>🤝</div><div class='gf-home-card-title'>Clientes</div><div class='gf-home-card-text'>Atalhos para cadastro e relacionamento com clientes.</div></article>" +
+                    "<article class='gf-home-card' data-gf-route='List/Project/List'><div class='gf-home-icon'>🏗️</div><div class='gf-home-card-title'>Projetos</div><div class='gf-home-card-text'>Entrada rápida para projetos e acompanhamentos internos.</div></article>" +
+                "</section>" +
+            "</div>";
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener("click", function (event) {
+            var card = event.target.closest("[data-gf-route]");
+            if (!card) return;
+            document.body.classList.remove(ACTIVE_CLASS);
+            try {
+                if (window.frappe && frappe.set_route) frappe.set_route(card.getAttribute("data-gf-route"));
+            } catch (e) {}
+        });
+    }
+
+    function applyGFRouteGuard() {
+        if (!document.body) return;
+        strengthenOverlayStyle();
+        createFallbackOverlayIfNeeded();
+
+        if (isGFDeskRoute()) {
+            document.body.classList.remove(NATIVE_CLASS);
+            document.body.classList.add(ACTIVE_CLASS);
+        } else {
+            document.body.classList.remove(ACTIVE_CLASS);
+        }
+    }
+
+    function scheduleGFRouteGuard() {
+        applyGFRouteGuard();
+        setTimeout(applyGFRouteGuard, 60);
+        setTimeout(applyGFRouteGuard, 250);
+        setTimeout(applyGFRouteGuard, 800);
+        setTimeout(applyGFRouteGuard, 1500);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", scheduleGFRouteGuard);
+    } else {
+        scheduleGFRouteGuard();
+    }
+
+    window.addEventListener("load", scheduleGFRouteGuard);
+    window.addEventListener("hashchange", scheduleGFRouteGuard);
+    window.addEventListener("popstate", scheduleGFRouteGuard);
+
+    if (window.frappe && frappe.router && frappe.router.on) {
+        frappe.router.on("change", scheduleGFRouteGuard);
+    }
+
+    setInterval(applyGFRouteGuard, 900);
 })();
