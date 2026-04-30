@@ -1,4 +1,7 @@
 (function () {
+    window.gfVersion = "GF_ROUTE_FIX_R11";
+    window.gfversion = "GF_ROUTE_FIX_R11";
+
     var CSS_FILES = [
         "/assets/ichis/css/gf_aura_tokens.css",
         "/assets/ichis/css/gf_aura_desk_safe.css"
@@ -109,22 +112,50 @@
         return [];
     }
 
+    function normalizeRouteText(value) {
+        return String(value || "")
+            .replace(/%20/g, " ")
+            .replace(/_/g, " ")
+            .toLowerCase();
+    }
+
+    function isNativePageRoute(routeText) {
+        return (
+            routeText.indexOf("form/") === 0 ||
+            routeText.indexOf("list/") === 0 ||
+            routeText.indexOf("query-report/") === 0 ||
+            routeText.indexOf("report/") === 0 ||
+            routeText.indexOf("dashboard-view/") === 0 ||
+            routeText.indexOf("print/") === 0 ||
+            routeText.indexOf("file/") === 0
+        );
+    }
+
     function isDeskHomeRoute() {
-        var path = window.location.pathname || "";
-        var hash = window.location.hash || "";
+        var path = normalizeRouteText(window.location.pathname || "");
+        var hash = normalizeRouteText(window.location.hash || "");
         var route = getRouteParts();
-        var first = route[0] || "";
-        var second = route[1] || "";
+        var routeText = normalizeRouteText(route.join("/"));
+        var first = normalizeRouteText(route[0] || "");
 
-        if (path === "/desk" || path === "/app" || path === "/app/") return true;
-        if (hash === "#" || hash === "#!/" || hash === "#/" || hash === "") {
-            if (path.indexOf("/app") === 0 || path.indexOf("/desk") === 0) return true;
-        }
+        // Telas nativas do ERPNext devem continuar abrindo normalmente.
+        if (isNativePageRoute(routeText)) return false;
 
-        if (!first && (path.indexOf("/app") === 0 || path.indexOf("/desk") === 0)) return true;
-        if (first === "workspace") return true;
-        if (first === "Workspaces") return true;
-        if (first === "app" && (!second || second === "workspace")) return true;
+        // Entrada principal do Desk.
+        if (path === "/desk" || path === "/desk/" || path === "/app" || path === "/app/") return true;
+
+        // Qualquer chamada antiga ou quebrada para Desk/Desc/Desktop deve voltar para a GF Home.
+        if (path.indexOf("/desk") === 0) return true;
+        if (hash.indexOf("desk") >= 0 || hash.indexOf("desc") >= 0 || hash.indexOf("desktop") >= 0) return true;
+        if (routeText.indexOf("desk") >= 0 || routeText.indexOf("desc") >= 0 || routeText.indexOf("desktop") >= 0) return true;
+
+        // Workspaces e módulos antigos, como Manufacturing, devem ser sobrepostos pela GF Home.
+        if (first === "workspace" || first === "workspaces") return true;
+        if (routeText.indexOf("workspace/") === 0) return true;
+        if (routeText === "manufacturing" || routeText.indexOf("manufacturing") >= 0) return true;
+
+        // Quando a rota vem vazia dentro de /app ou /desk, ainda é a tela inicial.
+        if (!routeText && (path.indexOf("/app") === 0 || path.indexOf("/desk") === 0)) return true;
 
         return false;
     }
