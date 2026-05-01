@@ -10,5 +10,5 @@ recursive-include ichis_theme_control *.html
 recursive-include ichis_theme_control/public *
 recursive-include ichis_theme_control/templates *
 recursive-include ichis_theme_control/config *
-recursive-include ichis_theme_control/doctype *
+recursive-include ichis_theme_control/gf_theme_control *
 recursive-include ichis_theme_control/api *
