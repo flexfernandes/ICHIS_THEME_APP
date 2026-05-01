@@ -43,6 +43,6 @@ after_install = "ichis_theme_control.install.after_install"
 fixtures = [
     {
         "doctype": "Custom Field",
-        "filters": [["module", "=", "GF Theme Control"]]
+        "filters": [["module", "=", "Ichis Theme Control"]]
     }
 ]
