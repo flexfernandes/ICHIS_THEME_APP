@@ -1,0 +1,1677 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2024-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_configuracao_geral",
+  "ativar_tema_gf",
+  "tema_ativo",
+  "col_break_geral_1",
+  "aplicar_no_login",
+  "aplicar_no_desk",
+  "substituir_logos_erpnext",
+  "section_texto_sistema",
+  "texto_sistema",
+  "section_logos",
+  "logo_global",
+  "logo_login",
+  "col_break_logos_1",
+  "logo_navbar",
+  "logo_loading",
+  "favicon_customizado",
+  "section_padrao_cores",
+  "padrao_cor_fundo_principal",
+  "padrao_cor_fundo_secundaria",
+  "padrao_cor_fundo_conteudo",
+  "padrao_cor_fundo_cards",
+  "padrao_cor_fundo_navbar",
+  "col_break_padrao_cores_1",
+  "padrao_cor_fundo_sidebar",
+  "padrao_cor_fundo_menu",
+  "padrao_cor_fundo_modal",
+  "padrao_cor_fundo_dropdown",
+  "section_padrao_fontes_cores",
+  "padrao_cor_fonte_principal",
+  "padrao_cor_fonte_secundaria",
+  "padrao_cor_fonte_suave",
+  "padrao_cor_titulo",
+  "padrao_cor_subtitulo",
+  "col_break_padrao_fontes_cores_1",
+  "padrao_cor_destaque",
+  "padrao_cor_destaque_escura",
+  "padrao_cor_borda",
+  "padrao_cor_sombra",
+  "padrao_cor_link",
+  "section_padrao_status_cores",
+  "padrao_cor_hover",
+  "padrao_cor_selecao",
+  "padrao_cor_sucesso",
+  "padrao_cor_alerta",
+  "padrao_cor_erro",
+  "padrao_cor_info",
+  "section_padrao_fontes",
+  "padrao_fonte_principal",
+  "padrao_fonte_titulos",
+  "padrao_fonte_subtitulos",
+  "padrao_fonte_cabecalhos",
+  "padrao_fonte_tabelas",
+  "col_break_padrao_fontes_1",
+  "padrao_fonte_botoes",
+  "padrao_fonte_campos",
+  "padrao_fonte_menus",
+  "padrao_fonte_textos_auxiliares",
+  "padrao_fonte_numeros",
+  "section_padrao_tamanhos",
+  "padrao_tamanho_fonte_base",
+  "padrao_tamanho_fonte_titulo",
+  "padrao_tamanho_fonte_subtitulo",
+  "padrao_tamanho_fonte_menu",
+  "padrao_tamanho_fonte_botao",
+  "col_break_padrao_tamanhos_1",
+  "padrao_tamanho_fonte_campo",
+  "padrao_tamanho_fonte_tabela",
+  "padrao_tamanho_fonte_tabela_cabecalho",
+  "padrao_peso_fonte_regular",
+  "padrao_peso_fonte_medio",
+  "padrao_peso_fonte_semibold",
+  "padrao_peso_fonte_bold",
+  "section_padrao_grid",
+  "padrao_grid_altura_linha",
+  "padrao_grid_altura_cabecalho",
+  "padrao_grid_largura_minima_coluna",
+  "padrao_grid_padding_horizontal",
+  "padrao_grid_padding_vertical",
+  "padrao_grid_raio_borda",
+  "col_break_padrao_grid_1",
+  "padrao_grid_cor_fundo_cabecalho",
+  "padrao_grid_cor_fundo_linha",
+  "padrao_grid_cor_fundo_linha_alternada",
+  "padrao_grid_cor_fundo_hover",
+  "padrao_grid_cor_fonte_linha",
+  "padrao_grid_cor_fonte_cabecalho",
+  "padrao_grid_cor_borda",
+  "padrao_grid_cor_selecao",
+  "col_break_padrao_grid_2",
+  "padrao_grid_tamanho_fonte_linha",
+  "padrao_grid_tamanho_fonte_cabecalho",
+  "padrao_grid_peso_fonte_cabecalho",
+  "section_padrao_botoes",
+  "padrao_botao_primario_fundo",
+  "padrao_botao_primario_texto",
+  "padrao_botao_secundario_fundo",
+  "padrao_botao_secundario_texto",
+  "col_break_padrao_botoes_1",
+  "padrao_botao_hover_fundo",
+  "padrao_botao_raio_borda",
+  "padrao_botao_altura",
+  "padrao_botao_padding_horizontal",
+  "padrao_botao_peso_fonte",
+  "section_padrao_campos",
+  "padrao_campo_fundo",
+  "padrao_campo_texto",
+  "padrao_campo_placeholder",
+  "padrao_campo_borda",
+  "padrao_campo_borda_foco",
+  "col_break_padrao_campos_1",
+  "padrao_campo_altura",
+  "padrao_campo_padding",
+  "padrao_campo_tamanho_fonte",
+  "padrao_campo_raio_borda",
+  "section_padrao_cards",
+  "padrao_card_fundo",
+  "padrao_card_borda",
+  "padrao_card_sombra",
+  "padrao_card_raio_borda",
+  "padrao_card_padding",
+  "col_break_padrao_cards_1",
+  "padrao_card_titulo",
+  "padrao_card_texto",
+  "section_black_cores",
+  "black_cor_fundo_principal",
+  "black_cor_fundo_secundaria",
+  "black_cor_fundo_conteudo",
+  "black_cor_fundo_cards",
+  "black_cor_fundo_navbar",
+  "col_break_black_cores_1",
+  "black_cor_fundo_sidebar",
+  "black_cor_fundo_menu",
+  "black_cor_fundo_modal",
+  "black_cor_fundo_dropdown",
+  "section_black_fontes_cores",
+  "black_cor_fonte_principal",
+  "black_cor_fonte_secundaria",
+  "black_cor_fonte_suave",
+  "black_cor_titulo",
+  "black_cor_subtitulo",
+  "col_break_black_fontes_cores_1",
+  "black_cor_destaque",
+  "black_cor_destaque_escura",
+  "black_cor_borda",
+  "black_cor_sombra",
+  "black_cor_link",
+  "section_black_status_cores",
+  "black_cor_hover",
+  "black_cor_selecao",
+  "black_cor_sucesso",
+  "black_cor_alerta",
+  "black_cor_erro",
+  "black_cor_info",
+  "section_black_fontes",
+  "black_fonte_principal",
+  "black_fonte_titulos",
+  "black_fonte_subtitulos",
+  "black_fonte_cabecalhos",
+  "black_fonte_tabelas",
+  "col_break_black_fontes_1",
+  "black_fonte_botoes",
+  "black_fonte_campos",
+  "black_fonte_menus",
+  "black_fonte_textos_auxiliares",
+  "black_fonte_numeros",
+  "section_black_tamanhos",
+  "black_tamanho_fonte_base",
+  "black_tamanho_fonte_titulo",
+  "black_tamanho_fonte_subtitulo",
+  "black_tamanho_fonte_menu",
+  "black_tamanho_fonte_botao",
+  "col_break_black_tamanhos_1",
+  "black_tamanho_fonte_campo",
+  "black_tamanho_fonte_tabela",
+  "black_tamanho_fonte_tabela_cabecalho",
+  "black_peso_fonte_regular",
+  "black_peso_fonte_medio",
+  "black_peso_fonte_semibold",
+  "black_peso_fonte_bold",
+  "section_black_grid",
+  "black_grid_altura_linha",
+  "black_grid_altura_cabecalho",
+  "black_grid_largura_minima_coluna",
+  "black_grid_padding_horizontal",
+  "black_grid_padding_vertical",
+  "black_grid_raio_borda",
+  "col_break_black_grid_1",
+  "black_grid_cor_fundo_cabecalho",
+  "black_grid_cor_fundo_linha",
+  "black_grid_cor_fundo_linha_alternada",
+  "black_grid_cor_fundo_hover",
+  "black_grid_cor_fonte_linha",
+  "black_grid_cor_fonte_cabecalho",
+  "black_grid_cor_borda",
+  "black_grid_cor_selecao",
+  "col_break_black_grid_2",
+  "black_grid_tamanho_fonte_linha",
+  "black_grid_tamanho_fonte_cabecalho",
+  "black_grid_peso_fonte_cabecalho",
+  "section_black_botoes",
+  "black_botao_primario_fundo",
+  "black_botao_primario_texto",
+  "black_botao_secundario_fundo",
+  "black_botao_secundario_texto",
+  "col_break_black_botoes_1",
+  "black_botao_hover_fundo",
+  "black_botao_raio_borda",
+  "black_botao_altura",
+  "black_botao_padding_horizontal",
+  "black_botao_peso_fonte",
+  "section_black_campos",
+  "black_campo_fundo",
+  "black_campo_texto",
+  "black_campo_placeholder",
+  "black_campo_borda",
+  "black_campo_borda_foco",
+  "col_break_black_campos_1",
+  "black_campo_altura",
+  "black_campo_padding",
+  "black_campo_tamanho_fonte",
+  "black_campo_raio_borda",
+  "section_black_cards",
+  "black_card_fundo",
+  "black_card_borda",
+  "black_card_sombra",
+  "black_card_raio_borda",
+  "black_card_padding",
+  "col_break_black_cards_1",
+  "black_card_titulo",
+  "black_card_texto",
+  "section_login",
+  "login_cor_fundo_padrao",
+  "login_cor_texto_padrao",
+  "login_cor_card_padrao",
+  "col_break_login_1",
+  "login_cor_fundo_black",
+  "login_cor_texto_black",
+  "login_cor_card_black",
+  "section_login_config",
+  "login_logo_largura",
+  "login_logo_altura",
+  "login_exibir_logo",
+  "login_imagem_fundo",
+  "login_usar_imagem_fundo"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_configuracao_geral",
+   "fieldtype": "Section Break",
+   "label": "Configuração Geral"
+  },
+  {
+   "default": "1",
+   "fieldname": "ativar_tema_gf",
+   "fieldtype": "Check",
+   "label": "Ativar Tema GF"
+  },
+  {
+   "default": "Padrão",
+   "fieldname": "tema_ativo",
+   "fieldtype": "Select",
+   "label": "Tema Ativo",
+   "options": "Padrão\nBlack"
+  },
+  {
+   "fieldname": "col_break_geral_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "aplicar_no_login",
+   "fieldtype": "Check",
+   "label": "Aplicar no Login"
+  },
+  {
+   "default": "1",
+   "fieldname": "aplicar_no_desk",
+   "fieldtype": "Check",
+   "label": "Aplicar no Desk"
+  },
+  {
+   "default": "1",
+   "fieldname": "substituir_logos_erpnext",
+   "fieldtype": "Check",
+   "label": "Substituir Logos ERPNext"
+  },
+  {
+   "fieldname": "section_texto_sistema",
+   "fieldtype": "Section Break",
+   "label": "Nome e Identidade"
+  },
+  {
+   "default": "GREENFARMS",
+   "fieldname": "texto_sistema",
+   "fieldtype": "Data",
+   "label": "Texto do Sistema"
+  },
+  {
+   "fieldname": "section_logos",
+   "fieldtype": "Section Break",
+   "label": "Logomarcas"
+  },
+  {
+   "fieldname": "logo_global",
+   "fieldtype": "Attach Image",
+   "label": "Logo Global (fallback geral)"
+  },
+  {
+   "fieldname": "logo_login",
+   "fieldtype": "Attach Image",
+   "label": "Logo da Tela de Login"
+  },
+  {
+   "fieldname": "col_break_logos_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "logo_navbar",
+   "fieldtype": "Attach Image",
+   "label": "Logo da Navbar"
+  },
+  {
+   "fieldname": "logo_loading",
+   "fieldtype": "Attach Image",
+   "label": "Logo de Carregamento / Splash"
+  },
+  {
+   "fieldname": "favicon_customizado",
+   "fieldtype": "Attach Image",
+   "label": "Favicon Customizado"
+  },
+  {
+   "collapsible": 0,
+   "fieldname": "section_padrao_cores",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Cores de Fundo"
+  },
+  {
+   "default": "#f8fafc",
+   "fieldname": "padrao_cor_fundo_principal",
+   "fieldtype": "Color",
+   "label": "Fundo Principal"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_cor_fundo_secundaria",
+   "fieldtype": "Color",
+   "label": "Fundo Secundário"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_cor_fundo_conteudo",
+   "fieldtype": "Color",
+   "label": "Fundo do Conteúdo"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_cor_fundo_cards",
+   "fieldtype": "Color",
+   "label": "Fundo dos Cards"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_cor_fundo_navbar",
+   "fieldtype": "Color",
+   "label": "Fundo da Navbar"
+  },
+  {
+   "fieldname": "col_break_padrao_cores_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#f9fafb",
+   "fieldname": "padrao_cor_fundo_sidebar",
+   "fieldtype": "Color",
+   "label": "Fundo da Sidebar"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_cor_fundo_menu",
+   "fieldtype": "Color",
+   "label": "Fundo do Menu"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_cor_fundo_modal",
+   "fieldtype": "Color",
+   "label": "Fundo do Modal"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_cor_fundo_dropdown",
+   "fieldtype": "Color",
+   "label": "Fundo do Dropdown"
+  },
+  {
+   "fieldname": "section_padrao_fontes_cores",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Cores de Texto e Destaque"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "padrao_cor_fonte_principal",
+   "fieldtype": "Color",
+   "label": "Texto Principal"
+  },
+  {
+   "default": "#6b7280",
+   "fieldname": "padrao_cor_fonte_secundaria",
+   "fieldtype": "Color",
+   "label": "Texto Secundário"
+  },
+  {
+   "default": "#94a3b8",
+   "fieldname": "padrao_cor_fonte_suave",
+   "fieldtype": "Color",
+   "label": "Texto Suave"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "padrao_cor_titulo",
+   "fieldtype": "Color",
+   "label": "Cor dos Títulos"
+  },
+  {
+   "default": "#374151",
+   "fieldname": "padrao_cor_subtitulo",
+   "fieldtype": "Color",
+   "label": "Cor dos Subtítulos"
+  },
+  {
+   "fieldname": "col_break_padrao_fontes_cores_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#16a34a",
+   "fieldname": "padrao_cor_destaque",
+   "fieldtype": "Color",
+   "label": "Cor de Destaque"
+  },
+  {
+   "default": "#166534",
+   "fieldname": "padrao_cor_destaque_escura",
+   "fieldtype": "Color",
+   "label": "Cor de Destaque Escura"
+  },
+  {
+   "default": "#e5e7eb",
+   "fieldname": "padrao_cor_borda",
+   "fieldtype": "Color",
+   "label": "Cor das Bordas"
+  },
+  {
+   "default": "rgba(15, 23, 42, 0.08)",
+   "fieldname": "padrao_cor_sombra",
+   "fieldtype": "Data",
+   "label": "Cor da Sombra (rgba)"
+  },
+  {
+   "default": "#15803d",
+   "fieldname": "padrao_cor_link",
+   "fieldtype": "Color",
+   "label": "Cor dos Links"
+  },
+  {
+   "fieldname": "section_padrao_status_cores",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Cores de Estado"
+  },
+  {
+   "default": "#dcfce7",
+   "fieldname": "padrao_cor_hover",
+   "fieldtype": "Color",
+   "label": "Cor de Hover"
+  },
+  {
+   "default": "#bbf7d0",
+   "fieldname": "padrao_cor_selecao",
+   "fieldtype": "Color",
+   "label": "Cor de Seleção"
+  },
+  {
+   "default": "#16a34a",
+   "fieldname": "padrao_cor_sucesso",
+   "fieldtype": "Color",
+   "label": "Cor de Sucesso"
+  },
+  {
+   "default": "#f59e0b",
+   "fieldname": "padrao_cor_alerta",
+   "fieldtype": "Color",
+   "label": "Cor de Alerta"
+  },
+  {
+   "default": "#dc2626",
+   "fieldname": "padrao_cor_erro",
+   "fieldtype": "Color",
+   "label": "Cor de Erro"
+  },
+  {
+   "default": "#2563eb",
+   "fieldname": "padrao_cor_info",
+   "fieldtype": "Color",
+   "label": "Cor de Info"
+  },
+  {
+   "fieldname": "section_padrao_fontes",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Fontes"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_principal",
+   "fieldtype": "Data",
+   "label": "Fonte Principal"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_titulos",
+   "fieldtype": "Data",
+   "label": "Fonte dos Títulos"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_subtitulos",
+   "fieldtype": "Data",
+   "label": "Fonte dos Subtítulos"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_cabecalhos",
+   "fieldtype": "Data",
+   "label": "Fonte dos Cabeçalhos"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_tabelas",
+   "fieldtype": "Data",
+   "label": "Fonte das Tabelas"
+  },
+  {
+   "fieldname": "col_break_padrao_fontes_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_botoes",
+   "fieldtype": "Data",
+   "label": "Fonte dos Botões"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_campos",
+   "fieldtype": "Data",
+   "label": "Fonte dos Campos"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_menus",
+   "fieldtype": "Data",
+   "label": "Fonte dos Menus"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "padrao_fonte_textos_auxiliares",
+   "fieldtype": "Data",
+   "label": "Fonte dos Textos Auxiliares"
+  },
+  {
+   "default": "\"Roboto Mono\", \"SFMono-Regular\", Consolas, monospace",
+   "fieldname": "padrao_fonte_numeros",
+   "fieldtype": "Data",
+   "label": "Fonte dos Números"
+  },
+  {
+   "fieldname": "section_padrao_tamanhos",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Tamanhos e Pesos de Fonte"
+  },
+  {
+   "default": "13px",
+   "fieldname": "padrao_tamanho_fonte_base",
+   "fieldtype": "Data",
+   "label": "Tamanho Base"
+  },
+  {
+   "default": "18px",
+   "fieldname": "padrao_tamanho_fonte_titulo",
+   "fieldtype": "Data",
+   "label": "Tamanho Título"
+  },
+  {
+   "default": "14px",
+   "fieldname": "padrao_tamanho_fonte_subtitulo",
+   "fieldtype": "Data",
+   "label": "Tamanho Subtítulo"
+  },
+  {
+   "default": "13px",
+   "fieldname": "padrao_tamanho_fonte_menu",
+   "fieldtype": "Data",
+   "label": "Tamanho Menu"
+  },
+  {
+   "default": "13px",
+   "fieldname": "padrao_tamanho_fonte_botao",
+   "fieldtype": "Data",
+   "label": "Tamanho Botão"
+  },
+  {
+   "fieldname": "col_break_padrao_tamanhos_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "13px",
+   "fieldname": "padrao_tamanho_fonte_campo",
+   "fieldtype": "Data",
+   "label": "Tamanho Campo"
+  },
+  {
+   "default": "12px",
+   "fieldname": "padrao_tamanho_fonte_tabela",
+   "fieldtype": "Data",
+   "label": "Tamanho Tabela"
+  },
+  {
+   "default": "11px",
+   "fieldname": "padrao_tamanho_fonte_tabela_cabecalho",
+   "fieldtype": "Data",
+   "label": "Tamanho Cabeçalho Tabela"
+  },
+  {
+   "default": "400",
+   "fieldname": "padrao_peso_fonte_regular",
+   "fieldtype": "Data",
+   "label": "Peso Regular"
+  },
+  {
+   "default": "500",
+   "fieldname": "padrao_peso_fonte_medio",
+   "fieldtype": "Data",
+   "label": "Peso Médio"
+  },
+  {
+   "default": "600",
+   "fieldname": "padrao_peso_fonte_semibold",
+   "fieldtype": "Data",
+   "label": "Peso Semibold"
+  },
+  {
+   "default": "700",
+   "fieldname": "padrao_peso_fonte_bold",
+   "fieldtype": "Data",
+   "label": "Peso Bold"
+  },
+  {
+   "fieldname": "section_padrao_grid",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Grids e Tabelas"
+  },
+  {
+   "default": "34px",
+   "fieldname": "padrao_grid_altura_linha",
+   "fieldtype": "Data",
+   "label": "Altura da Linha"
+  },
+  {
+   "default": "38px",
+   "fieldname": "padrao_grid_altura_cabecalho",
+   "fieldtype": "Data",
+   "label": "Altura do Cabeçalho"
+  },
+  {
+   "default": "120px",
+   "fieldname": "padrao_grid_largura_minima_coluna",
+   "fieldtype": "Data",
+   "label": "Largura Mínima da Coluna"
+  },
+  {
+   "default": "10px",
+   "fieldname": "padrao_grid_padding_horizontal",
+   "fieldtype": "Data",
+   "label": "Padding Horizontal"
+  },
+  {
+   "default": "6px",
+   "fieldname": "padrao_grid_padding_vertical",
+   "fieldtype": "Data",
+   "label": "Padding Vertical"
+  },
+  {
+   "default": "10px",
+   "fieldname": "padrao_grid_raio_borda",
+   "fieldtype": "Data",
+   "label": "Raio de Borda"
+  },
+  {
+   "fieldname": "col_break_padrao_grid_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#f3f4f6",
+   "fieldname": "padrao_grid_cor_fundo_cabecalho",
+   "fieldtype": "Color",
+   "label": "Fundo do Cabeçalho"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_grid_cor_fundo_linha",
+   "fieldtype": "Color",
+   "label": "Fundo da Linha"
+  },
+  {
+   "default": "#f9fafb",
+   "fieldname": "padrao_grid_cor_fundo_linha_alternada",
+   "fieldtype": "Color",
+   "label": "Fundo da Linha Alternada"
+  },
+  {
+   "default": "#ecfdf5",
+   "fieldname": "padrao_grid_cor_fundo_hover",
+   "fieldtype": "Color",
+   "label": "Fundo Hover"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "padrao_grid_cor_fonte_linha",
+   "fieldtype": "Color",
+   "label": "Fonte da Linha"
+  },
+  {
+   "default": "#374151",
+   "fieldname": "padrao_grid_cor_fonte_cabecalho",
+   "fieldtype": "Color",
+   "label": "Fonte do Cabeçalho"
+  },
+  {
+   "default": "#e5e7eb",
+   "fieldname": "padrao_grid_cor_borda",
+   "fieldtype": "Color",
+   "label": "Cor da Borda"
+  },
+  {
+   "default": "#bbf7d0",
+   "fieldname": "padrao_grid_cor_selecao",
+   "fieldtype": "Color",
+   "label": "Cor da Seleção"
+  },
+  {
+   "fieldname": "col_break_padrao_grid_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "12px",
+   "fieldname": "padrao_grid_tamanho_fonte_linha",
+   "fieldtype": "Data",
+   "label": "Tamanho Fonte Linha"
+  },
+  {
+   "default": "11px",
+   "fieldname": "padrao_grid_tamanho_fonte_cabecalho",
+   "fieldtype": "Data",
+   "label": "Tamanho Fonte Cabeçalho"
+  },
+  {
+   "default": "600",
+   "fieldname": "padrao_grid_peso_fonte_cabecalho",
+   "fieldtype": "Data",
+   "label": "Peso Fonte Cabeçalho"
+  },
+  {
+   "fieldname": "section_padrao_botoes",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Botões"
+  },
+  {
+   "default": "#16a34a",
+   "fieldname": "padrao_botao_primario_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo Botão Primário"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_botao_primario_texto",
+   "fieldtype": "Color",
+   "label": "Texto Botão Primário"
+  },
+  {
+   "default": "#f3f4f6",
+   "fieldname": "padrao_botao_secundario_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo Botão Secundário"
+  },
+  {
+   "default": "#374151",
+   "fieldname": "padrao_botao_secundario_texto",
+   "fieldtype": "Color",
+   "label": "Texto Botão Secundário"
+  },
+  {
+   "fieldname": "col_break_padrao_botoes_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#166534",
+   "fieldname": "padrao_botao_hover_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo Hover do Botão"
+  },
+  {
+   "default": "6px",
+   "fieldname": "padrao_botao_raio_borda",
+   "fieldtype": "Data",
+   "label": "Raio de Borda"
+  },
+  {
+   "default": "32px",
+   "fieldname": "padrao_botao_altura",
+   "fieldtype": "Data",
+   "label": "Altura do Botão"
+  },
+  {
+   "default": "14px",
+   "fieldname": "padrao_botao_padding_horizontal",
+   "fieldtype": "Data",
+   "label": "Padding Horizontal"
+  },
+  {
+   "default": "500",
+   "fieldname": "padrao_botao_peso_fonte",
+   "fieldtype": "Data",
+   "label": "Peso da Fonte"
+  },
+  {
+   "fieldname": "section_padrao_campos",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Campos de Formulário"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_campo_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo do Campo"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "padrao_campo_texto",
+   "fieldtype": "Color",
+   "label": "Texto do Campo"
+  },
+  {
+   "default": "#9ca3af",
+   "fieldname": "padrao_campo_placeholder",
+   "fieldtype": "Color",
+   "label": "Placeholder"
+  },
+  {
+   "default": "#d1d5db",
+   "fieldname": "padrao_campo_borda",
+   "fieldtype": "Color",
+   "label": "Borda do Campo"
+  },
+  {
+   "default": "#16a34a",
+   "fieldname": "padrao_campo_borda_foco",
+   "fieldtype": "Color",
+   "label": "Borda em Foco"
+  },
+  {
+   "fieldname": "col_break_padrao_campos_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "30px",
+   "fieldname": "padrao_campo_altura",
+   "fieldtype": "Data",
+   "label": "Altura do Campo"
+  },
+  {
+   "default": "6px 10px",
+   "fieldname": "padrao_campo_padding",
+   "fieldtype": "Data",
+   "label": "Padding"
+  },
+  {
+   "default": "13px",
+   "fieldname": "padrao_campo_tamanho_fonte",
+   "fieldtype": "Data",
+   "label": "Tamanho da Fonte"
+  },
+  {
+   "default": "6px",
+   "fieldname": "padrao_campo_raio_borda",
+   "fieldtype": "Data",
+   "label": "Raio de Borda"
+  },
+  {
+   "fieldname": "section_padrao_cards",
+   "fieldtype": "Section Break",
+   "label": "Tema Padrão — Cards, Painéis e Modais"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "padrao_card_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo do Card"
+  },
+  {
+   "default": "#e5e7eb",
+   "fieldname": "padrao_card_borda",
+   "fieldtype": "Color",
+   "label": "Borda do Card"
+  },
+  {
+   "default": "0 1px 4px rgba(15, 23, 42, 0.08)",
+   "fieldname": "padrao_card_sombra",
+   "fieldtype": "Data",
+   "label": "Sombra do Card"
+  },
+  {
+   "default": "10px",
+   "fieldname": "padrao_card_raio_borda",
+   "fieldtype": "Data",
+   "label": "Raio de Borda"
+  },
+  {
+   "default": "16px",
+   "fieldname": "padrao_card_padding",
+   "fieldtype": "Data",
+   "label": "Padding"
+  },
+  {
+   "fieldname": "col_break_padrao_cards_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "padrao_card_titulo",
+   "fieldtype": "Color",
+   "label": "Cor do Título"
+  },
+  {
+   "default": "#6b7280",
+   "fieldname": "padrao_card_texto",
+   "fieldtype": "Color",
+   "label": "Cor do Texto"
+  },
+  {
+   "collapsible": 0,
+   "fieldname": "section_black_cores",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Cores de Fundo"
+  },
+  {
+   "default": "#020617",
+   "fieldname": "black_cor_fundo_principal",
+   "fieldtype": "Color",
+   "label": "Fundo Principal"
+  },
+  {
+   "default": "#0f172a",
+   "fieldname": "black_cor_fundo_secundaria",
+   "fieldtype": "Color",
+   "label": "Fundo Secundário"
+  },
+  {
+   "default": "#0f172a",
+   "fieldname": "black_cor_fundo_conteudo",
+   "fieldtype": "Color",
+   "label": "Fundo do Conteúdo"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "black_cor_fundo_cards",
+   "fieldtype": "Color",
+   "label": "Fundo dos Cards"
+  },
+  {
+   "default": "#020617",
+   "fieldname": "black_cor_fundo_navbar",
+   "fieldtype": "Color",
+   "label": "Fundo da Navbar"
+  },
+  {
+   "fieldname": "col_break_black_cores_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#020617",
+   "fieldname": "black_cor_fundo_sidebar",
+   "fieldtype": "Color",
+   "label": "Fundo da Sidebar"
+  },
+  {
+   "default": "#0f172a",
+   "fieldname": "black_cor_fundo_menu",
+   "fieldtype": "Color",
+   "label": "Fundo do Menu"
+  },
+  {
+   "default": "#0f172a",
+   "fieldname": "black_cor_fundo_modal",
+   "fieldtype": "Color",
+   "label": "Fundo do Modal"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "black_cor_fundo_dropdown",
+   "fieldtype": "Color",
+   "label": "Fundo do Dropdown"
+  },
+  {
+   "fieldname": "section_black_fontes_cores",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Cores de Texto e Destaque"
+  },
+  {
+   "default": "#f9fafb",
+   "fieldname": "black_cor_fonte_principal",
+   "fieldtype": "Color",
+   "label": "Texto Principal"
+  },
+  {
+   "default": "#cbd5e1",
+   "fieldname": "black_cor_fonte_secundaria",
+   "fieldtype": "Color",
+   "label": "Texto Secundário"
+  },
+  {
+   "default": "#94a3b8",
+   "fieldname": "black_cor_fonte_suave",
+   "fieldtype": "Color",
+   "label": "Texto Suave"
+  },
+  {
+   "default": "#f9fafb",
+   "fieldname": "black_cor_titulo",
+   "fieldtype": "Color",
+   "label": "Cor dos Títulos"
+  },
+  {
+   "default": "#e5e7eb",
+   "fieldname": "black_cor_subtitulo",
+   "fieldtype": "Color",
+   "label": "Cor dos Subtítulos"
+  },
+  {
+   "fieldname": "col_break_black_fontes_cores_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#22c55e",
+   "fieldname": "black_cor_destaque",
+   "fieldtype": "Color",
+   "label": "Cor de Destaque"
+  },
+  {
+   "default": "#16a34a",
+   "fieldname": "black_cor_destaque_escura",
+   "fieldtype": "Color",
+   "label": "Cor de Destaque Escura"
+  },
+  {
+   "default": "#1f2937",
+   "fieldname": "black_cor_borda",
+   "fieldtype": "Color",
+   "label": "Cor das Bordas"
+  },
+  {
+   "default": "rgba(0, 0, 0, 0.35)",
+   "fieldname": "black_cor_sombra",
+   "fieldtype": "Data",
+   "label": "Cor da Sombra (rgba)"
+  },
+  {
+   "default": "#4ade80",
+   "fieldname": "black_cor_link",
+   "fieldtype": "Color",
+   "label": "Cor dos Links"
+  },
+  {
+   "fieldname": "section_black_status_cores",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Cores de Estado"
+  },
+  {
+   "default": "#064e3b",
+   "fieldname": "black_cor_hover",
+   "fieldtype": "Color",
+   "label": "Cor de Hover"
+  },
+  {
+   "default": "#166534",
+   "fieldname": "black_cor_selecao",
+   "fieldtype": "Color",
+   "label": "Cor de Seleção"
+  },
+  {
+   "default": "#22c55e",
+   "fieldname": "black_cor_sucesso",
+   "fieldtype": "Color",
+   "label": "Cor de Sucesso"
+  },
+  {
+   "default": "#fbbf24",
+   "fieldname": "black_cor_alerta",
+   "fieldtype": "Color",
+   "label": "Cor de Alerta"
+  },
+  {
+   "default": "#f87171",
+   "fieldname": "black_cor_erro",
+   "fieldtype": "Color",
+   "label": "Cor de Erro"
+  },
+  {
+   "default": "#60a5fa",
+   "fieldname": "black_cor_info",
+   "fieldtype": "Color",
+   "label": "Cor de Info"
+  },
+  {
+   "fieldname": "section_black_fontes",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Fontes"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_principal",
+   "fieldtype": "Data",
+   "label": "Fonte Principal"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_titulos",
+   "fieldtype": "Data",
+   "label": "Fonte dos Títulos"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_subtitulos",
+   "fieldtype": "Data",
+   "label": "Fonte dos Subtítulos"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_cabecalhos",
+   "fieldtype": "Data",
+   "label": "Fonte dos Cabeçalhos"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_tabelas",
+   "fieldtype": "Data",
+   "label": "Fonte das Tabelas"
+  },
+  {
+   "fieldname": "col_break_black_fontes_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_botoes",
+   "fieldtype": "Data",
+   "label": "Fonte dos Botões"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_campos",
+   "fieldtype": "Data",
+   "label": "Fonte dos Campos"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_menus",
+   "fieldtype": "Data",
+   "label": "Fonte dos Menus"
+  },
+  {
+   "default": "Inter, \"Segoe UI\", Arial, sans-serif",
+   "fieldname": "black_fonte_textos_auxiliares",
+   "fieldtype": "Data",
+   "label": "Fonte dos Textos Auxiliares"
+  },
+  {
+   "default": "\"Roboto Mono\", \"SFMono-Regular\", Consolas, monospace",
+   "fieldname": "black_fonte_numeros",
+   "fieldtype": "Data",
+   "label": "Fonte dos Números"
+  },
+  {
+   "fieldname": "section_black_tamanhos",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Tamanhos e Pesos de Fonte"
+  },
+  {
+   "default": "13px",
+   "fieldname": "black_tamanho_fonte_base",
+   "fieldtype": "Data",
+   "label": "Tamanho Base"
+  },
+  {
+   "default": "18px",
+   "fieldname": "black_tamanho_fonte_titulo",
+   "fieldtype": "Data",
+   "label": "Tamanho Título"
+  },
+  {
+   "default": "14px",
+   "fieldname": "black_tamanho_fonte_subtitulo",
+   "fieldtype": "Data",
+   "label": "Tamanho Subtítulo"
+  },
+  {
+   "default": "13px",
+   "fieldname": "black_tamanho_fonte_menu",
+   "fieldtype": "Data",
+   "label": "Tamanho Menu"
+  },
+  {
+   "default": "13px",
+   "fieldname": "black_tamanho_fonte_botao",
+   "fieldtype": "Data",
+   "label": "Tamanho Botão"
+  },
+  {
+   "fieldname": "col_break_black_tamanhos_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "13px",
+   "fieldname": "black_tamanho_fonte_campo",
+   "fieldtype": "Data",
+   "label": "Tamanho Campo"
+  },
+  {
+   "default": "12px",
+   "fieldname": "black_tamanho_fonte_tabela",
+   "fieldtype": "Data",
+   "label": "Tamanho Tabela"
+  },
+  {
+   "default": "11px",
+   "fieldname": "black_tamanho_fonte_tabela_cabecalho",
+   "fieldtype": "Data",
+   "label": "Tamanho Cabeçalho Tabela"
+  },
+  {
+   "default": "400",
+   "fieldname": "black_peso_fonte_regular",
+   "fieldtype": "Data",
+   "label": "Peso Regular"
+  },
+  {
+   "default": "500",
+   "fieldname": "black_peso_fonte_medio",
+   "fieldtype": "Data",
+   "label": "Peso Médio"
+  },
+  {
+   "default": "600",
+   "fieldname": "black_peso_fonte_semibold",
+   "fieldtype": "Data",
+   "label": "Peso Semibold"
+  },
+  {
+   "default": "700",
+   "fieldname": "black_peso_fonte_bold",
+   "fieldtype": "Data",
+   "label": "Peso Bold"
+  },
+  {
+   "fieldname": "section_black_grid",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Grids e Tabelas"
+  },
+  {
+   "default": "34px",
+   "fieldname": "black_grid_altura_linha",
+   "fieldtype": "Data",
+   "label": "Altura da Linha"
+  },
+  {
+   "default": "38px",
+   "fieldname": "black_grid_altura_cabecalho",
+   "fieldtype": "Data",
+   "label": "Altura do Cabeçalho"
+  },
+  {
+   "default": "120px",
+   "fieldname": "black_grid_largura_minima_coluna",
+   "fieldtype": "Data",
+   "label": "Largura Mínima da Coluna"
+  },
+  {
+   "default": "10px",
+   "fieldname": "black_grid_padding_horizontal",
+   "fieldtype": "Data",
+   "label": "Padding Horizontal"
+  },
+  {
+   "default": "6px",
+   "fieldname": "black_grid_padding_vertical",
+   "fieldtype": "Data",
+   "label": "Padding Vertical"
+  },
+  {
+   "default": "10px",
+   "fieldname": "black_grid_raio_borda",
+   "fieldtype": "Data",
+   "label": "Raio de Borda"
+  },
+  {
+   "fieldname": "col_break_black_grid_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "black_grid_cor_fundo_cabecalho",
+   "fieldtype": "Color",
+   "label": "Fundo do Cabeçalho"
+  },
+  {
+   "default": "#020617",
+   "fieldname": "black_grid_cor_fundo_linha",
+   "fieldtype": "Color",
+   "label": "Fundo da Linha"
+  },
+  {
+   "default": "#0f172a",
+   "fieldname": "black_grid_cor_fundo_linha_alternada",
+   "fieldtype": "Color",
+   "label": "Fundo da Linha Alternada"
+  },
+  {
+   "default": "#064e3b",
+   "fieldname": "black_grid_cor_fundo_hover",
+   "fieldtype": "Color",
+   "label": "Fundo Hover"
+  },
+  {
+   "default": "#f9fafb",
+   "fieldname": "black_grid_cor_fonte_linha",
+   "fieldtype": "Color",
+   "label": "Fonte da Linha"
+  },
+  {
+   "default": "#cbd5e1",
+   "fieldname": "black_grid_cor_fonte_cabecalho",
+   "fieldtype": "Color",
+   "label": "Fonte do Cabeçalho"
+  },
+  {
+   "default": "#1f2937",
+   "fieldname": "black_grid_cor_borda",
+   "fieldtype": "Color",
+   "label": "Cor da Borda"
+  },
+  {
+   "default": "#166534",
+   "fieldname": "black_grid_cor_selecao",
+   "fieldtype": "Color",
+   "label": "Cor da Seleção"
+  },
+  {
+   "fieldname": "col_break_black_grid_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "12px",
+   "fieldname": "black_grid_tamanho_fonte_linha",
+   "fieldtype": "Data",
+   "label": "Tamanho Fonte Linha"
+  },
+  {
+   "default": "11px",
+   "fieldname": "black_grid_tamanho_fonte_cabecalho",
+   "fieldtype": "Data",
+   "label": "Tamanho Fonte Cabeçalho"
+  },
+  {
+   "default": "600",
+   "fieldname": "black_grid_peso_fonte_cabecalho",
+   "fieldtype": "Data",
+   "label": "Peso Fonte Cabeçalho"
+  },
+  {
+   "fieldname": "section_black_botoes",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Botões"
+  },
+  {
+   "default": "#22c55e",
+   "fieldname": "black_botao_primario_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo Botão Primário"
+  },
+  {
+   "default": "#020617",
+   "fieldname": "black_botao_primario_texto",
+   "fieldtype": "Color",
+   "label": "Texto Botão Primário"
+  },
+  {
+   "default": "#1f2937",
+   "fieldname": "black_botao_secundario_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo Botão Secundário"
+  },
+  {
+   "default": "#e5e7eb",
+   "fieldname": "black_botao_secundario_texto",
+   "fieldtype": "Color",
+   "label": "Texto Botão Secundário"
+  },
+  {
+   "fieldname": "col_break_black_botoes_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#16a34a",
+   "fieldname": "black_botao_hover_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo Hover do Botão"
+  },
+  {
+   "default": "6px",
+   "fieldname": "black_botao_raio_borda",
+   "fieldtype": "Data",
+   "label": "Raio de Borda"
+  },
+  {
+   "default": "32px",
+   "fieldname": "black_botao_altura",
+   "fieldtype": "Data",
+   "label": "Altura do Botão"
+  },
+  {
+   "default": "14px",
+   "fieldname": "black_botao_padding_horizontal",
+   "fieldtype": "Data",
+   "label": "Padding Horizontal"
+  },
+  {
+   "default": "500",
+   "fieldname": "black_botao_peso_fonte",
+   "fieldtype": "Data",
+   "label": "Peso da Fonte"
+  },
+  {
+   "fieldname": "section_black_campos",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Campos de Formulário"
+  },
+  {
+   "default": "#0f172a",
+   "fieldname": "black_campo_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo do Campo"
+  },
+  {
+   "default": "#f9fafb",
+   "fieldname": "black_campo_texto",
+   "fieldtype": "Color",
+   "label": "Texto do Campo"
+  },
+  {
+   "default": "#64748b",
+   "fieldname": "black_campo_placeholder",
+   "fieldtype": "Color",
+   "label": "Placeholder"
+  },
+  {
+   "default": "#1f2937",
+   "fieldname": "black_campo_borda",
+   "fieldtype": "Color",
+   "label": "Borda do Campo"
+  },
+  {
+   "default": "#22c55e",
+   "fieldname": "black_campo_borda_foco",
+   "fieldtype": "Color",
+   "label": "Borda em Foco"
+  },
+  {
+   "fieldname": "col_break_black_campos_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "30px",
+   "fieldname": "black_campo_altura",
+   "fieldtype": "Data",
+   "label": "Altura do Campo"
+  },
+  {
+   "default": "6px 10px",
+   "fieldname": "black_campo_padding",
+   "fieldtype": "Data",
+   "label": "Padding"
+  },
+  {
+   "default": "13px",
+   "fieldname": "black_campo_tamanho_fonte",
+   "fieldtype": "Data",
+   "label": "Tamanho da Fonte"
+  },
+  {
+   "default": "6px",
+   "fieldname": "black_campo_raio_borda",
+   "fieldtype": "Data",
+   "label": "Raio de Borda"
+  },
+  {
+   "fieldname": "section_black_cards",
+   "fieldtype": "Section Break",
+   "label": "Tema Black — Cards, Painéis e Modais"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "black_card_fundo",
+   "fieldtype": "Color",
+   "label": "Fundo do Card"
+  },
+  {
+   "default": "#1f2937",
+   "fieldname": "black_card_borda",
+   "fieldtype": "Color",
+   "label": "Borda do Card"
+  },
+  {
+   "default": "0 1px 4px rgba(0, 0, 0, 0.35)",
+   "fieldname": "black_card_sombra",
+   "fieldtype": "Data",
+   "label": "Sombra do Card"
+  },
+  {
+   "default": "10px",
+   "fieldname": "black_card_raio_borda",
+   "fieldtype": "Data",
+   "label": "Raio de Borda"
+  },
+  {
+   "default": "16px",
+   "fieldname": "black_card_padding",
+   "fieldtype": "Data",
+   "label": "Padding"
+  },
+  {
+   "fieldname": "col_break_black_cards_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#f9fafb",
+   "fieldname": "black_card_titulo",
+   "fieldtype": "Color",
+   "label": "Cor do Título"
+  },
+  {
+   "default": "#cbd5e1",
+   "fieldname": "black_card_texto",
+   "fieldtype": "Color",
+   "label": "Cor do Texto"
+  },
+  {
+   "fieldname": "section_login",
+   "fieldtype": "Section Break",
+   "label": "Login — Cores"
+  },
+  {
+   "default": "#f8fafc",
+   "fieldname": "login_cor_fundo_padrao",
+   "fieldtype": "Color",
+   "label": "Fundo Login (Tema Padrão)"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "login_cor_texto_padrao",
+   "fieldtype": "Color",
+   "label": "Texto Login (Tema Padrão)"
+  },
+  {
+   "default": "#ffffff",
+   "fieldname": "login_cor_card_padrao",
+   "fieldtype": "Color",
+   "label": "Card Login (Tema Padrão)"
+  },
+  {
+   "fieldname": "col_break_login_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#020617",
+   "fieldname": "login_cor_fundo_black",
+   "fieldtype": "Color",
+   "label": "Fundo Login (Tema Black)"
+  },
+  {
+   "default": "#f9fafb",
+   "fieldname": "login_cor_texto_black",
+   "fieldtype": "Color",
+   "label": "Texto Login (Tema Black)"
+  },
+  {
+   "default": "#111827",
+   "fieldname": "login_cor_card_black",
+   "fieldtype": "Color",
+   "label": "Card Login (Tema Black)"
+  },
+  {
+   "fieldname": "section_login_config",
+   "fieldtype": "Section Break",
+   "label": "Login — Configurações Visuais"
+  },
+  {
+   "default": "160px",
+   "fieldname": "login_logo_largura",
+   "fieldtype": "Data",
+   "label": "Largura do Logo"
+  },
+  {
+   "default": "auto",
+   "fieldname": "login_logo_altura",
+   "fieldtype": "Data",
+   "label": "Altura do Logo"
+  },
+  {
+   "default": "1",
+   "fieldname": "login_exibir_logo",
+   "fieldtype": "Check",
+   "label": "Exibir Logo no Login"
+  },
+  {
+   "fieldname": "login_imagem_fundo",
+   "fieldtype": "Attach Image",
+   "label": "Imagem de Fundo do Login"
+  },
+  {
+   "default": "0",
+   "fieldname": "login_usar_imagem_fundo",
+   "fieldtype": "Check",
+   "label": "Usar Imagem de Fundo no Login"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "GF Theme Control",
+ "name": "GF Theme Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

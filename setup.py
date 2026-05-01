@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="ichis",
-    version="0.0.1",
-    description="Tema visual genérico inspirado no Aura para Frappe/ERPNext v16",
+    name="ichis_theme_control",
+    version="1.0.0",
+    description="Central administrativa de identidade visual do ERPNext - GREENFARMS",
     author="GREENFARMS",
     author_email="contato@greenfarms.com.br",
-    packages=find_packages(include=["ichis", "ichis.*"]),
+    packages=find_packages(include=["ichis_theme_control", "ichis_theme_control.*"]),
     include_package_data=True,
     zip_safe=False,
 )

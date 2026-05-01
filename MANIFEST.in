@@ -3,9 +3,12 @@ include requirements.txt
 include pyproject.toml
 include setup.py
 include MANIFEST.in
-recursive-include ichis *.py
-recursive-include ichis *.txt
-recursive-include ichis/public *
-recursive-include ichis/templates *
-recursive-include ichis/config *
-recursive-include ichis/ichis_theme_app *
+recursive-include ichis_theme_control *.py
+recursive-include ichis_theme_control *.txt
+recursive-include ichis_theme_control *.json
+recursive-include ichis_theme_control *.html
+recursive-include ichis_theme_control/public *
+recursive-include ichis_theme_control/templates *
+recursive-include ichis_theme_control/config *
+recursive-include ichis_theme_control/doctype *
+recursive-include ichis_theme_control/api *

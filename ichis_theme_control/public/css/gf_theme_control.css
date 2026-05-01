@@ -1,0 +1,709 @@
+/*
+ * GF Theme Control — gf_theme_control.css
+ * GREENFARMS | Central Administrativa de Identidade Visual
+ *
+ * Este arquivo define as variáveis CSS padrão (fallback)
+ * e aplica-as nos seletores principais do ERPNext/Frappe.
+ *
+ * Os valores reais são sobrescritos pelo JavaScript (gf_theme_control.js)
+ * após buscar as configurações do Doctype GF Theme Settings via API.
+ *
+ * Uso de variáveis CSS garante que uma única atualização via JS
+ * propague para todo o sistema sem redeclarar seletores.
+ */
+
+/* =============================================================
+   1. VARIÁVEIS CSS GLOBAIS (valores fallback elegantes)
+   ============================================================= */
+
+:root {
+  /* Fundo */
+  --gf-bg-main:        #f8fafc;
+  --gf-bg-secondary:   #ffffff;
+  --gf-bg-content:     #ffffff;
+  --gf-bg-card:        #ffffff;
+  --gf-bg-navbar:      #ffffff;
+  --gf-bg-sidebar:     #f9fafb;
+  --gf-bg-menu:        #ffffff;
+  --gf-bg-modal:       #ffffff;
+  --gf-bg-dropdown:    #ffffff;
+
+  /* Texto */
+  --gf-text-main:      #111827;
+  --gf-text-secondary: #6b7280;
+  --gf-text-soft:      #94a3b8;
+  --gf-text-title:     #111827;
+  --gf-text-subtitle:  #374151;
+  --gf-text-link:      #15803d;
+
+  /* Destaque e bordas */
+  --gf-accent:         #16a34a;
+  --gf-accent-dark:    #166534;
+  --gf-border:         #e5e7eb;
+  --gf-shadow:         rgba(15, 23, 42, 0.08);
+  --gf-hover:          #dcfce7;
+  --gf-selection:      #bbf7d0;
+
+  /* Estado */
+  --gf-success:        #16a34a;
+  --gf-warning:        #f59e0b;
+  --gf-error:          #dc2626;
+  --gf-info:           #2563eb;
+
+  /* Fontes */
+  --gf-font-main:      Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-title:     Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-subtitle:  Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-heading:   Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-table:     Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-button:    Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-field:     Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-menu:      Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-aux:       Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-number:    "Roboto Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* Tamanhos de fonte */
+  --gf-fs-base:        13px;
+  --gf-fs-title:       18px;
+  --gf-fs-subtitle:    14px;
+  --gf-fs-menu:        13px;
+  --gf-fs-button:      13px;
+  --gf-fs-field:       13px;
+  --gf-fs-table:       12px;
+  --gf-fs-th:          11px;
+
+  /* Pesos de fonte */
+  --gf-fw-regular:     400;
+  --gf-fw-medium:      500;
+  --gf-fw-semibold:    600;
+  --gf-fw-bold:        700;
+
+  /* Grid e tabelas */
+  --gf-grid-row-h:     34px;
+  --gf-grid-head-h:    38px;
+  --gf-grid-col-min:   120px;
+  --gf-grid-px:        10px;
+  --gf-grid-py:        6px;
+  --gf-grid-radius:    10px;
+  --gf-grid-bg-head:   #f3f4f6;
+  --gf-grid-bg-row:    #ffffff;
+  --gf-grid-bg-alt:    #f9fafb;
+  --gf-grid-bg-hover:  #ecfdf5;
+  --gf-grid-text-row:  #111827;
+  --gf-grid-text-head: #374151;
+  --gf-grid-border:    #e5e7eb;
+  --gf-grid-select:    #bbf7d0;
+  --gf-grid-fs-row:    12px;
+  --gf-grid-fs-head:   11px;
+  --gf-grid-fw-head:   600;
+
+  /* Botões */
+  --gf-btn-bg:         #16a34a;
+  --gf-btn-text:       #ffffff;
+  --gf-btn-sec-bg:     #f3f4f6;
+  --gf-btn-sec-text:   #374151;
+  --gf-btn-hover:      #166534;
+  --gf-btn-radius:     6px;
+  --gf-btn-h:          32px;
+  --gf-btn-px:         14px;
+  --gf-btn-fw:         500;
+
+  /* Campos */
+  --gf-field-bg:       #ffffff;
+  --gf-field-text:     #111827;
+  --gf-field-ph:       #9ca3af;
+  --gf-field-border:   #d1d5db;
+  --gf-field-focus:    #16a34a;
+  --gf-field-h:        30px;
+  --gf-field-p:        6px 10px;
+  --gf-field-fs:       13px;
+  --gf-field-radius:   6px;
+
+  /* Cards */
+  --gf-card-bg:        #ffffff;
+  --gf-card-border:    #e5e7eb;
+  --gf-card-shadow:    0 1px 4px rgba(15, 23, 42, 0.08);
+  --gf-card-radius:    10px;
+  --gf-card-p:         16px;
+  --gf-card-title:     #111827;
+  --gf-card-text:      #6b7280;
+}
+
+/* =============================================================
+   2. BODY E PÁGINA
+   ============================================================= */
+
+body,
+html {
+  background-color: var(--gf-bg-main) !important;
+  color: var(--gf-text-main) !important;
+  font-family: var(--gf-font-main) !important;
+  font-size: var(--gf-fs-base) !important;
+}
+
+/* =============================================================
+   3. NAVBAR / BARRA SUPERIOR
+   ============================================================= */
+
+.navbar,
+.navbar-default,
+header.navbar {
+  background-color: var(--gf-bg-navbar) !important;
+  border-bottom: 1px solid var(--gf-border) !important;
+  box-shadow: 0 1px 3px var(--gf-shadow) !important;
+}
+
+.navbar-brand,
+.navbar-brand span,
+.app-logo {
+  font-family: var(--gf-font-main) !important;
+  color: var(--gf-text-title) !important;
+  font-weight: var(--gf-fw-semibold) !important;
+}
+
+.navbar .nav-link,
+.navbar-nav .nav-link,
+.navbar-nav > li > a {
+  color: var(--gf-text-main) !important;
+  font-size: var(--gf-fs-menu) !important;
+  font-family: var(--gf-font-menu) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar-nav .nav-link:hover {
+  color: var(--gf-accent) !important;
+}
+
+/* =============================================================
+   4. SIDEBAR / BARRA LATERAL
+   ============================================================= */
+
+.desk-sidebar,
+.standard-sidebar,
+.sidebar-menu,
+.layout-side-section,
+.page-sidebar,
+.sidebar {
+  background-color: var(--gf-bg-sidebar) !important;
+  border-right: 1px solid var(--gf-border) !important;
+}
+
+.desk-sidebar .desk-sidebar-item,
+.standard-sidebar-item,
+.sidebar-menu-item,
+.sidebar .item {
+  color: var(--gf-text-main) !important;
+  font-size: var(--gf-fs-menu) !important;
+  font-family: var(--gf-font-menu) !important;
+}
+
+.desk-sidebar-item.selected,
+.standard-sidebar-item.selected,
+.sidebar-item.selected,
+.sidebar .item.selected,
+.desk-sidebar-item:hover,
+.standard-sidebar-item:hover {
+  background-color: var(--gf-hover) !important;
+  color: var(--gf-accent) !important;
+  border-radius: 6px !important;
+}
+
+/* =============================================================
+   5. CONTEÚDO PRINCIPAL
+   ============================================================= */
+
+.page-head,
+.page-header {
+  background-color: var(--gf-bg-content) !important;
+  border-bottom: 1px solid var(--gf-border) !important;
+}
+
+.layout-main-section,
+.layout-main,
+.page-content,
+.main-section {
+  background-color: var(--gf-bg-content) !important;
+}
+
+.page-title,
+.title-text,
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gf-text-title) !important;
+  font-family: var(--gf-font-title) !important;
+  font-weight: var(--gf-fw-semibold) !important;
+}
+
+h1 { font-size: var(--gf-fs-title) !important; }
+h2 { font-size: var(--gf-fs-subtitle) !important; }
+h3, h4 { font-size: var(--gf-fs-base) !important; }
+
+.sub-heading,
+.sub-title,
+.form-section .section-head {
+  color: var(--gf-text-subtitle) !important;
+  font-family: var(--gf-font-subtitle) !important;
+  font-size: var(--gf-fs-subtitle) !important;
+}
+
+/* =============================================================
+   6. FORMULÁRIO
+   ============================================================= */
+
+.form-layout,
+.form-page,
+.frappe-card,
+.form-section {
+  background-color: var(--gf-bg-content) !important;
+}
+
+.section-head,
+.form-section .section-head {
+  color: var(--gf-text-subtitle) !important;
+  font-size: var(--gf-fs-subtitle) !important;
+  font-weight: var(--gf-fw-semibold) !important;
+  border-bottom: 1px solid var(--gf-border) !important;
+}
+
+.control-label,
+.form-group label {
+  color: var(--gf-text-secondary) !important;
+  font-size: var(--gf-fs-base) !important;
+  font-weight: var(--gf-fw-medium) !important;
+  font-family: var(--gf-font-main) !important;
+}
+
+/* =============================================================
+   7. CAMPOS DE FORMULÁRIO
+   ============================================================= */
+
+input,
+textarea,
+select,
+.form-control,
+.input-with-feedback,
+.control-input,
+.frappe-control input,
+.frappe-control textarea,
+.frappe-control select {
+  background-color: var(--gf-field-bg) !important;
+  color: var(--gf-field-text) !important;
+  border: 1px solid var(--gf-field-border) !important;
+  border-radius: var(--gf-field-radius) !important;
+  font-size: var(--gf-field-fs) !important;
+  font-family: var(--gf-font-field) !important;
+  padding: var(--gf-field-p) !important;
+  min-height: var(--gf-field-h) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+input::placeholder,
+textarea::placeholder,
+.form-control::placeholder {
+  color: var(--gf-field-ph) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.form-control:focus,
+.control-input:focus {
+  border-color: var(--gf-field-focus) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf-field-focus) 15%, transparent) !important;
+  outline: none !important;
+}
+
+/* =============================================================
+   8. BOTÕES
+   ============================================================= */
+
+.btn,
+button {
+  font-family: var(--gf-font-button) !important;
+  font-size: var(--gf-fs-button) !important;
+  font-weight: var(--gf-btn-fw) !important;
+  border-radius: var(--gf-btn-radius) !important;
+  min-height: var(--gf-btn-h) !important;
+  padding-left: var(--gf-btn-px) !important;
+  padding-right: var(--gf-btn-px) !important;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.btn-primary,
+.primary-action,
+button[data-label="Save"],
+button[data-label="Salvar"] {
+  background-color: var(--gf-btn-bg) !important;
+  color: var(--gf-btn-text) !important;
+  border: none !important;
+}
+
+.btn-primary:hover,
+.primary-action:hover {
+  background-color: var(--gf-btn-hover) !important;
+  box-shadow: 0 2px 8px var(--gf-shadow) !important;
+}
+
+.btn-secondary,
+.btn-default {
+  background-color: var(--gf-btn-sec-bg) !important;
+  color: var(--gf-btn-sec-text) !important;
+  border: 1px solid var(--gf-border) !important;
+}
+
+.btn-secondary:hover,
+.btn-default:hover {
+  background-color: var(--gf-hover) !important;
+  color: var(--gf-accent) !important;
+}
+
+/* =============================================================
+   9. LISTAS E GRIDS
+   ============================================================= */
+
+.list-row,
+.result-list .list-row,
+.list-row-container {
+  background-color: var(--gf-grid-bg-row) !important;
+  border-bottom: 1px solid var(--gf-grid-border) !important;
+  color: var(--gf-grid-text-row) !important;
+  font-size: var(--gf-grid-fs-row) !important;
+  font-family: var(--gf-font-table) !important;
+  min-height: var(--gf-grid-row-h) !important;
+}
+
+.list-row:nth-child(even) {
+  background-color: var(--gf-grid-bg-alt) !important;
+}
+
+.list-row:hover {
+  background-color: var(--gf-grid-bg-hover) !important;
+}
+
+.list-row.list-row-head,
+.list-headers {
+  background-color: var(--gf-grid-bg-head) !important;
+  color: var(--gf-grid-text-head) !important;
+  font-size: var(--gf-grid-fs-head) !important;
+  font-weight: var(--gf-grid-fw-head) !important;
+  min-height: var(--gf-grid-head-h) !important;
+}
+
+/* =============================================================
+   10. DATATABLES (Frappe DataTable)
+   ============================================================= */
+
+.datatable,
+.frappe-datatable {
+  background-color: var(--gf-grid-bg-row) !important;
+  border: 1px solid var(--gf-grid-border) !important;
+  border-radius: var(--gf-grid-radius) !important;
+  overflow: hidden !important;
+}
+
+.dt-header,
+.data-table-header {
+  background-color: var(--gf-grid-bg-head) !important;
+  color: var(--gf-grid-text-head) !important;
+  font-size: var(--gf-grid-fs-head) !important;
+  font-weight: var(--gf-grid-fw-head) !important;
+  height: var(--gf-grid-head-h) !important;
+  border-bottom: 1px solid var(--gf-grid-border) !important;
+}
+
+.dt-cell,
+.data-table-cell {
+  color: var(--gf-grid-text-row) !important;
+  font-size: var(--gf-grid-fs-row) !important;
+  font-family: var(--gf-font-table) !important;
+  padding: var(--gf-grid-py) var(--gf-grid-px) !important;
+  border-right: 1px solid var(--gf-grid-border) !important;
+  min-width: var(--gf-grid-col-min) !important;
+}
+
+.dt-row,
+.data-table-row {
+  background-color: var(--gf-grid-bg-row) !important;
+  height: var(--gf-grid-row-h) !important;
+  border-bottom: 1px solid var(--gf-grid-border) !important;
+}
+
+.dt-row:nth-child(even) {
+  background-color: var(--gf-grid-bg-alt) !important;
+}
+
+.dt-row:hover,
+.dt-row.dt-row-hover {
+  background-color: var(--gf-grid-bg-hover) !important;
+}
+
+.dt-row.dt-row-selected,
+.dt-cell--selected {
+  background-color: var(--gf-grid-select) !important;
+}
+
+/* =============================================================
+   11. TABELAS HTML NATIVAS
+   ============================================================= */
+
+table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  font-family: var(--gf-font-table) !important;
+  font-size: var(--gf-fs-table) !important;
+  color: var(--gf-grid-text-row) !important;
+}
+
+thead {
+  background-color: var(--gf-grid-bg-head) !important;
+}
+
+th {
+  background-color: var(--gf-grid-bg-head) !important;
+  color: var(--gf-grid-text-head) !important;
+  font-size: var(--gf-grid-fs-head) !important;
+  font-weight: var(--gf-grid-fw-head) !important;
+  padding: var(--gf-grid-py) var(--gf-grid-px) !important;
+  border-bottom: 1px solid var(--gf-grid-border) !important;
+  height: var(--gf-grid-head-h) !important;
+}
+
+td {
+  color: var(--gf-grid-text-row) !important;
+  font-size: var(--gf-grid-fs-row) !important;
+  padding: var(--gf-grid-py) var(--gf-grid-px) !important;
+  border-bottom: 1px solid var(--gf-grid-border) !important;
+  height: var(--gf-grid-row-h) !important;
+}
+
+tbody tr:nth-child(even) td {
+  background-color: var(--gf-grid-bg-alt) !important;
+}
+
+tbody tr:hover td {
+  background-color: var(--gf-grid-bg-hover) !important;
+}
+
+/* =============================================================
+   12. GRID DE FORMULÁRIO (linhas de sub-tabela)
+   ============================================================= */
+
+.grid-row,
+.data-row,
+.grid-body .data-row {
+  background-color: var(--gf-grid-bg-row) !important;
+  border-bottom: 1px solid var(--gf-grid-border) !important;
+  color: var(--gf-grid-text-row) !important;
+  font-size: var(--gf-grid-fs-row) !important;
+  height: var(--gf-grid-row-h) !important;
+}
+
+.grid-row:nth-child(even),
+.data-row:nth-child(even) {
+  background-color: var(--gf-grid-bg-alt) !important;
+}
+
+.grid-row:hover,
+.data-row:hover {
+  background-color: var(--gf-grid-bg-hover) !important;
+}
+
+.grid-heading-row,
+.grid-header {
+  background-color: var(--gf-grid-bg-head) !important;
+  color: var(--gf-grid-text-head) !important;
+  font-size: var(--gf-grid-fs-head) !important;
+  font-weight: var(--gf-grid-fw-head) !important;
+  height: var(--gf-grid-head-h) !important;
+}
+
+/* =============================================================
+   13. CARDS, WIDGETS E MODAIS
+   ============================================================= */
+
+.card,
+.frappe-card,
+.widget,
+.number-widget-box,
+.shortcut-widget-box,
+.form-dashboard,
+.form-dashboard-section {
+  background-color: var(--gf-card-bg) !important;
+  border: 1px solid var(--gf-card-border) !important;
+  box-shadow: var(--gf-card-shadow) !important;
+  border-radius: var(--gf-card-radius) !important;
+  padding: var(--gf-card-p) !important;
+  color: var(--gf-card-text) !important;
+}
+
+.card .card-title,
+.widget .widget-title,
+.number-widget-box .widget-title {
+  color: var(--gf-card-title) !important;
+  font-weight: var(--gf-fw-semibold) !important;
+}
+
+.modal-content {
+  background-color: var(--gf-bg-modal) !important;
+  border: 1px solid var(--gf-border) !important;
+  box-shadow: 0 8px 32px var(--gf-shadow) !important;
+  border-radius: var(--gf-card-radius) !important;
+  color: var(--gf-text-main) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--gf-border) !important;
+  color: var(--gf-text-title) !important;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--gf-border) !important;
+}
+
+/* =============================================================
+   14. DROPDOWNS E MENUS
+   ============================================================= */
+
+.dropdown-menu,
+.awesomplete ul,
+.awesomplete [role="listbox"] {
+  background-color: var(--gf-bg-dropdown) !important;
+  border: 1px solid var(--gf-border) !important;
+  box-shadow: 0 4px 16px var(--gf-shadow) !important;
+  border-radius: var(--gf-card-radius) !important;
+  font-size: var(--gf-fs-menu) !important;
+  font-family: var(--gf-font-menu) !important;
+}
+
+.dropdown-item,
+.awesomplete li {
+  color: var(--gf-text-main) !important;
+  font-size: var(--gf-fs-menu) !important;
+}
+
+.dropdown-item:hover,
+.awesomplete li:hover,
+.awesomplete [aria-selected="true"] {
+  background-color: var(--gf-hover) !important;
+  color: var(--gf-accent) !important;
+}
+
+/* =============================================================
+   15. INDICADORES / PILLS
+   ============================================================= */
+
+.indicator-pill.green,
+.indicator-pill[data-color="green"] {
+  background-color: color-mix(in srgb, var(--gf-success) 15%, transparent) !important;
+  color: var(--gf-success) !important;
+}
+
+.indicator-pill.red,
+.indicator-pill[data-color="red"] {
+  background-color: color-mix(in srgb, var(--gf-error) 15%, transparent) !important;
+  color: var(--gf-error) !important;
+}
+
+.indicator-pill.orange,
+.indicator-pill[data-color="orange"],
+.indicator-pill.yellow,
+.indicator-pill[data-color="yellow"] {
+  background-color: color-mix(in srgb, var(--gf-warning) 15%, transparent) !important;
+  color: var(--gf-warning) !important;
+}
+
+.indicator-pill.blue,
+.indicator-pill[data-color="blue"] {
+  background-color: color-mix(in srgb, var(--gf-info) 15%, transparent) !important;
+  color: var(--gf-info) !important;
+}
+
+/* =============================================================
+   16. LINKS
+   ============================================================= */
+
+a,
+.like-disabled-link {
+  color: var(--gf-text-link) !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: var(--gf-accent-dark) !important;
+  text-decoration: underline !important;
+}
+
+/* =============================================================
+   17. TELA DE LOGIN
+   ============================================================= */
+
+.login-content,
+.login-main,
+body.login-page,
+body[data-path="login"],
+.page-card,
+.login-page-content {
+  background-color: var(--gf-bg-main) !important;
+  color: var(--gf-text-main) !important;
+}
+
+.login-card,
+.page-card .card-body,
+.login-content .card {
+  background-color: var(--gf-card-bg) !important;
+  border: 1px solid var(--gf-border) !important;
+  box-shadow: var(--gf-card-shadow) !important;
+  border-radius: var(--gf-card-radius) !important;
+  color: var(--gf-text-main) !important;
+}
+
+/* =============================================================
+   18. TEXTOS AUXILIARES E METADADOS
+   ============================================================= */
+
+.text-muted,
+.help-box,
+small,
+.small {
+  color: var(--gf-text-soft) !important;
+  font-family: var(--gf-font-aux) !important;
+  font-size: calc(var(--gf-fs-base) - 1px) !important;
+}
+
+/* Números e código */
+.numeric,
+code,
+pre,
+kbd,
+.monospace {
+  font-family: var(--gf-font-number) !important;
+}
+
+/* =============================================================
+   19. BARRA DE PROGRESSO E ANIMAÇÕES
+   ============================================================= */
+
+.progress-bar {
+  background-color: var(--gf-accent) !important;
+}
+
+/* =============================================================
+   20. SCROLLBARS (webkit)
+   ============================================================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gf-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gf-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--gf-accent);
+}

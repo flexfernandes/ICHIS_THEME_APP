@@ -1,0 +1,3 @@
+# Patches executados em ordem
+# Adicionar patches futuros aqui no formato:
+# ichis_theme_control.patches.nome_do_patch

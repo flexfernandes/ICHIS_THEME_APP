@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ichis"
-version = "0.0.1"
-description = "Tema visual genérico inspirado no Aura para Frappe/ERPNext v16"
+name = "ichis_theme_control"
+version = "1.0.0"
+description = "Central administrativa de identidade visual do ERPNext - GREENFARMS"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -20,4 +20,4 @@ zip-safe = false
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["ichis", "ichis.*"]
+include = ["ichis_theme_control", "ichis_theme_control.*"]
