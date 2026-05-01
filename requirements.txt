@@ -1,2 +1,1 @@
 # Sem dependências externas
-# O app utiliza apenas o Frappe Framework nativo

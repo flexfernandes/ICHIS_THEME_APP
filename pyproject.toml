@@ -3,15 +3,13 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ichis_theme_control"
+name = "ichis_theme_app"
 version = "1.0.0"
-description = "Central administrativa de identidade visual do ERPNext - GREENFARMS"
+description = "GREENFARMS — Central de Identidade Visual e UI Overlay para ERPNext"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [
-    { name = "GREENFARMS", email = "contato@greenfarms.com.br" }
-]
+authors = [{ name = "GREENFARMS", email = "contato@greenfarms.com.br" }]
 dependencies = []
 
 [tool.setuptools]
@@ -20,4 +18,4 @@ zip-safe = false
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["ichis_theme_control", "ichis_theme_control.*"]
+include = ["ichis_theme_app", "ichis_theme_app.*"]

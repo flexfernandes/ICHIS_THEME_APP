@@ -34,7 +34,7 @@ if (window.gfThemeControlLoaded) {
 // =============================================================
 // CONSTANTES
 // =============================================================
-const GF_FALLBACK_LOGO = "/assets/ichis_theme_control/images/app_underline_logo.png";
+const GF_FALLBACK_LOGO = "/assets/ichis_theme_app/images/app_underline_logo.png";
 
 /**
  * Padrões de src de logo do ERPNext/Frappe que devem ser substituídos.
@@ -155,7 +155,7 @@ function gfWhenFrappeReady(callback) {
  */
 function gfFetchPublicSettings() {
   return fetch(
-    "/api/method/ichis_theme_control.api.theme.get_public_theme_settings",
+    "/api/method/ichis_theme_app.api.theme.get_public_theme_settings",
     {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -179,7 +179,7 @@ function gfFetchDeskSettings() {
   if (typeof frappe !== "undefined" && frappe.call) {
     return new Promise(function (resolve, reject) {
       frappe.call({
-        method: "ichis_theme_control.api.theme.get_theme_settings",
+        method: "ichis_theme_app.api.theme.get_theme_settings",
         callback: function (r) {
           if (r && r.message) resolve(r.message);
           else reject(new Error("Resposta vazia do servidor"));
@@ -192,7 +192,7 @@ function gfFetchDeskSettings() {
   } else {
     // Fallback com fetch
     return fetch(
-      "/api/method/ichis_theme_control.api.theme.get_theme_settings",
+      "/api/method/ichis_theme_app.api.theme.get_theme_settings",
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -515,7 +515,7 @@ function gfReplaceLogos(logoUrl, settings) {
         elements.forEach(function (el) {
           if (el.tagName === "IMG") {
             const currentSrc = el.getAttribute("src") || "";
-            if (currentSrc !== logoUrl && !currentSrc.includes("ichis_theme_control")) {
+            if (currentSrc !== logoUrl && !currentSrc.includes("ichis_theme_app")) {
               el.setAttribute("src", logoUrl);
               el.style.objectFit = "contain";
             }
