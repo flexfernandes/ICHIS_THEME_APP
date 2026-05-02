@@ -143,7 +143,7 @@ function _gfWaitFrappe(cb) {
 // ═══════════════════════════════════════════════════════════════
 // VERIFICAÇÃO E MATCH DE ROTA
 // ═══════════════════════════════════════════════════════════════
-var DESK_ROUTES = ["/app", "/app/workspace", "/desk", "/app/workspace/home"];
+var DESK_ROUTES = ["/app", "/app/workspace", "/app/workspace/home"];
 
 function _gfRoute() {
   return (window.location.pathname || "/app")
