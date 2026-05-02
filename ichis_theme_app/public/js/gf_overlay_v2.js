@@ -1,7 +1,7 @@
 /**
- * GF Overlay v4.1 — Frappe v16 definitivo
- * frappe.get_route() retorna ['Workspaces','Home'] para home
- * e ['Workspaces','Buying'] para módulos — diferença está em rota[1]
+ * GF Overlay v4.2 — Frappe v16
+ * Usa pathname como fonte primária de verdade,
+ * frappe.get_route() como confirmação secundária.
  */
 
 window.gfOverlayVersion  = "GF_OVERLAY_V4";
@@ -14,7 +14,7 @@ window.gfCurrentPageData = null;
 if (window.location.pathname.indexOf("/login") !== -1) {
   // não roda no login
 } else {
-  console.log("[GF Overlay] v4.1 iniciando...");
+  console.log("[GF Overlay] v4.2 iniciando...");
   _gfInit();
 }
 
@@ -25,14 +25,24 @@ function _gfInit() {
       callback: function (r) {
         var s = r && r.message;
         window.gfOverlaySettings = s || {};
-        if (!s || !s.ativar_sobreposicoes) { console.log("[GF Overlay] Desativado."); return; }
+        if (!s || !s.ativar_sobreposicoes) {
+          console.log("[GF Overlay] Desativado."); return;
+        }
         frappe.call({
           method: "ichis_theme_app.api.theme.get_active_overlay_pages",
           callback: function (r2) {
             window.gfOverlayPages = Array.isArray(r2 && r2.message) ? r2.message : [];
             console.log("[GF Overlay] Páginas:", window.gfOverlayPages.length);
-            frappe.router.on("change", function () { setTimeout(_gfEvaluate, 150); });
-            setTimeout(_gfEvaluate, 300);
+
+            // Registra listener de rota com delay generoso
+            frappe.router.on("change", function () {
+              // Aguarda 500ms para o Frappe terminar de renderizar
+              // e o pathname ser atualizado
+              setTimeout(_gfEvaluate, 500);
+            });
+
+            // Avalia na carga inicial
+            setTimeout(_gfEvaluate, 400);
           },
           error: function () {}
         });
@@ -50,51 +60,56 @@ function _gfWaitFrappe(cb) {
   }, 100);
 }
 
+// Determina se está na home do desk
+// FONTE PRIMÁRIA: pathname
+// No Frappe v16, home = /desk (sem nada depois ou com /Home)
 function _gfIsHome() {
+  var pathname = window.location.pathname || "";
+  var path     = pathname.replace(/\/$/, "").toLowerCase();
+
+  console.log("[GF Overlay] pathname:", pathname);
+
+  // Home exata
+  if (path === "/desk") return true;
+  if (path === "/desk/home") return true;
+
+  // Qualquer outra subrota de /desk não é home
+  if (path.startsWith("/desk/") && path !== "/desk/home") return false;
+
+  // Fallback: usa frappe.get_route
   try {
-    var route    = frappe.get_route ? frappe.get_route() : [];
-    var pathname = window.location.pathname || "";
-
-    console.log("[GF Overlay] get_route:", JSON.stringify(route), "pathname:", pathname);
-
-    // Caso 1: array vazio = home
+    var route = frappe.get_route ? frappe.get_route() : [];
     if (!Array.isArray(route) || route.length === 0) return true;
-
-    // Caso 2: ['Workspaces', 'Home'] ou ['Workspaces', ''] = home
-    // ['Workspaces', 'Buying'] = NÃO é home
     if (route[0] === "Workspaces" || route[0] === "workspace") {
       var sub = (route[1] || "").toLowerCase().trim();
-      return (sub === "home" || sub === "");
+      return sub === "home" || sub === "";
     }
+  } catch (e) {}
 
-    // Qualquer outra rota = não é home
-    return false;
-  } catch (e) {
-    // Fallback pelo pathname
-    return window.location.pathname === "/desk" || window.location.pathname === "/desk/";
-  }
+  return false;
 }
 
 function _gfEvaluate() {
   try {
     var isHome = _gfIsHome();
-    console.log("[GF Overlay] isHome:", isHome, "overlayActive:", window.gfOverlayActive);
+    console.log("[GF Overlay] isHome:", isHome, "| active:", window.gfOverlayActive);
 
-    if (isHome) {
-      if (!window.gfOverlayActive) {
-        var page = null;
-        for (var i = 0; i < window.gfOverlayPages.length; i++) {
-          if (window.gfOverlayPages[i].tipo_alvo === "Desk" && window.gfOverlayPages[i].ativo) {
-            page = window.gfOverlayPages[i]; break;
-          }
+    if (isHome && !window.gfOverlayActive) {
+      // Encontra página de overlay do Desk
+      var page = null;
+      for (var i = 0; i < window.gfOverlayPages.length; i++) {
+        if (window.gfOverlayPages[i].tipo_alvo === "Desk" &&
+            window.gfOverlayPages[i].ativo) {
+          page = window.gfOverlayPages[i]; break;
         }
-        if (page) _gfApply(page);
       }
-    } else {
-      if (window.gfOverlayActive) _gfRemove();
+      if (page) _gfApply(page);
+
+    } else if (!isHome && window.gfOverlayActive) {
+      _gfRemove();
     }
   } catch (e) {
-    console.warn("[GF Overlay] _gfEvaluate erro:", e);
+    console.warn("[GF Overlay] _gfEvaluate:", e);
     _gfRemove();
   }
 }
@@ -103,20 +118,22 @@ function _gfApply(page) {
   window.gfOverlayActive   = true;
   window.gfCurrentPageData = page;
 
-  var bootStyle = document.getElementById("gf-ov-boot-style");
-  if (!bootStyle) {
-    bootStyle = document.createElement("style");
-    bootStyle.id = "gf-ov-boot-style";
-    bootStyle.textContent =
-      "body.gf-ov-active .layout-main-section,body.gf-ov-active #page-desktop," +
-      "body.gf-ov-active .desk-sidebar,body.gf-ov-active .standard-sidebar," +
+  // Injeta CSS de controle se ainda não existe
+  if (!document.getElementById("gf-ov-style")) {
+    var st = document.createElement("style");
+    st.id  = "gf-ov-style";
+    st.textContent =
+      "body.gf-ov-active .layout-main-section," +
+      "body.gf-ov-active #page-desktop," +
+      "body.gf-ov-active .desk-sidebar," +
+      "body.gf-ov-active .standard-sidebar," +
       "body.gf-ov-active .page-container{visibility:hidden!important;pointer-events:none!important}" +
       "#gf-ui-overlay-root{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;" +
       "z-index:900;overflow:hidden;flex-direction:column}" +
       "body.gf-ov-active #gf-ui-overlay-root{display:flex!important}" +
       ".gf-anim-suave{animation:gfAS 260ms ease both}" +
       "@keyframes gfAS{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}";
-    document.head.appendChild(bootStyle);
+    document.head.appendChild(st);
   }
 
   var old = document.getElementById("gf-ui-overlay-root"); if (old) old.remove();
@@ -153,9 +170,10 @@ function _gfRemove() {
   console.log("[GF Overlay] Removido.");
 }
 
+// Navegação a partir dos cards do overlay
 window.gfNav = function (route, event) {
   if (event) event.preventDefault();
-  // Remove overlay imediatamente
+  // Remove overlay ANTES de navegar
   _gfRemove();
   setTimeout(function () {
     try {
