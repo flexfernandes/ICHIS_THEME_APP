@@ -1,6 +1,6 @@
 /**
  * GF Overlay — gf_overlay.js v2.0
- * GREENFARMS | ichis_theme_app
+ * GREENFARMS | ichis_theme_app 
  *
  * PROBLEMA CORRIGIDO:
  *   O console mostrava "[GF Overlay] Páginas: 1" mas o overlay
