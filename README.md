@@ -2,7 +2,7 @@
 
 App único que integra o controle de identidade visual e o sistema de UI Overlay do ERPNext.
 
-## O que este app faz
+## O que este app faz - Segue
 
 **Módulo 1 — GF Theme Control**
 - Controla cores, fontes, tamanhos, grids, tabelas, botões, campos, cards e login via Doctype Single `GF Theme Settings`
