@@ -11,19 +11,19 @@ app_version     = "1.0.0"
 # ──────────────────────────────────────────────────────────────
 
 app_include_css = [
-    "/assets/ichis_theme_app/css/gf_theme.css?v=6",
+    "/assets/ichis_theme_app/css/gf_theme.css?v=7",
 ]
 
 app_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=6",
+    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=7",
 ]
 
 web_include_css = [
-    "/assets/ichis_theme_app/css/gf_theme.css?v=6",
+    "/assets/ichis_theme_app/css/gf_theme.css?v=7",
 ]
 
 web_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=6",
+    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=7",
 ]
 
 # ──────────────────────────────────────────────────────────────
