@@ -12,22 +12,22 @@ app_version     = "1.0.0"
 
 # Desk (usuário logado)
 app_include_css = [
-    "/assets/ichis_theme_app/css/gf_theme.css?v=9",
-    "/assets/ichis_theme_app/css/gf_overlay.css?v=9",
+    "/assets/ichis_theme_app/css/gf_theme.css?v=10",
+    "/assets/ichis_theme_app/css/gf_overlay.css?v=10",
 ]
 
 app_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme.js?v=9",
-    "/assets/ichis_theme_app/js/gf_overlay.js?v=9",
+    "/assets/ichis_theme_app/js/gf_theme.js?v=10",
+    "/assets/ichis_theme_app/js/gf_overlay.js?v=10",
 ]
 
 # Login (páginas públicas)
 web_include_css = [
-    "/assets/ichis_theme_app/css/gf_theme.css?v=9",
+    "/assets/ichis_theme_app/css/gf_theme.css?v=10",
 ]
 
 web_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme.js?v=9",
+    "/assets/ichis_theme_app/js/gf_theme.js?v=10",
 ]
 
 # ──────────────────────────────────────────────────────────────

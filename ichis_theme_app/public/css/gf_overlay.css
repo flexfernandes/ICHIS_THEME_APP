@@ -1,70 +1,17 @@
 /*
- * GF Overlay — gf_overlay.css v1.0 (ichis_theme_app unificado)
- * Layout do Modern Desk — consome --gf-* do gf_theme.css
+ * GF Overlay CSS — oculta o Desk imediatamente enquanto
+ * o redirecionamento para gf-modern-desk ainda não ocorreu.
+ * Aplicado via app_include_css (carrega antes do JS).
  */
 
-/* Boot: ocultar Desk antes do overlay */
-body.gf-ov-boot .layout-main-section,
-body.gf-ov-boot .desk-sidebar,
-body.gf-ov-boot .standard-sidebar,
-body.gf-ov-boot .page-container,
-body.gf-ov-boot .layout-main,
-body.gf-ov-boot #page-desktop,
-body.gf-ov-boot .frappe-app {
+/* Quando estamos em /desk e ainda não redirecionamos,
+   oculta o conteúdo padrão do workspace para evitar flash */
+body.gf-redirecting .layout-main,
+body.gf-redirecting .layout-main-section,
+body.gf-redirecting #page-desktop,
+body.gf-redirecting .desk-sidebar,
+body.gf-redirecting .standard-sidebar,
+body.gf-redirecting .page-container {
   visibility: hidden !important;
   pointer-events: none !important;
-}
-
-/* Active: manter Desk oculto, mostrar overlay */
-body.gf-ov-active .layout-main-section,
-body.gf-ov-active #page-desktop,
-body.gf-ov-active .desk-sidebar,
-body.gf-ov-active .standard-sidebar,
-body.gf-ov-active .page-container {
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-body.gf-ov-active #gf-ui-overlay-root { display: flex !important; }
-
-#gf-ui-overlay-root {
-  display: none;
-  position: fixed;
-  top: 56px; left: 0; right: 0; bottom: 0;
-  z-index: 900;
-  overflow: hidden;
-  flex-direction: column;
-  /* Herda variáveis do GF Theme como fallback */
-  --d-font:    var(--gf-font-main,    Inter,"Segoe UI",system-ui,Arial,sans-serif);
-  --d-bg:      var(--gf-bg-main,      #f1f5f9);
-  --d-surface: var(--gf-bg-card,      #ffffff);
-  --d-border:  var(--gf-border,       #e2e8f0);
-  --d-text:    var(--gf-text-main,    #0f172a);
-  --d-muted:   var(--gf-text-secondary,#64748b);
-  --d-accent:  var(--gf-accent,       #16a34a);
-  --d-accent2: var(--gf-accent-dark,  #166534);
-  --d-shadow:  var(--gf-shadow,       rgba(15,23,42,0.07));
-  --d-hover:   var(--gf-hover,        #f0fdf4);
-  font-family: var(--d-font);
-  background: var(--d-bg);
-  color: var(--d-text);
-  -webkit-font-smoothing: antialiased;
-}
-
-#gf-ui-overlay-root * { box-sizing: border-box; }
-
-/* Animações (também injetadas pelo JS para garantia) */
-.gf-anim-suave { animation: gfAS 280ms ease both; }
-.gf-anim-fade  { animation: gfAF 280ms ease both; }
-.gf-anim-slide { animation: gfASL 320ms ease both; }
-@keyframes gfAS  { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
-@keyframes gfAF  { from{opacity:0} to{opacity:1} }
-@keyframes gfASL { from{opacity:0;transform:translateX(-12px)} to{opacity:1;transform:none} }
-
-/* Tema Black automático */
-body[data-gf-tema="Black"] #gf-ui-overlay-root {
-  --d-bg: #020617; --d-surface: #0f172a; --d-border: #1e293b;
-  --d-text: #f1f5f9; --d-muted: #94a3b8;
-  --d-accent: #22c55e; --d-accent2: #16a34a;
-  --d-shadow: rgba(0,0,0,.4); --d-hover: #064e3b;
 }
