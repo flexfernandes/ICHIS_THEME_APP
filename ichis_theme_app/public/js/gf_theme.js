@@ -1,6 +1,6 @@
 /**
- * GF Theme — gf_theme_v3.js v3.0
- * GREENFARMS | ichis_theme_app 
+ * GF Theme — gf_theme.js v3.0
+ * GREENFARMS | ichis_theme_app
  *
  * FLUXO CORRETO:
  *   - Login:  URL contém /login  → aplica tema de login

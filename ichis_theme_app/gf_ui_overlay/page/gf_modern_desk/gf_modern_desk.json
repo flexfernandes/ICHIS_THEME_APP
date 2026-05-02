@@ -1,0 +1,19 @@
+{
+ "creation": "2024-01-01 00:00:00.000000",
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Gf Ui Overlay",
+ "name": "gf-modern-desk",
+ "owner": "Administrator",
+ "page_name": "gf-modern-desk",
+ "restrict_to_domain": "",
+ "roles": [],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "GF Modern Desk",
+ "docstatus": 0
+}

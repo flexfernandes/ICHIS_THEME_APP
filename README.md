@@ -2,7 +2,7 @@
 
 App único que integra o controle de identidade visual e o sistema de UI Overlay do ERPNext.
 
-## O que este app faz - Segue
+## O que este app faz
 
 **Módulo 1 — GF Theme Control**
 - Controla cores, fontes, tamanhos, grids, tabelas, botões, campos, cards e login via Doctype Single `GF Theme Settings`
@@ -39,8 +39,8 @@ ichis_theme_app/
 │       │   ├── gf_theme.css        ← variáveis CSS --gf-* + seletores ERPNext
 │       │   └── gf_overlay.css      ← boot-hiding + container overlay
 │       ├── js/
-│       │   ├── gf_theme_v3.js         ← aplica tema e logos via API
-│       │   └── gf_overlay_v2.js       ← intercepta rota e renderiza Modern Desk
+│       │   ├── gf_theme.js         ← aplica tema e logos via API
+│       │   └── gf_overlay.js       ← intercepta rota e renderiza Modern Desk
 │       └── images/
 │           └── app_underline_logo.png  ← ⚠️ SUBSTITUIR pela logo real
 ```

@@ -6,7 +6,7 @@
  *   Este arquivo APENAS define variáveis CSS no :root como valores padrão.
  *   Nenhuma regra de estilo é aplicada automaticamente.
  *
- *   Os estilos visuais são aplicados pelo gf_theme_v3.js SOMENTE quando:
+ *   Os estilos visuais são aplicados pelo gf_theme.js SOMENTE quando:
  *     1. ativar_tema_gf = 1 no Doctype GF Theme Settings
  *     2. aplicar_no_desk = 1
  *
@@ -409,7 +409,7 @@ body.gf-theme-active .help-box {
   font-family: var(--gf-font-main);
 }
 
-/* ── Login (sem escopo .gf-theme-active, aplica via gf_theme_v3.js) ── */
+/* ── Login (sem escopo .gf-theme-active, aplica via gf_theme.js) ── */
 .gf-login-active .login-content,
 .gf-login-active .page-card,
 .gf-login-active body {
