@@ -3,7 +3,7 @@
  * Override de frappe.views.Workspace + aplicação direta na  home
  */
 
-window.gfOverlayVersion  = "GF_OVERLAY_V5_1";
+window.gfOverlayVersion  = "GF_OVERLAY";
 window.gfOverlayLoaded   = true;
 window.gfOverlayActive   = false;
 window.gfOverlayPages    = [];

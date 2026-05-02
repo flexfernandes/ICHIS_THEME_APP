@@ -11,12 +11,12 @@
  * USA window.location.pathname como única fonte confiável.
  *
  * Diagnóstico:
- *   window.gfThemeVersion       → "GF_THEME_V3"
+ *   window.gfThemeVersion       → "GF_THEME"
  *   window.gfThemeControlLoaded → true
  *   window.gfThemeActive        → true/false
  */
 
-window.gfThemeVersion       = "GF_THEME_V3";
+window.gfThemeVersion       = "GF_THEME";
 window.gfThemeControlLoaded = true;
 window.gfThemeActive        = false;
 
@@ -26,7 +26,7 @@ var GF_LOGO_PATTERNS = [
   "/assets/frappe/", "/assets/erpnext/images/", "app_logo.png",
 ];
 
-console.log("GF Theme Control carregado GF_THEME_V3");
+console.log("GF Theme Control carregado GF_THEME");
 
 // ── Detecção de contexto pela URL — única forma confiável ─────
 // O script roda antes do frappe existir, então usamos pathname

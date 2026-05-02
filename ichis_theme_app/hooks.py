@@ -10,21 +10,27 @@ app_version     = "1.0.0"
 # ASSETS
 # ──────────────────────────────────────────────────────────────
 
+
+# Desk (usuário logado)
 app_include_css = [
     "/assets/ichis_theme_app/css/gf_theme.css?v=8",
+    "/assets/ichis_theme_app/css/gf_overlay.css?v=8",
 ]
 
 app_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=8",
+    "/assets/ichis_theme_app/js/gf_theme.js?v=8",
+    "/assets/ichis_theme_app/js/gf_overlay.js?v=8",
 ]
 
+# Login (páginas públicas)
 web_include_css = [
     "/assets/ichis_theme_app/css/gf_theme.css?v=8",
 ]
 
 web_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=8",
+    "/assets/ichis_theme_app/js/gf_theme.js?v=8",
 ]
+
 
 # ──────────────────────────────────────────────────────────────
 # HOME PAGE — redireciona todos os usuários para o Modern  Desk

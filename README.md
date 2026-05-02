@@ -86,7 +86,7 @@ after_install()
 // Console do navegador
 window.gfThemeVersion      // "GF_THEME_CONTROL_V1"
 window.gfThemeControlLoaded // true
-window.gfOverlayVersion    // "GF_OVERLAY_V1"
+window.gfOverlayVersion    // "GF_OVERLAY"
 window.gfOverlayLoaded     // true
 window.gfCurrentRoute      // rota atual
 window.gfCurrentPageData   // dados da página ativa
