@@ -1,9 +1,0 @@
-include README.md
-include requirements.txt
-include pyproject.toml
-include setup.py
-recursive-include ichis_theme_app *.py
-recursive-include ichis_theme_app *.json
-recursive-include ichis_theme_app *.txt
-recursive-include ichis_theme_app *.html
-recursive-include ichis_theme_app/public *

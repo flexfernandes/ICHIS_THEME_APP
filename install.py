@@ -523,8 +523,9 @@ DESK_JS = """
   // Notificações
   try{
     if(typeof frappe!=="undefined"&&frappe.call)
-      frappe.call({method:"frappe.desk.notifications.get_open_count",
-        callback:function(r){var el=document.getElementById("gfd-kpi-notif");if(el&&r&&r.message)el.textContent=r.message.total_count||"0";},error:function(){}});
+      frappe.call({method:"frappe.client.get_count",
+        args:{doctype:"Notification Log",filters:[["read","=",0]]},
+        callback:function(r){var el=document.getElementById("gfd-kpi-notif");if(el&&r!==undefined)el.textContent=r.message||"0";},error:function(){}});
   }catch(e){}
 
   // Atividades
