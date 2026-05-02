@@ -1,19 +1,30 @@
 /*
- * GF Theme Control — gf_theme_control.css
- * GREENFARMS | Central Administrativa de Identidade Visual
+ * GF Theme — gf_theme.css v2.0
+ * GREENFARMS | ichis_theme_app
  *
- * Este arquivo define as variáveis CSS padrão (fallback)
- * e aplica-as nos seletores principais do ERPNext/Frappe.
+ * ARQUITETURA:
+ *   Este arquivo APENAS define variáveis CSS no :root como valores padrão.
+ *   Nenhuma regra de estilo é aplicada automaticamente.
  *
- * Os valores reais são sobrescritos pelo JavaScript (gf_theme_control.js)
- * após buscar as configurações do Doctype GF Theme Settings via API.
+ *   Os estilos visuais são aplicados pelo gf_theme.js SOMENTE quando:
+ *     1. ativar_tema_gf = 1 no Doctype GF Theme Settings
+ *     2. aplicar_no_desk = 1
  *
- * Uso de variáveis CSS garante que uma única atualização via JS
- * propague para todo o sistema sem redeclarar seletores.
+ *   Isso garante comportamento neutro por padrão, respeitando 100% o
+ *   padrão visual nativo do ERPNext/Frappe.
+ *
+ * REGRAS OBRIGATÓRIAS:
+ *   - Nenhum input, select, textarea, checkbox recebe estilo aqui
+ *   - Nenhum seletor global como body, input, button é sobrescrito aqui
+ *   - Somente variáveis CSS --gf-* são definidas como referência
+ *   - Os seletores com estilo ficam na classe .gf-theme-active
+ *     que é adicionada ao body pelo JS apenas quando o tema está ativo
  */
 
 /* =============================================================
-   1. VARIÁVEIS CSS GLOBAIS (valores fallback elegantes)
+   VARIÁVEIS CSS GLOBAIS
+   Definidas sempre, usadas como referência pelo JS e pelo overlay.
+   Não causam nenhuma alteração visual por si só.
    ============================================================= */
 
 :root {
@@ -36,7 +47,7 @@
   --gf-text-subtitle:  #374151;
   --gf-text-link:      #15803d;
 
-  /* Destaque e bordas */
+  /* Destaque */
   --gf-accent:         #16a34a;
   --gf-accent-dark:    #166534;
   --gf-border:         #e5e7eb;
@@ -51,15 +62,8 @@
   --gf-info:           #2563eb;
 
   /* Fontes */
-  --gf-font-main:      Inter, "Segoe UI", Arial, sans-serif;
-  --gf-font-title:     Inter, "Segoe UI", Arial, sans-serif;
-  --gf-font-subtitle:  Inter, "Segoe UI", Arial, sans-serif;
-  --gf-font-heading:   Inter, "Segoe UI", Arial, sans-serif;
-  --gf-font-table:     Inter, "Segoe UI", Arial, sans-serif;
-  --gf-font-button:    Inter, "Segoe UI", Arial, sans-serif;
-  --gf-font-field:     Inter, "Segoe UI", Arial, sans-serif;
-  --gf-font-menu:      Inter, "Segoe UI", Arial, sans-serif;
-  --gf-font-aux:       Inter, "Segoe UI", Arial, sans-serif;
+  --gf-font-main:      Inter, "Segoe UI", system-ui, Arial, sans-serif;
+  --gf-font-title:     Inter, "Segoe UI", system-ui, Arial, sans-serif;
   --gf-font-number:    "Roboto Mono", "SFMono-Regular", Consolas, monospace;
 
   /* Tamanhos de fonte */
@@ -67,48 +71,24 @@
   --gf-fs-title:       18px;
   --gf-fs-subtitle:    14px;
   --gf-fs-menu:        13px;
-  --gf-fs-button:      13px;
-  --gf-fs-field:       13px;
   --gf-fs-table:       12px;
-  --gf-fs-th:          11px;
 
-  /* Pesos de fonte */
+  /* Pesos */
   --gf-fw-regular:     400;
   --gf-fw-medium:      500;
   --gf-fw-semibold:    600;
   --gf-fw-bold:        700;
 
-  /* Grid e tabelas */
-  --gf-grid-row-h:     34px;
-  --gf-grid-head-h:    38px;
-  --gf-grid-col-min:   120px;
-  --gf-grid-px:        10px;
-  --gf-grid-py:        6px;
-  --gf-grid-radius:    10px;
-  --gf-grid-bg-head:   #f3f4f6;
-  --gf-grid-bg-row:    #ffffff;
-  --gf-grid-bg-alt:    #f9fafb;
-  --gf-grid-bg-hover:  #ecfdf5;
-  --gf-grid-text-row:  #111827;
-  --gf-grid-text-head: #374151;
-  --gf-grid-border:    #e5e7eb;
-  --gf-grid-select:    #bbf7d0;
-  --gf-grid-fs-row:    12px;
-  --gf-grid-fs-head:   11px;
-  --gf-grid-fw-head:   600;
-
   /* Botões */
   --gf-btn-bg:         #16a34a;
   --gf-btn-text:       #ffffff;
-  --gf-btn-sec-bg:     #f3f4f6;
-  --gf-btn-sec-text:   #374151;
   --gf-btn-hover:      #166534;
   --gf-btn-radius:     6px;
   --gf-btn-h:          32px;
   --gf-btn-px:         14px;
   --gf-btn-fw:         500;
 
-  /* Campos */
+  /* Campos — usados apenas quando .gf-theme-active está presente */
   --gf-field-bg:       #ffffff;
   --gf-field-text:     #111827;
   --gf-field-ph:       #9ca3af;
@@ -124,586 +104,330 @@
   --gf-card-border:    #e5e7eb;
   --gf-card-shadow:    0 1px 4px rgba(15, 23, 42, 0.08);
   --gf-card-radius:    10px;
-  --gf-card-p:         16px;
-  --gf-card-title:     #111827;
-  --gf-card-text:      #6b7280;
+
+  /* Grid */
+  --gf-grid-bg-head:   #f3f4f6;
+  --gf-grid-bg-row:    #ffffff;
+  --gf-grid-bg-alt:    #f9fafb;
+  --gf-grid-bg-hover:  #ecfdf5;
+  --gf-grid-text-row:  #111827;
+  --gf-grid-text-head: #374151;
+  --gf-grid-border:    #e5e7eb;
+  --gf-grid-select:    #bbf7d0;
+  --gf-grid-row-h:     34px;
+  --gf-grid-head-h:    38px;
+  --gf-grid-fs-row:    12px;
+  --gf-grid-fs-head:   11px;
+  --gf-grid-fw-head:   600;
+  --gf-grid-px:        10px;
+  --gf-grid-py:        6px;
+  --gf-grid-radius:    10px;
 }
 
 /* =============================================================
-   2. BODY E PÁGINA
+   ESTILOS OPCIONAIS — aplicados SOMENTE quando o JS adiciona
+   a classe .gf-theme-active no body.
+
+   Isso acontece apenas quando:
+     ativar_tema_gf = 1  E  aplicar_no_desk = 1
+   no Doctype GF Theme Settings.
+
+   Por padrão, NENHUMA dessas regras tem efeito.
    ============================================================= */
 
-body,
-html {
-  background-color: var(--gf-bg-main) !important;
-  color: var(--gf-text-main) !important;
-  font-family: var(--gf-font-main) !important;
-  font-size: var(--gf-fs-base) !important;
+/* ── Navbar ── */
+body.gf-theme-active .navbar,
+body.gf-theme-active .navbar-default,
+body.gf-theme-active header.navbar {
+  background-color: var(--gf-bg-navbar);
+  border-bottom: 1px solid var(--gf-border);
+  box-shadow: 0 1px 3px var(--gf-shadow);
 }
 
-/* =============================================================
-   3. NAVBAR / BARRA SUPERIOR
-   ============================================================= */
-
-.navbar,
-.navbar-default,
-header.navbar {
-  background-color: var(--gf-bg-navbar) !important;
-  border-bottom: 1px solid var(--gf-border) !important;
-  box-shadow: 0 1px 3px var(--gf-shadow) !important;
+body.gf-theme-active .navbar .nav-link,
+body.gf-theme-active .navbar-nav .nav-link,
+body.gf-theme-active .navbar-nav > li > a {
+  color: var(--gf-text-main);
+  font-size: var(--gf-fs-menu);
+  font-family: var(--gf-font-main);
 }
 
-.navbar-brand,
-.navbar-brand span,
-.app-logo {
-  font-family: var(--gf-font-main) !important;
-  color: var(--gf-text-title) !important;
-  font-weight: var(--gf-fw-semibold) !important;
+body.gf-theme-active .navbar-brand,
+body.gf-theme-active .app-logo {
+  font-family: var(--gf-font-main);
+  font-weight: var(--gf-fw-semibold);
 }
 
-.navbar .nav-link,
-.navbar-nav .nav-link,
-.navbar-nav > li > a {
-  color: var(--gf-text-main) !important;
-  font-size: var(--gf-fs-menu) !important;
-  font-family: var(--gf-font-menu) !important;
+/* ── Sidebar ── */
+body.gf-theme-active .desk-sidebar,
+body.gf-theme-active .standard-sidebar,
+body.gf-theme-active .layout-side-section {
+  background-color: var(--gf-bg-sidebar);
+  border-right: 1px solid var(--gf-border);
 }
 
-.navbar .nav-link:hover,
-.navbar-nav .nav-link:hover {
-  color: var(--gf-accent) !important;
+body.gf-theme-active .desk-sidebar-item,
+body.gf-theme-active .standard-sidebar-item {
+  color: var(--gf-text-main);
+  font-size: var(--gf-fs-menu);
+  font-family: var(--gf-font-main);
 }
 
-/* =============================================================
-   4. SIDEBAR / BARRA LATERAL
-   ============================================================= */
-
-.desk-sidebar,
-.standard-sidebar,
-.sidebar-menu,
-.layout-side-section,
-.page-sidebar,
-.sidebar {
-  background-color: var(--gf-bg-sidebar) !important;
-  border-right: 1px solid var(--gf-border) !important;
+body.gf-theme-active .desk-sidebar-item.selected,
+body.gf-theme-active .standard-sidebar-item.selected,
+body.gf-theme-active .desk-sidebar-item:hover,
+body.gf-theme-active .standard-sidebar-item:hover {
+  background-color: var(--gf-hover);
+  color: var(--gf-accent);
+  border-radius: 6px;
 }
 
-.desk-sidebar .desk-sidebar-item,
-.standard-sidebar-item,
-.sidebar-menu-item,
-.sidebar .item {
-  color: var(--gf-text-main) !important;
-  font-size: var(--gf-fs-menu) !important;
-  font-family: var(--gf-font-menu) !important;
+/* ── Conteúdo ── */
+body.gf-theme-active .layout-main-section,
+body.gf-theme-active .layout-main,
+body.gf-theme-active .page-content {
+  background-color: var(--gf-bg-content);
 }
 
-.desk-sidebar-item.selected,
-.standard-sidebar-item.selected,
-.sidebar-item.selected,
-.sidebar .item.selected,
-.desk-sidebar-item:hover,
-.standard-sidebar-item:hover {
-  background-color: var(--gf-hover) !important;
-  color: var(--gf-accent) !important;
-  border-radius: 6px !important;
+body.gf-theme-active .page-title,
+body.gf-theme-active .title-text {
+  color: var(--gf-text-title);
+  font-family: var(--gf-font-title);
+  font-weight: var(--gf-fw-semibold);
 }
 
-/* =============================================================
-   5. CONTEÚDO PRINCIPAL
-   ============================================================= */
-
-.page-head,
-.page-header {
-  background-color: var(--gf-bg-content) !important;
-  border-bottom: 1px solid var(--gf-border) !important;
+body.gf-theme-active .section-head,
+body.gf-theme-active .form-section .section-head {
+  color: var(--gf-text-subtitle);
+  font-size: var(--gf-fs-subtitle);
+  font-weight: var(--gf-fw-semibold);
+  border-bottom: 1px solid var(--gf-border);
 }
 
-.layout-main-section,
-.layout-main,
-.page-content,
-.main-section {
-  background-color: var(--gf-bg-content) !important;
+body.gf-theme-active .control-label,
+body.gf-theme-active .form-group label {
+  color: var(--gf-text-secondary);
+  font-size: var(--gf-fs-base);
+  font-weight: var(--gf-fw-medium);
+  font-family: var(--gf-font-main);
 }
 
-.page-title,
-.title-text,
-h1, h2, h3, h4, h5, h6 {
-  color: var(--gf-text-title) !important;
-  font-family: var(--gf-font-title) !important;
-  font-weight: var(--gf-fw-semibold) !important;
+/* ── Campos de texto/data/número
+   EXCLUINDO explicitamente checkboxes, radios e range
+   para não quebrar o layout nativo do ERPNext ── */
+body.gf-theme-active input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]),
+body.gf-theme-active textarea,
+body.gf-theme-active select:not(.form-check-input) {
+  background-color: var(--gf-field-bg);
+  color: var(--gf-field-text);
+  border: 1px solid var(--gf-field-border);
+  border-radius: var(--gf-field-radius);
+  font-size: var(--gf-field-fs);
+  font-family: var(--gf-font-main);
+  /* SEM min-height para não quebrar proporções */
 }
 
-h1 { font-size: var(--gf-fs-title) !important; }
-h2 { font-size: var(--gf-fs-subtitle) !important; }
-h3, h4 { font-size: var(--gf-fs-base) !important; }
-
-.sub-heading,
-.sub-title,
-.form-section .section-head {
-  color: var(--gf-text-subtitle) !important;
-  font-family: var(--gf-font-subtitle) !important;
-  font-size: var(--gf-fs-subtitle) !important;
+/* Focus: apenas troca cor da borda + ring suave, sem outline duplo */
+body.gf-theme-active input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]):focus,
+body.gf-theme-active textarea:focus,
+body.gf-theme-active select:not(.form-check-input):focus {
+  border-color: var(--gf-field-focus);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gf-field-focus) 18%, transparent);
+  outline: none;
 }
 
-/* =============================================================
-   6. FORMULÁRIO
-   ============================================================= */
-
-.form-layout,
-.form-page,
-.frappe-card,
-.form-section {
-  background-color: var(--gf-bg-content) !important;
+/* Placeholder */
+body.gf-theme-active input::placeholder,
+body.gf-theme-active textarea::placeholder {
+  color: var(--gf-field-ph);
 }
 
-.section-head,
-.form-section .section-head {
-  color: var(--gf-text-subtitle) !important;
-  font-size: var(--gf-fs-subtitle) !important;
-  font-weight: var(--gf-fw-semibold) !important;
-  border-bottom: 1px solid var(--gf-border) !important;
+/* ── Botões ── */
+body.gf-theme-active .btn-primary,
+body.gf-theme-active .primary-action {
+  background-color: var(--gf-btn-bg);
+  color: var(--gf-btn-text);
+  border: none;
+  border-radius: var(--gf-btn-radius);
+  font-weight: var(--gf-btn-fw);
 }
 
-.control-label,
-.form-group label {
-  color: var(--gf-text-secondary) !important;
-  font-size: var(--gf-fs-base) !important;
-  font-weight: var(--gf-fw-medium) !important;
-  font-family: var(--gf-font-main) !important;
+body.gf-theme-active .btn-primary:hover,
+body.gf-theme-active .primary-action:hover {
+  background-color: var(--gf-btn-hover);
 }
 
-/* =============================================================
-   7. CAMPOS DE FORMULÁRIO
-   ============================================================= */
-
-input,
-textarea,
-select,
-.form-control,
-.input-with-feedback,
-.control-input,
-.frappe-control input,
-.frappe-control textarea,
-.frappe-control select {
-  background-color: var(--gf-field-bg) !important;
-  color: var(--gf-field-text) !important;
-  border: 1px solid var(--gf-field-border) !important;
-  border-radius: var(--gf-field-radius) !important;
-  font-size: var(--gf-field-fs) !important;
-  font-family: var(--gf-font-field) !important;
-  padding: var(--gf-field-p) !important;
-  min-height: var(--gf-field-h) !important;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+body.gf-theme-active .btn-secondary,
+body.gf-theme-active .btn-default {
+  border: 1px solid var(--gf-border);
+  border-radius: var(--gf-btn-radius);
 }
 
-input::placeholder,
-textarea::placeholder,
-.form-control::placeholder {
-  color: var(--gf-field-ph) !important;
+body.gf-theme-active .btn-secondary:hover,
+body.gf-theme-active .btn-default:hover {
+  background-color: var(--gf-hover);
+  color: var(--gf-accent);
 }
 
-input:focus,
-textarea:focus,
-select:focus,
-.form-control:focus,
-.control-input:focus {
-  border-color: var(--gf-field-focus) !important;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf-field-focus) 15%, transparent) !important;
-  outline: none !important;
+/* ── Listas ── */
+body.gf-theme-active .list-row {
+  background-color: var(--gf-grid-bg-row);
+  border-bottom: 1px solid var(--gf-grid-border);
+  color: var(--gf-grid-text-row);
+  font-size: var(--gf-grid-fs-row);
+  font-family: var(--gf-font-main);
 }
 
-/* =============================================================
-   8. BOTÕES
-   ============================================================= */
-
-.btn,
-button {
-  font-family: var(--gf-font-button) !important;
-  font-size: var(--gf-fs-button) !important;
-  font-weight: var(--gf-btn-fw) !important;
-  border-radius: var(--gf-btn-radius) !important;
-  min-height: var(--gf-btn-h) !important;
-  padding-left: var(--gf-btn-px) !important;
-  padding-right: var(--gf-btn-px) !important;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease !important;
+body.gf-theme-active .list-row:nth-child(even) {
+  background-color: var(--gf-grid-bg-alt);
 }
 
-.btn-primary,
-.primary-action,
-button[data-label="Save"],
-button[data-label="Salvar"] {
-  background-color: var(--gf-btn-bg) !important;
-  color: var(--gf-btn-text) !important;
-  border: none !important;
+body.gf-theme-active .list-row:hover {
+  background-color: var(--gf-grid-bg-hover);
 }
 
-.btn-primary:hover,
-.primary-action:hover {
-  background-color: var(--gf-btn-hover) !important;
-  box-shadow: 0 2px 8px var(--gf-shadow) !important;
+body.gf-theme-active .list-row.list-row-head,
+body.gf-theme-active .list-headers {
+  background-color: var(--gf-grid-bg-head);
+  color: var(--gf-grid-text-head);
+  font-size: var(--gf-grid-fs-head);
+  font-weight: var(--gf-grid-fw-head);
 }
 
-.btn-secondary,
-.btn-default {
-  background-color: var(--gf-btn-sec-bg) !important;
-  color: var(--gf-btn-sec-text) !important;
-  border: 1px solid var(--gf-border) !important;
+/* ── DataTable ── */
+body.gf-theme-active .datatable,
+body.gf-theme-active .frappe-datatable {
+  border: 1px solid var(--gf-grid-border);
+  border-radius: var(--gf-grid-radius);
+  overflow: hidden;
 }
 
-.btn-secondary:hover,
-.btn-default:hover {
-  background-color: var(--gf-hover) !important;
-  color: var(--gf-accent) !important;
+body.gf-theme-active .dt-header {
+  background-color: var(--gf-grid-bg-head);
+  color: var(--gf-grid-text-head);
+  font-size: var(--gf-grid-fs-head);
+  font-weight: var(--gf-grid-fw-head);
+  height: var(--gf-grid-head-h);
+  border-bottom: 1px solid var(--gf-grid-border);
 }
 
-/* =============================================================
-   9. LISTAS E GRIDS
-   ============================================================= */
-
-.list-row,
-.result-list .list-row,
-.list-row-container {
-  background-color: var(--gf-grid-bg-row) !important;
-  border-bottom: 1px solid var(--gf-grid-border) !important;
-  color: var(--gf-grid-text-row) !important;
-  font-size: var(--gf-grid-fs-row) !important;
-  font-family: var(--gf-font-table) !important;
-  min-height: var(--gf-grid-row-h) !important;
+body.gf-theme-active .dt-cell {
+  color: var(--gf-grid-text-row);
+  font-size: var(--gf-grid-fs-row);
+  font-family: var(--gf-font-main);
+  padding: var(--gf-grid-py) var(--gf-grid-px);
+  border-right: 1px solid var(--gf-grid-border);
 }
 
-.list-row:nth-child(even) {
-  background-color: var(--gf-grid-bg-alt) !important;
+body.gf-theme-active .dt-row {
+  background-color: var(--gf-grid-bg-row);
+  height: var(--gf-grid-row-h);
+  border-bottom: 1px solid var(--gf-grid-border);
 }
 
-.list-row:hover {
-  background-color: var(--gf-grid-bg-hover) !important;
+body.gf-theme-active .dt-row:nth-child(even) {
+  background-color: var(--gf-grid-bg-alt);
 }
 
-.list-row.list-row-head,
-.list-headers {
-  background-color: var(--gf-grid-bg-head) !important;
-  color: var(--gf-grid-text-head) !important;
-  font-size: var(--gf-grid-fs-head) !important;
-  font-weight: var(--gf-grid-fw-head) !important;
-  min-height: var(--gf-grid-head-h) !important;
+body.gf-theme-active .dt-row:hover {
+  background-color: var(--gf-grid-bg-hover);
 }
 
-/* =============================================================
-   10. DATATABLES (Frappe DataTable)
-   ============================================================= */
-
-.datatable,
-.frappe-datatable {
-  background-color: var(--gf-grid-bg-row) !important;
-  border: 1px solid var(--gf-grid-border) !important;
-  border-radius: var(--gf-grid-radius) !important;
-  overflow: hidden !important;
+/* ── Tabelas HTML ── */
+body.gf-theme-active th {
+  background-color: var(--gf-grid-bg-head);
+  color: var(--gf-grid-text-head);
+  font-size: var(--gf-grid-fs-head);
+  font-weight: var(--gf-grid-fw-head);
+  border-bottom: 1px solid var(--gf-grid-border);
+  height: var(--gf-grid-head-h);
+  padding: var(--gf-grid-py) var(--gf-grid-px);
 }
 
-.dt-header,
-.data-table-header {
-  background-color: var(--gf-grid-bg-head) !important;
-  color: var(--gf-grid-text-head) !important;
-  font-size: var(--gf-grid-fs-head) !important;
-  font-weight: var(--gf-grid-fw-head) !important;
-  height: var(--gf-grid-head-h) !important;
-  border-bottom: 1px solid var(--gf-grid-border) !important;
+body.gf-theme-active td {
+  color: var(--gf-grid-text-row);
+  font-size: var(--gf-grid-fs-row);
+  border-bottom: 1px solid var(--gf-grid-border);
+  height: var(--gf-grid-row-h);
+  padding: var(--gf-grid-py) var(--gf-grid-px);
 }
 
-.dt-cell,
-.data-table-cell {
-  color: var(--gf-grid-text-row) !important;
-  font-size: var(--gf-grid-fs-row) !important;
-  font-family: var(--gf-font-table) !important;
-  padding: var(--gf-grid-py) var(--gf-grid-px) !important;
-  border-right: 1px solid var(--gf-grid-border) !important;
-  min-width: var(--gf-grid-col-min) !important;
+body.gf-theme-active tbody tr:nth-child(even) td {
+  background-color: var(--gf-grid-bg-alt);
 }
 
-.dt-row,
-.data-table-row {
-  background-color: var(--gf-grid-bg-row) !important;
-  height: var(--gf-grid-row-h) !important;
-  border-bottom: 1px solid var(--gf-grid-border) !important;
+body.gf-theme-active tbody tr:hover td {
+  background-color: var(--gf-grid-bg-hover);
 }
 
-.dt-row:nth-child(even) {
-  background-color: var(--gf-grid-bg-alt) !important;
+/* ── Cards e Modais ── */
+body.gf-theme-active .card,
+body.gf-theme-active .frappe-card,
+body.gf-theme-active .widget,
+body.gf-theme-active .number-widget-box,
+body.gf-theme-active .shortcut-widget-box {
+  background-color: var(--gf-card-bg);
+  border: 1px solid var(--gf-card-border);
+  box-shadow: var(--gf-card-shadow);
+  border-radius: var(--gf-card-radius);
 }
 
-.dt-row:hover,
-.dt-row.dt-row-hover {
-  background-color: var(--gf-grid-bg-hover) !important;
+body.gf-theme-active .modal-content {
+  background-color: var(--gf-bg-modal);
+  border: 1px solid var(--gf-border);
+  border-radius: var(--gf-card-radius);
 }
 
-.dt-row.dt-row-selected,
-.dt-cell--selected {
-  background-color: var(--gf-grid-select) !important;
+/* ── Dropdown ── */
+body.gf-theme-active .dropdown-menu,
+body.gf-theme-active .awesomplete ul {
+  background-color: var(--gf-bg-dropdown);
+  border: 1px solid var(--gf-border);
+  border-radius: var(--gf-card-radius);
 }
 
-/* =============================================================
-   11. TABELAS HTML NATIVAS
-   ============================================================= */
-
-table {
-  border-collapse: collapse !important;
-  width: 100% !important;
-  font-family: var(--gf-font-table) !important;
-  font-size: var(--gf-fs-table) !important;
-  color: var(--gf-grid-text-row) !important;
+body.gf-theme-active .dropdown-item:hover,
+body.gf-theme-active .awesomplete li:hover {
+  background-color: var(--gf-hover);
+  color: var(--gf-accent);
 }
 
-thead {
-  background-color: var(--gf-grid-bg-head) !important;
+/* ── Links ── */
+body.gf-theme-active a {
+  color: var(--gf-text-link);
+  text-decoration: none;
 }
 
-th {
-  background-color: var(--gf-grid-bg-head) !important;
-  color: var(--gf-grid-text-head) !important;
-  font-size: var(--gf-grid-fs-head) !important;
-  font-weight: var(--gf-grid-fw-head) !important;
-  padding: var(--gf-grid-py) var(--gf-grid-px) !important;
-  border-bottom: 1px solid var(--gf-grid-border) !important;
-  height: var(--gf-grid-head-h) !important;
+body.gf-theme-active a:hover {
+  color: var(--gf-accent-dark);
 }
 
-td {
-  color: var(--gf-grid-text-row) !important;
-  font-size: var(--gf-grid-fs-row) !important;
-  padding: var(--gf-grid-py) var(--gf-grid-px) !important;
-  border-bottom: 1px solid var(--gf-grid-border) !important;
-  height: var(--gf-grid-row-h) !important;
+/* ── Texto auxiliar ── */
+body.gf-theme-active .text-muted,
+body.gf-theme-active .help-box {
+  color: var(--gf-text-soft);
+  font-family: var(--gf-font-main);
 }
 
-tbody tr:nth-child(even) td {
-  background-color: var(--gf-grid-bg-alt) !important;
+/* ── Login (sem escopo .gf-theme-active, aplica via gf_theme.js) ── */
+.gf-login-active .login-content,
+.gf-login-active .page-card,
+.gf-login-active body {
+  background-color: var(--gf-bg-main);
 }
 
-tbody tr:hover td {
-  background-color: var(--gf-grid-bg-hover) !important;
-}
-
-/* =============================================================
-   12. GRID DE FORMULÁRIO (linhas de sub-tabela)
-   ============================================================= */
-
-.grid-row,
-.data-row,
-.grid-body .data-row {
-  background-color: var(--gf-grid-bg-row) !important;
-  border-bottom: 1px solid var(--gf-grid-border) !important;
-  color: var(--gf-grid-text-row) !important;
-  font-size: var(--gf-grid-fs-row) !important;
-  height: var(--gf-grid-row-h) !important;
-}
-
-.grid-row:nth-child(even),
-.data-row:nth-child(even) {
-  background-color: var(--gf-grid-bg-alt) !important;
-}
-
-.grid-row:hover,
-.data-row:hover {
-  background-color: var(--gf-grid-bg-hover) !important;
-}
-
-.grid-heading-row,
-.grid-header {
-  background-color: var(--gf-grid-bg-head) !important;
-  color: var(--gf-grid-text-head) !important;
-  font-size: var(--gf-grid-fs-head) !important;
-  font-weight: var(--gf-grid-fw-head) !important;
-  height: var(--gf-grid-head-h) !important;
-}
-
-/* =============================================================
-   13. CARDS, WIDGETS E MODAIS
-   ============================================================= */
-
-.card,
-.frappe-card,
-.widget,
-.number-widget-box,
-.shortcut-widget-box,
-.form-dashboard,
-.form-dashboard-section {
-  background-color: var(--gf-card-bg) !important;
-  border: 1px solid var(--gf-card-border) !important;
-  box-shadow: var(--gf-card-shadow) !important;
-  border-radius: var(--gf-card-radius) !important;
-  padding: var(--gf-card-p) !important;
-  color: var(--gf-card-text) !important;
-}
-
-.card .card-title,
-.widget .widget-title,
-.number-widget-box .widget-title {
-  color: var(--gf-card-title) !important;
-  font-weight: var(--gf-fw-semibold) !important;
-}
-
-.modal-content {
-  background-color: var(--gf-bg-modal) !important;
-  border: 1px solid var(--gf-border) !important;
-  box-shadow: 0 8px 32px var(--gf-shadow) !important;
-  border-radius: var(--gf-card-radius) !important;
-  color: var(--gf-text-main) !important;
-}
-
-.modal-header {
-  border-bottom: 1px solid var(--gf-border) !important;
-  color: var(--gf-text-title) !important;
-}
-
-.modal-footer {
-  border-top: 1px solid var(--gf-border) !important;
-}
-
-/* =============================================================
-   14. DROPDOWNS E MENUS
-   ============================================================= */
-
-.dropdown-menu,
-.awesomplete ul,
-.awesomplete [role="listbox"] {
-  background-color: var(--gf-bg-dropdown) !important;
-  border: 1px solid var(--gf-border) !important;
-  box-shadow: 0 4px 16px var(--gf-shadow) !important;
-  border-radius: var(--gf-card-radius) !important;
-  font-size: var(--gf-fs-menu) !important;
-  font-family: var(--gf-font-menu) !important;
-}
-
-.dropdown-item,
-.awesomplete li {
-  color: var(--gf-text-main) !important;
-  font-size: var(--gf-fs-menu) !important;
-}
-
-.dropdown-item:hover,
-.awesomplete li:hover,
-.awesomplete [aria-selected="true"] {
-  background-color: var(--gf-hover) !important;
-  color: var(--gf-accent) !important;
-}
-
-/* =============================================================
-   15. INDICADORES / PILLS
-   ============================================================= */
-
-.indicator-pill.green,
-.indicator-pill[data-color="green"] {
-  background-color: color-mix(in srgb, var(--gf-success) 15%, transparent) !important;
-  color: var(--gf-success) !important;
-}
-
-.indicator-pill.red,
-.indicator-pill[data-color="red"] {
-  background-color: color-mix(in srgb, var(--gf-error) 15%, transparent) !important;
-  color: var(--gf-error) !important;
-}
-
-.indicator-pill.orange,
-.indicator-pill[data-color="orange"],
-.indicator-pill.yellow,
-.indicator-pill[data-color="yellow"] {
-  background-color: color-mix(in srgb, var(--gf-warning) 15%, transparent) !important;
-  color: var(--gf-warning) !important;
-}
-
-.indicator-pill.blue,
-.indicator-pill[data-color="blue"] {
-  background-color: color-mix(in srgb, var(--gf-info) 15%, transparent) !important;
-  color: var(--gf-info) !important;
-}
-
-/* =============================================================
-   16. LINKS
-   ============================================================= */
-
-a,
-.like-disabled-link {
-  color: var(--gf-text-link) !important;
-  text-decoration: none !important;
-}
-
-a:hover {
-  color: var(--gf-accent-dark) !important;
-  text-decoration: underline !important;
-}
-
-/* =============================================================
-   17. TELA DE LOGIN
-   ============================================================= */
-
-.login-content,
-.login-main,
-body.login-page,
-body[data-path="login"],
-.page-card,
-.login-page-content {
-  background-color: var(--gf-bg-main) !important;
-  color: var(--gf-text-main) !important;
-}
-
-.login-card,
-.page-card .card-body,
-.login-content .card {
-  background-color: var(--gf-card-bg) !important;
-  border: 1px solid var(--gf-border) !important;
-  box-shadow: var(--gf-card-shadow) !important;
-  border-radius: var(--gf-card-radius) !important;
-  color: var(--gf-text-main) !important;
-}
-
-/* =============================================================
-   18. TEXTOS AUXILIARES E METADADOS
-   ============================================================= */
-
-.text-muted,
-.help-box,
-small,
-.small {
-  color: var(--gf-text-soft) !important;
-  font-family: var(--gf-font-aux) !important;
-  font-size: calc(var(--gf-fs-base) - 1px) !important;
-}
-
-/* Números e código */
-.numeric,
-code,
-pre,
-kbd,
-.monospace {
-  font-family: var(--gf-font-number) !important;
-}
-
-/* =============================================================
-   19. BARRA DE PROGRESSO E ANIMAÇÕES
-   ============================================================= */
-
-.progress-bar {
-  background-color: var(--gf-accent) !important;
-}
-
-/* =============================================================
-   20. SCROLLBARS (webkit)
-   ============================================================= */
-
-::-webkit-scrollbar {
+/* ── Scrollbar customizada ── */
+body.gf-theme-active ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
-::-webkit-scrollbar-track {
+body.gf-theme-active ::-webkit-scrollbar-track {
   background: var(--gf-bg-secondary);
 }
-
-::-webkit-scrollbar-thumb {
+body.gf-theme-active ::-webkit-scrollbar-thumb {
   background-color: var(--gf-border);
   border-radius: 3px;
 }
-
-::-webkit-scrollbar-thumb:hover {
+body.gf-theme-active ::-webkit-scrollbar-thumb:hover {
   background-color: var(--gf-accent);
 }
