@@ -1,5 +1,5 @@
 /**
- * GF Overlay — gf_overlay.js v2.0
+ * GF Overlay — gf_overlay_v2.js v2.0
  * GREENFARMS | ichis_theme_app 
  *
  * PROBLEMA CORRIGIDO:

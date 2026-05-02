@@ -1,5 +1,5 @@
 /**
- * GF Theme — gf_theme.js v3.0
+ * GF Theme — gf_theme_v3.js v3.0
  * GREENFARMS | ichis_theme_app 
  *
  * FLUXO CORRETO:

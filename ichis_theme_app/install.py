@@ -259,12 +259,12 @@ def _install_modern_desk():
 
 # ══════════════════════════════════════════════════════════════
 # CSS DO MODERN DESK
-# Consome --gf-* do gf_theme.js que já aplicou as variáveis
+# Consome --gf-* do gf_theme_v3.js que já aplicou as variáveis
 # ══════════════════════════════════════════════════════════════
 
 DESK_CSS = """
 /* GF Modern Desk — CSS v1.0 (ichis_theme_app unificado)
-   Consome variáveis --gf-* definidas pelo gf_theme.js */
+   Consome variáveis --gf-* definidas pelo gf_theme_v3.js */
 
 #gf-ui-overlay-root {
   --d-font:    var(--gf-font-main, Inter,"Segoe UI",system-ui,Arial,sans-serif);
@@ -406,7 +406,7 @@ body[data-gf-tema="Black"] #gf-ui-overlay-root {
 
 DESK_JS = """
 /* GF Modern Desk — JS v1.0 (ichis_theme_app unificado)
-   Executado pelo gf_overlay.js após criar o container.
+   Executado pelo gf_overlay_v2.js após criar o container.
    window.gfCurrentPageData já contém os dados da página + cards. */
 
 (function gfDeskRender() {
