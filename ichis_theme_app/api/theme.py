@@ -212,6 +212,7 @@ def get_active_overlay_pages():
             doc = frappe.get_doc("GF UI Overlay Page", row["name"])
             result.append({
                 "name":                           doc.name,
+                "ativo":                          int(doc.ativo or 0),
                 "titulo":                         doc.titulo,
                 "nome_tecnico":                   doc.nome_tecnico,
                 "tipo_alvo":                      doc.tipo_alvo,
