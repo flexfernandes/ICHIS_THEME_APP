@@ -138,6 +138,12 @@ function _gfApplyDesk() {
       _gfListenSave();
 
       console.log("GF Theme Control: tema ativo:", s.tema_ativo);
+
+      // Redireciona /desk para GF Modern Desk
+      if (window.location.pathname === "/desk" || window.location.pathname === "/desk/") {
+        console.log("GF Theme Control: redirecionando para GF Modern Desk...");
+        frappe.set_route("gf-modern-desk");
+      }
     },
     error: function () {
       console.warn("GF Theme Control: erro ao buscar configurações.");
