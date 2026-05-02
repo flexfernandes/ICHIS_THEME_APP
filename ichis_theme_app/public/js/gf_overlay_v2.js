@@ -1,6 +1,6 @@
 /**
  * GF Overlay v5.1 — Frappe v16
- * Override de frappe.views.Workspace + aplicação direta na home
+ * Override de frappe.views.Workspace + aplicação direta na  home
  */
 
 window.gfOverlayVersion  = "GF_OVERLAY_V5_1";

@@ -11,23 +11,23 @@ app_version     = "1.0.0"
 # ──────────────────────────────────────────────────────────────
 
 app_include_css = [
-    "/assets/ichis_theme_app/css/gf_theme.css?v=7",
+    "/assets/ichis_theme_app/css/gf_theme.css?v=8",
 ]
 
 app_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=7",
+    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=8",
 ]
 
 web_include_css = [
-    "/assets/ichis_theme_app/css/gf_theme.css?v=7",
+    "/assets/ichis_theme_app/css/gf_theme.css?v=8",
 ]
 
 web_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=7",
+    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=8",
 ]
 
 # ──────────────────────────────────────────────────────────────
-# HOME PAGE — redireciona todos os usuários para o Modern Desk
+# HOME PAGE — redireciona todos os usuários para o Modern  Desk
 # ──────────────────────────────────────────────────────────────
 role_home_page = {
     "System User": "gf-modern-desk",

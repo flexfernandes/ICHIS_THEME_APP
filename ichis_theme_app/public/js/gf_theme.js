@@ -4,7 +4,7 @@
  *
  * FLUXO CORRETO:
  *   - Login:  URL contém /login  → aplica tema de login
- *   - Desk:   qualquer outra URL → espera frappe.ready() e aplica tema
+ *   - Desk:   qualquer outra URL → espera frappe.ready() e aplica  tema
  *
  * NÃO usa typeof frappe === "undefined" para detectar contexto
  * porque o script carrega ANTES do frappe ser definido.
