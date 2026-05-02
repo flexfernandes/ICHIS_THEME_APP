@@ -29,7 +29,10 @@ web_include_js = [
 # ──────────────────────────────────────────────────────────────
 # HOME PAGE — redireciona todos os usuários para o Modern Desk
 # ──────────────────────────────────────────────────────────────
-role_home_page = "gf-modern-desk"
+role_home_page = {
+    "System User": "gf-modern-desk",
+    "Administrator": "gf-modern-desk",
+}
 
 # ──────────────────────────────────────────────────────────────
 # INSTALAÇÃO
