@@ -10,7 +10,6 @@ app_version     = "1.0.0"
 # ASSETS
 # ──────────────────────────────────────────────────────────────
 
-
 # Desk (usuário logado)
 app_include_css = [
     "/assets/ichis_theme_app/css/gf_theme.css?v=9",
@@ -31,9 +30,8 @@ web_include_js = [
     "/assets/ichis_theme_app/js/gf_theme.js?v=9",
 ]
 
-
 # ──────────────────────────────────────────────────────────────
-# HOME PAGE — redireciona todos os usuários para o Modern  Desk
+# HOME PAGE
 # ──────────────────────────────────────────────────────────────
 role_home_page = {
     "System User": "gf-modern-desk",
@@ -52,5 +50,3 @@ fixtures = [
     {"doctype": "Custom Field", "filters": [["module", "=", "Gf Theme Control"]]},
     {"doctype": "Custom Field", "filters": [["module", "=", "Gf Ui Overlay"]]},
 ]
-
-
