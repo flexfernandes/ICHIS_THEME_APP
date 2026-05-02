@@ -7,7 +7,7 @@ FALLBACK_LOGO = "/assets/ichis_theme_app/images/app_underline_logo.png"
 
 
 # ══════════════════════════════════════════════════════════════
-# THEME API
+# THEME API  
 # ══════════════════════════════════════════════════════════════
 
 @frappe.whitelist(allow_guest=True)
