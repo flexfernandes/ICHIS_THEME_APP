@@ -156,10 +156,10 @@ function _gfMatch(route) {
     var p = window.gfOverlayPages[i];
     if (!p.ativo && p.ativo !== 1) continue;
 
-    if (p.tipo_alvo === "Desk") {
-      for (var d = 0; d < DESK_ROUTES.length; d++)
-        if (n === DESK_ROUTES[d] || n.startsWith(DESK_ROUTES[d] + "/")) return p;
-    }
+  if (p.tipo_alvo === "Desk") {
+    for (var d = 0; d < DESK_ROUTES.length; d++)
+    if (n === DESK_ROUTES[d]) return p;
+  }
 
     var pr = (p.rota_alvo || "").toLowerCase().replace(/\/$/, "");
     if (pr && (n === pr || n.startsWith(pr + "/"))) return p;
