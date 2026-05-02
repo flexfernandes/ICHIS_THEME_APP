@@ -1,10 +1,9 @@
 /**
- * GF Overlay v5.0 — Abordagem correta para Frappe v16
- * Override de frappe.views.Workspace.show()
- * Baseado em: https://medium.com/@pratheeshrussell/customising-frappe-erpnext-ui-part-ii
+ * GF Overlay v5.1 — Frappe v16
+ * Override de frappe.views.Workspace + aplicação direta na home
  */
 
-window.gfOverlayVersion  = "GF_OVERLAY_V5";
+window.gfOverlayVersion  = "GF_OVERLAY_V5_1";
 window.gfOverlayLoaded   = true;
 window.gfOverlayActive   = false;
 window.gfOverlayPages    = [];
@@ -14,7 +13,7 @@ window.gfCurrentPageData = null;
 if (window.location.pathname.indexOf("/login") !== -1) {
   // não roda no login
 } else {
-  console.log("[GF Overlay] v5 iniciando...");
+  console.log("[GF Overlay] v5.1 iniciando...");
   _gfInit();
 }
 
@@ -34,7 +33,6 @@ function _gfInit() {
             window.gfOverlayPages = Array.isArray(r2 && r2.message) ? r2.message : [];
             console.log("[GF Overlay] Páginas:", window.gfOverlayPages.length);
 
-            // Encontra a página do Desk
             var deskPage = null;
             for (var i = 0; i < window.gfOverlayPages.length; i++) {
               if (window.gfOverlayPages[i].tipo_alvo === "Desk" && window.gfOverlayPages[i].ativo) {
@@ -42,12 +40,16 @@ function _gfInit() {
               }
             }
 
-            if (!deskPage) {
-              console.log("[GF Overlay] Nenhuma página Desk ativa."); return;
-            }
+            if (!deskPage) { console.log("[GF Overlay] Nenhuma página Desk ativa."); return; }
 
-            // Override do frappe.views.Workspace
+            // 1. Registra override para navegações futuras
             _gfOverrideWorkspace(deskPage);
+
+            // 2. Aplica IMEDIATAMENTE se já está na home
+            if (_gfIsHome()) {
+              console.log("[GF Overlay] Já está na home — aplicando diretamente.");
+              _gfApply(deskPage);
+            }
           }
         });
       }
@@ -63,13 +65,40 @@ function _gfWaitFrappe(cb) {
   }, 100);
 }
 
+function _gfIsHome() {
+  try {
+    var route = frappe.get_route ? frappe.get_route() : [];
+    if (!Array.isArray(route) || route.length === 0) return true;
+    if (route[0] === "") return true;
+    if (route[0] === "Workspaces" || route[0] === "workspace") {
+      var sub = (route[1] || "").toLowerCase().trim();
+      return sub === "home" || sub === "";
+    }
+    return false;
+  } catch (e) {
+    return window.location.pathname === "/desk";
+  }
+}
+
 function _gfOverrideWorkspace(deskPage) {
-  // Aguarda frappe.views.Workspace estar disponível
   var t = 0;
   var iv = setInterval(function () {
     if (typeof frappe !== "undefined" && frappe.views && frappe.views.Workspace) {
       clearInterval(iv);
-      _gfDoOverride(deskPage);
+      var Original = frappe.views.Workspace;
+      frappe.views.Workspace = class GFWorkspace extends Original {
+        show() {
+          var isHome = _gfIsHome();
+          console.log("[GF Overlay] Workspace.show() | isHome:", isHome);
+          if (isHome) {
+            _gfApply(deskPage);
+          } else {
+            _gfRemove();
+            super.show();
+          }
+        }
+      };
+      console.log("[GF Overlay] frappe.views.Workspace sobrescrito.");
     } else if (++t > 100) {
       clearInterval(iv);
       console.warn("[GF Overlay] frappe.views.Workspace não encontrado.");
@@ -77,48 +106,11 @@ function _gfOverrideWorkspace(deskPage) {
   }, 100);
 }
 
-function _gfDoOverride(deskPage) {
-  var OriginalWorkspace = frappe.views.Workspace;
-
-  frappe.views.Workspace = class GFWorkspace extends OriginalWorkspace {
-    show() {
-      // Verifica se é a home (sem workspace específico ou workspace=Home)
-      var route = frappe.get_route ? frappe.get_route() : [];
-      var isHome = !route || route.length === 0 ||
-        (route[0] === "Workspaces" && (!route[1] || route[1].toLowerCase() === "home"));
-
-      console.log("[GF Overlay] Workspace.show() | route:", JSON.stringify(route), "| isHome:", isHome);
-
-      if (isHome) {
-        // Mostra overlay em vez do workspace padrão
-        _gfApply(deskPage);
-      } else {
-        // Remove overlay e deixa o Frappe renderizar normalmente
-        _gfRemove();
-        super.show();
-      }
-    }
-  };
-
-  console.log("[GF Overlay] frappe.views.Workspace sobrescrito com sucesso.");
-
-  // Força a avaliação inicial
-  setTimeout(function () {
-    try {
-      var route = frappe.get_route ? frappe.get_route() : [];
-      var isHome = !route || route.length === 0 ||
-        (route[0] === "Workspaces" && (!route[1] || route[1].toLowerCase() === "home"));
-      if (isHome) _gfApply(deskPage);
-    } catch (e) {}
-  }, 300);
-}
-
 function _gfApply(page) {
   if (window.gfOverlayActive) return;
   window.gfOverlayActive   = true;
   window.gfCurrentPageData = page;
 
-  // Injeta CSS de controle
   if (!document.getElementById("gf-ov-style")) {
     var st = document.createElement("style");
     st.id  = "gf-ov-style";
@@ -171,7 +163,6 @@ function _gfRemove() {
   console.log("[GF Overlay] Removido.");
 }
 
-// Navegação a partir dos cards
 window.gfNav = function (route, event) {
   if (event) event.preventDefault();
   _gfRemove();

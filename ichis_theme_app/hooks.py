@@ -47,10 +47,10 @@ fixtures = [
 ]
 
 app_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=5",
-    "/assets/ichis_theme_app/js/gf_overlay_v2.js?v=5",
+    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=6",
+    "/assets/ichis_theme_app/js/gf_overlay_v2.js?v=6",
 ]
 
 web_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=5",
+    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=6",
 ]
