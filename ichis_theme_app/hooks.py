@@ -45,3 +45,12 @@ fixtures = [
     {"doctype": "Custom Field", "filters": [["module", "=", "Gf Theme Control"]]},
     {"doctype": "Custom Field", "filters": [["module", "=", "Gf Ui Overlay"]]},
 ]
+
+app_include_js = [
+    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=5",
+    "/assets/ichis_theme_app/js/gf_overlay_v2.js?v=5",
+]
+
+web_include_js = [
+    "/assets/ichis_theme_app/js/gf_theme_v3.js?v=5",
+]
