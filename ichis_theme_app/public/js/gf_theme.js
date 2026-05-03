@@ -139,8 +139,12 @@ function _gfApplyDesk() {
 
       console.log("GF Theme Control: tema ativo:", s.tema_ativo);
 
-      // Redireciona /desk para GF Modern Desk
-      if (window.location.pathname === "/desk" || window.location.pathname === "/desk/") {
+      // Redireciona para GF Modern Desk se estiver na Home
+      // Verifica /app, /app/, /desk, /desk/ — todas as variações da Home
+      var _gfPath = window.location.pathname.replace(/\/$/, "") || "/app";
+      var _gfHomeRoutes = ["/app", "/desk", "/app/home", "/desk/home",
+                           "/app/workspace", "/desk/workspace"];
+      if (_gfHomeRoutes.indexOf(_gfPath) !== -1 || _gfPath === "/app" || _gfPath === "/desk") {
         console.log("GF Theme Control: redirecionando para GF Modern Desk...");
         frappe.set_route("gf-modern-desk");
       }

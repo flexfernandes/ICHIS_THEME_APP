@@ -1,31 +1,41 @@
 /*
- * GF Overlay CSS v12
+ * GF Overlay CSS v13
  * GREENFARMS | ichis_theme_app
  *
- * Oculta sidebar e breadcrumb SOMENTE na página gf-modern-desk.
+ * Oculta sidebar/breadcrumb SOMENTE na página gf-modern-desk.
  * Não interfere em nenhuma outra página do ERPNext.
  */
 
-/* Oculta sidebar quando está na página moderna */
+/* Oculta sidebar e breadcrumb na página moderna */
 [data-page-route="gf-modern-desk"] .layout-side-section,
 [data-page-route="gf-modern-desk"] .desk-sidebar,
 [data-page-route="gf-modern-desk"] .sidebar-toggle-btn,
 [data-page-route="gf-modern-desk"] .page-breadcrumbs,
-[data-page-route="gf-modern-desk"] .breadcrumb-container {
+[data-page-route="gf-modern-desk"] .breadcrumb-container,
+[data-page-route="gf-modern-desk"] .page-head .breadcrumb,
+[data-page-route="gf-modern-desk"] .standard-sidebar {
   display: none !important;
 }
 
-/* Página moderna ocupa 100% */
+/* Container principal ocupa 100% */
 [data-page-route="gf-modern-desk"] .layout-main-section {
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
   border: none !important;
   box-shadow: none !important;
+  max-width: none !important;
 }
 
 [data-page-route="gf-modern-desk"] .page-container,
+[data-page-route="gf-modern-desk"] .layout-main,
 [data-page-route="gf-modern-desk"] .layout-main-section-wrapper {
   padding: 0 !important;
   margin: 0 !important;
+  max-width: none !important;
+}
+
+/* Remove o título da página (breadcrumb com "GF Modern Desk") */
+[data-page-route="gf-modern-desk"] .page-head {
+  display: none !important;
 }

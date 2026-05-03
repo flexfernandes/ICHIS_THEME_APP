@@ -172,8 +172,8 @@ def _install_overlay_settings():
     defaults = {
         "ativar_sobreposicoes": 1, "ativar_sobreposicao_desk": 1,
         "modo_padrao_sobreposicao": "Substituir Tela",
-        "permitir_fallback_tela_original": 1,
-        "mostrar_botao_voltar_tela_original": 1,
+        "permitir_fallback_tela_original": 0,
+        "mostrar_botao_voltar_tela_original": 0,
         "usar_tema_gf": 1, "animacao_entrada": "Suave",
         "tempo_animacao_ms": 250, "diagnostico_console": 1,
         "aplicar_por_usuario": 0, "aplicar_por_perfil": 0,
