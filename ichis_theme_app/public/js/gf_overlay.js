@@ -1,135 +1,125 @@
 /**
- * GF Overlay — Boot Guard v13
+ * GF Overlay — gf_overlay.js v14
  * GREENFARMS | ichis_theme_app
  *
- * ARQUITETURA CORRETA (conforme análise do ChatGPT):
+ * Baseado na abordagem do frappe-modern-desk (pratheeshrussell):
+ * Override de frappe.router e frappe.views.Workspace.show()
  *
- * 1. Detecta imediatamente se está na Home (/ /app /app/ /app/home /app/workspace /desk /desk/)
- * 2. Oculta o Desk antigo via CSS ANTES do Frappe renderizar
- * 3. Intercepta frappe.router para bloquear retorno à Home antiga
- * 4. Renderiza tela moderna sem esperar chamada ao servidor
- * 5. Carrega configurações em segundo plano
- *
- * NÃO interfere em /app/contact, /app/buying, /app/sales-order etc.
+ * IMPORTANTE: Este arquivo NÃO interfere em rotas como
+ * /desk/contact, /desk/selling, /desk/buying etc.
+ * Ele SOMENTE intercepta a Home/Workspace padrão.
  */
 
-window.gfOverlayVersion = "GF_OVERLAY_V13";
+window.gfOverlayVersion = "GF_OVERLAY_V14";
 
-// ─── ROTAS QUE DEVEM MOSTRAR A TELA MODERNA ───────────────────
-var GF_HOME_PATHS = ["/app", "/app/", "/app/home", "/app/workspace",
-                     "/desk", "/desk/", "/desk/home", "/desk/workspace"];
-
-// ─── PASSO 1: EXECUTA IMEDIATAMENTE ───────────────────────────
-// Antes do DOM, antes do Frappe — oculta o Desk antigo
-(function gfBootGuard() {
-  var path = (window.location.pathname || "").replace(/\/$/, "") || "/app";
-  var isHome = GF_HOME_PATHS.indexOf(path) !== -1 ||
-               path === "/app" ||
-               path.match(/^\/app\/?$/) ||
-               path.match(/^\/desk\/?$/);
-
-  if (!isHome) return; // Não é Home — não interfere em nada
-
-  // Injeta CSS de ocultação ANTES do corpo aparecer
-  var style = document.createElement("style");
-  style.id = "gf-boot-hide";
-  style.textContent =
-    "html{background:#f1f5f9!important}" +
-    ".layout-main,.layout-main-section,#page-desktop,.page-container," +
-    ".desk-sidebar,.standard-sidebar,.layout-side-section{" +
-    "visibility:hidden!important;pointer-events:none!important}";
-  (document.head || document.documentElement).appendChild(style);
-
-  // Remove em 5s de segurança (evita tela presa)
-  setTimeout(function () {
-    var s = document.getElementById("gf-boot-hide");
-    if (s) s.remove();
-  }, 5000);
+// ── CSS imediato apenas para /desk e /app (home) ──────────────
+(function () {
+  var p = window.location.pathname;
+  if (p !== "/desk" && p !== "/desk/" && p !== "/app" && p !== "/app/") return;
+  var s = document.createElement("style");
+  s.id  = "gf-boot-hide";
+  s.textContent = ".layout-main,.layout-main-section,#page-desktop,.page-container,.desk-sidebar{visibility:hidden!important}";
+  (document.head || document.documentElement).appendChild(s);
+  setTimeout(function(){ var x=document.getElementById("gf-boot-hide"); if(x) x.remove(); }, 4000);
 })();
 
-// ─── PASSO 2: AGUARDA FRAPPE E INTERCEPTA O ROUTER ────────────
-(function gfRouterGuard() {
-  var path = (window.location.pathname || "").replace(/\/$/, "") || "/app";
-  var isHome = GF_HOME_PATHS.indexOf(path) !== -1 ||
-               path.match(/^\/app\/?$/) ||
-               path.match(/^\/desk\/?$/);
+// ── Aguarda Frappe e aplica overrides ─────────────────────────
+frappe.ready(function () {
+  console.log("[GF Overlay] v14 — Frappe pronto.");
 
-  if (!isHome) return;
+  // ── 1. Override do frappe.router ──────────────────────────
+  // O frappe.router.route_change é chamado em TODA mudança de rota
+  // Referência: frappe-modern-desk/modern_desk/public/js/route_override.js
+  var _originalSlug = frappe.router.slug;
+  var _homeRoutes   = ["", "home", "workspace", "workspaces"];
 
-  function _isHomeRoute() {
-    try {
-      var route = frappe.get_route ? frappe.get_route() : [];
-      if (!Array.isArray(route) || route.length === 0) return true;
-      if (route[0] === "") return true;
-      if (route[0] === "Workspaces" || route[0] === "workspace") {
-        var sub = (route[1] || "").toLowerCase().trim();
-        return sub === "" || sub === "home";
+  // Sobrescreve o método que decide qual página mostrar após login
+  var _origMakeCurrentRoute = frappe.router.make_current_route;
+  if (_origMakeCurrentRoute) {
+    frappe.router.make_current_route = function () {
+      var route  = frappe.get_route ? frappe.get_route() : [];
+      var first  = (route[0] || "").toLowerCase();
+      var second = (route[1] || "").toLowerCase();
+
+      // É a home se: rota vazia, ou Workspaces/Home, ou Workspaces sem subrota
+      var isHome = !first ||
+        _homeRoutes.indexOf(first) !== -1 ||
+        (first === "workspaces" && (_homeRoutes.indexOf(second) !== -1));
+
+      if (isHome) {
+        console.log("[GF Overlay] make_current_route interceptado → gf-modern-desk");
+        frappe.set_route("gf-modern-desk");
+        return;
       }
-      return false;
-    } catch (e) {
-      var p = (window.location.pathname || "").replace(/\/$/, "");
-      return p === "/app" || p === "/desk" || p === "" || p === "/";
-    }
+      return _origMakeCurrentRoute.apply(frappe.router, arguments);
+    };
   }
 
-  function _goModern() {
-    var bootHide = document.getElementById("gf-boot-hide");
-    if (bootHide) bootHide.remove();
-    frappe.set_route("gf-modern-desk");
-  }
+  // ── 2. Override de frappe.views.Workspace.show() ──────────
+  // Chamado toda vez que o Frappe vai renderizar um Workspace
+  // Referência: frappe-modern-desk/modern_desk/public/js/workspace_override.js
+  var wsInterval = 0;
+  var wsTimer = setInterval(function () {
+    if (++wsInterval > 100) { clearInterval(wsTimer); return; }
+    if (frappe.views && frappe.views.Workspace) {
+      clearInterval(wsTimer);
 
-  function _waitFrappe(cb) {
-    if (typeof frappe !== "undefined" && frappe.ready) {
-      frappe.ready(cb);
-    } else {
-      setTimeout(function () { _waitFrappe(cb); }, 50);
-    }
-  }
+      var OrigWorkspace = frappe.views.Workspace;
+      frappe.views.Workspace = class GFWorkspace extends OrigWorkspace {
+        show() {
+          var route  = frappe.get_route ? frappe.get_route() : [];
+          var first  = (route[0] || "").toLowerCase();
+          var second = (route[1] || "").toLowerCase();
 
-  _waitFrappe(function () {
-    // Intercepta qualquer mudança de rota para a Home antiga
-    try {
-      frappe.router.on("change", function () {
-        if (_isHomeRoute()) {
-          // Pequeno delay para garantir que frappe.get_route() está atualizado
-          setTimeout(function () {
-            if (_isHomeRoute()) _goModern();
-          }, 50);
-        }
-      });
-    } catch (e) {}
+          var isHome = !first ||
+            _homeRoutes.indexOf(first) !== -1 ||
+            (first === "workspaces" && (_homeRoutes.indexOf(second) !== -1));
 
-    // Override de frappe.views.Workspace para bloquear render do workspace antigo
-    var tries = 0;
-    var iv = setInterval(function () {
-      if (++tries > 100) { clearInterval(iv); return; }
-      if (typeof frappe !== "undefined" && frappe.views && frappe.views.Workspace) {
-        clearInterval(iv);
-        var Orig = frappe.views.Workspace;
-        frappe.views.Workspace = class GFWrap extends Orig {
-          show() {
-            if (_isHomeRoute()) {
-              console.log("[GF Boot] Workspace.show() bloqueado — redirecionando para moderna");
-              _goModern();
-              return;
-            }
-            // Não é home — deixa o Frappe renderizar normalmente
-            super.show();
+          if (isHome) {
+            // Remove CSS de boot
+            var boot = document.getElementById("gf-boot-hide");
+            if (boot) boot.remove();
+            // Vai para a página moderna
+            frappe.set_route("gf-modern-desk");
+            return;
           }
-        };
-        console.log("[GF Boot] Workspace.show() protegido.");
-      }
-    }, 100);
 
-    // Verificação inicial — se já estiver na home ao carregar
-    setTimeout(function () {
-      if (_isHomeRoute()) {
-        console.log("[GF Boot] Rota inicial é Home — indo para moderna...");
-        _goModern();
+          // Não é home — comportamento normal
+          super.show();
+        }
+      };
+
+      console.log("[GF Overlay] frappe.views.Workspace sobrescrito com sucesso.");
+
+      // Verifica rota atual imediatamente
+      var route  = frappe.get_route ? frappe.get_route() : [];
+      var first  = (route[0] || "").toLowerCase();
+      var isHome = !first || _homeRoutes.indexOf(first) !== -1 ||
+        (first === "workspaces" && _homeRoutes.indexOf((route[1]||"").toLowerCase()) !== -1);
+
+      if (isHome) {
+        var boot = document.getElementById("gf-boot-hide");
+        if (boot) boot.remove();
+        frappe.set_route("gf-modern-desk");
       } else {
-        var s = document.getElementById("gf-boot-hide");
-        if (s) s.remove();
+        var boot = document.getElementById("gf-boot-hide");
+        if (boot) boot.remove();
       }
-    }, 100);
+    }
+  }, 100);
+
+  // ── 3. Ouve mudanças de rota via frappe.router ────────────
+  frappe.router.on("change", function () {
+    var route  = frappe.get_route ? frappe.get_route() : [];
+    var first  = (route[0] || "").toLowerCase();
+    var second = (route[1] || "").toLowerCase();
+
+    var isHome = !first ||
+      _homeRoutes.indexOf(first) !== -1 ||
+      (first === "workspaces" && _homeRoutes.indexOf(second) !== -1);
+
+    if (isHome) {
+      frappe.set_route("gf-modern-desk");
+    }
   });
-})();
+});
