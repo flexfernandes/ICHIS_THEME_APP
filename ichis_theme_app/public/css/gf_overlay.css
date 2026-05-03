@@ -1,60 +1,31 @@
 /*
- * GF Overlay CSS v11
+ * GF Overlay CSS v12
  * GREENFARMS | ichis_theme_app
  *
- * PROBLEMA 1: Sidebar e breadcrumb aparecem na página gf-modern-desk
- * SOLUÇÃO: Ocultar sidebar e breadcrumb quando estiver na página moderna
- *
- * PROBLEMA 2: Flash do Desk antigo antes do redirecionamento
- * SOLUÇÃO: Classe .gf-booting oculta o conteúdo imediatamente
- *
- * PROBLEMA 3: Desk antigo aparece ao clicar no Home
- * SOLUÇÃO: Quando .gf-modern-active está no body, oculta o workspace antigo
+ * Oculta sidebar e breadcrumb SOMENTE na página gf-modern-desk.
+ * Não interfere em nenhuma outra página do ERPNext.
  */
 
-/* ── Ocultar sidebar e breadcrumb na página gf-modern-desk ─── */
-/* Isso resolve IMAGEM 01 e IMAGEM 02 */
+/* Oculta sidebar quando está na página moderna */
 [data-page-route="gf-modern-desk"] .layout-side-section,
 [data-page-route="gf-modern-desk"] .desk-sidebar,
 [data-page-route="gf-modern-desk"] .sidebar-toggle-btn,
 [data-page-route="gf-modern-desk"] .page-breadcrumbs,
-[data-page-route="gf-modern-desk"] .breadcrumb-container,
-[data-page-route="gf-modern-desk"] .title-area .breadcrumb,
-[data-page-route="gf-modern-desk"] nav.container-fluid .page-breadcrumbs {
+[data-page-route="gf-modern-desk"] .breadcrumb-container {
   display: none !important;
 }
 
-/* Página moderna ocupa 100% da área útil */
+/* Página moderna ocupa 100% */
 [data-page-route="gf-modern-desk"] .layout-main-section {
   width: 100% !important;
+  padding: 0 !important;
   margin: 0 !important;
-  padding: 0 !important;
   border: none !important;
+  box-shadow: none !important;
 }
 
-[data-page-route="gf-modern-desk"] .page-container {
-  padding: 0 !important;
-}
-
+[data-page-route="gf-modern-desk"] .page-container,
 [data-page-route="gf-modern-desk"] .layout-main-section-wrapper {
   padding: 0 !important;
-}
-
-/* ── Ocultar Desk antigo durante o boot em /desk ────────────── */
-/* Resolve o flash antes do redirecionamento — PROBLEMA 2 */
-body.gf-booting .layout-main,
-body.gf-booting .layout-main-section,
-body.gf-booting #page-desktop,
-body.gf-booting .desk-sidebar,
-body.gf-booting .page-container {
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-/* ── Quando Workspace antigo é chamado via Home ─────────────── */
-/* Resolve IMAGEM 03 — botão casinha mostra Desk antigo */
-body.gf-modern-active [data-page-route="Workspaces"],
-body.gf-modern-active [data-page-route="workspace"],
-body.gf-modern-active .page-container[data-page-route="Workspaces"] {
-  display: none !important;
+  margin: 0 !important;
 }
