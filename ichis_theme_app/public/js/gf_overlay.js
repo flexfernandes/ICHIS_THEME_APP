@@ -1,14 +1,18 @@
 /**
- * GF Overlay — gf_overlay.js v15
+ * GF Overlay — gf_overlay.js v16
  * GREENFARMS | ichis_theme_app
  *
- * CORREÇÃO v15: frappe.ready não existe no momento do carregamento do script.
- * Usar $(document).ready ou document.addEventListener("DOMContentLoaded") + polling.
+ * CORREÇÃO v16:
+ * _isHome() estava interceptando Workspaces/Selling, Workspaces/Buying etc.
+ * porque verificava apenas se route[0] === "workspaces".
+ *
+ * Agora: só é HOME se route[1] for exatamente "" ou "home".
+ * Qualquer outro workspace (Selling, Buying, Stock etc.) passa normalmente.
  */
 
-window.gfOverlayVersion = "GF_OVERLAY_V15";
+window.gfOverlayVersion = "GF_OVERLAY_V16";
 
-// ── CSS imediato para evitar flash na home ────────────────────
+// ── CSS imediato para /desk e /app ────────────────────────────
 (function () {
   var p = window.location.pathname.replace(/\/$/, "");
   if (p !== "/desk" && p !== "/app") return;
@@ -24,66 +28,57 @@ window.gfOverlayVersion = "GF_OVERLAY_V15";
   }, 4000);
 })();
 
-// ── Aguarda frappe estar completamente pronto ─────────────────
+// ── Aguarda frappe ────────────────────────────────────────────
 function _gfWaitReady(cb) {
-  // frappe.ready pode não existir ainda — aguarda com polling
   var tries = 0;
   var iv = setInterval(function () {
     tries++;
-    if (typeof frappe !== "undefined") {
+    if (typeof frappe !== "undefined" && frappe.router) {
       clearInterval(iv);
-      if (typeof frappe.ready === "function") {
-        frappe.ready(cb);
-      } else {
-        // frappe existe mas sem .ready — usa after_ajax ou tenta direto
-        if (frappe.router) {
-          cb();
-        } else {
-          setTimeout(cb, 500);
-        }
-      }
+      cb();
     } else if (tries > 100) {
       clearInterval(iv);
     }
   }, 100);
 }
 
-_gfWaitReady(function () {
-  console.log("[GF Overlay] v15 — Frappe pronto. Aplicando overrides...");
+// ── Detecta se é a Home REAL ──────────────────────────────────
+// HOME REAL: rota vazia [], [""] ou ["Workspaces","Home"] ou ["Workspaces",""]
+// NÃO é home: ["Workspaces","Selling"], ["Workspaces","Buying"], etc.
+function _gfIsHome() {
+  try {
+    var route  = frappe.get_route ? frappe.get_route() : [];
 
-  var _homeRoutes = ["", "home", "workspace", "workspaces"];
+    // Array vazio = home
+    if (!route || route.length === 0) return true;
 
-  function _isHome() {
-    try {
-      var route  = frappe.get_route ? frappe.get_route() : [];
-      var first  = (route[0] || "").toLowerCase();
-      var second = (route[1] || "").toLowerCase();
-      return !first ||
-        _homeRoutes.indexOf(first) !== -1 ||
-        (first === "workspaces" && _homeRoutes.indexOf(second) !== -1);
-    } catch (e) {
-      var p = window.location.pathname.replace(/\/$/, "");
-      return p === "/desk" || p === "/app";
+    var r0 = (route[0] || "").toLowerCase();
+    var r1 = (route[1] || "").toLowerCase();
+
+    // Só string vazia = home
+    if (r0 === "") return true;
+
+    // Workspaces/Home ou Workspaces/ (sem subrota) = home
+    // Workspaces/Selling, Workspaces/Buying etc. = NÃO é home
+    if (r0 === "workspaces" || r0 === "workspace") {
+      return r1 === "" || r1 === "home";
     }
+
+    // Qualquer outra rota = não é home
+    return false;
+  } catch (e) {
+    var p = window.location.pathname.replace(/\/$/, "");
+    return p === "/desk" || p === "/app";
   }
+}
+
+_gfWaitReady(function () {
+  console.log("[GF Overlay] v16 — iniciando overrides...");
 
   function _goModern() {
     var boot = document.getElementById("gf-boot-hide");
     if (boot) boot.remove();
     frappe.set_route("gf-modern-desk");
-  }
-
-  // ── Override frappe.router.make_current_route ─────────────
-  if (frappe.router && frappe.router.make_current_route) {
-    var _origMCR = frappe.router.make_current_route.bind(frappe.router);
-    frappe.router.make_current_route = function () {
-      if (_isHome()) {
-        console.log("[GF Overlay] make_current_route → gf-modern-desk");
-        _goModern();
-        return;
-      }
-      return _origMCR.apply(frappe.router, arguments);
-    };
   }
 
   // ── Override frappe.views.Workspace.show() ────────────────
@@ -93,21 +88,37 @@ _gfWaitReady(function () {
     if (frappe.views && frappe.views.Workspace) {
       clearInterval(iv);
       var Orig = frappe.views.Workspace;
+
       frappe.views.Workspace = class GFWorkspace extends Orig {
         show() {
-          if (_isHome()) {
-            console.log("[GF Overlay] Workspace.show() → gf-modern-desk");
+          var route = frappe.get_route ? frappe.get_route() : [];
+          var r0 = (route[0] || "").toLowerCase();
+          var r1 = (route[1] || "").toLowerCase();
+
+          // Só intercepta home real
+          var isHome = !r0 ||
+            r0 === "" ||
+            ((r0 === "workspaces" || r0 === "workspace") && (r1 === "" || r1 === "home"));
+
+          if (isHome) {
+            console.log("[GF Overlay] Home detectada → gf-modern-desk");
             _goModern();
             return;
           }
+
+          // Qualquer outro workspace — comportamento normal
+          var boot = document.getElementById("gf-boot-hide");
+          if (boot) boot.remove();
           super.show();
         }
       };
+
       console.log("[GF Overlay] Workspace.show() protegido.");
 
       // Verifica rota atual
-      if (_isHome()) _goModern();
-      else {
+      if (_gfIsHome()) {
+        _goModern();
+      } else {
         var b = document.getElementById("gf-boot-hide");
         if (b) b.remove();
       }
@@ -117,7 +128,12 @@ _gfWaitReady(function () {
   // ── Ouve mudanças de rota ─────────────────────────────────
   try {
     frappe.router.on("change", function () {
-      if (_isHome()) _goModern();
+      // Pequeno delay para rota estar atualizada
+      setTimeout(function () {
+        if (_gfIsHome()) _goModern();
+      }, 50);
     });
-  } catch (e) {}
+  } catch (e) {
+    console.warn("[GF Overlay] router.on error:", e);
+  }
 });
