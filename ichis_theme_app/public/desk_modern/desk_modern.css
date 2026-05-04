@@ -604,3 +604,93 @@ body.gf-booting .standard-sidebar {
 .gf-user-dropdown-item.gf-logout:hover {
   background: #fef2f2;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   TOPBAR E MENU DE USUÁRIO
+   ═══════════════════════════════════════════════════════════ */
+.gf-topbar {
+  height: 48px;
+  background: var(--gf-bg-navbar);
+  border-bottom: 1px solid var(--gf-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-shrink: 0;
+  box-shadow: var(--gf-shadow-sm);
+}
+
+.gf-topbar-brand {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gf-accent);
+}
+
+.gf-topbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.gf-user-menu { position: relative; }
+
+.gf-user-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gf-accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--gf-font);
+  transition: opacity 0.15s;
+}
+.gf-user-btn:hover { opacity: 0.85; }
+
+.gf-user-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: var(--gf-bg-card);
+  border: 1px solid var(--gf-border);
+  border-radius: var(--gf-radius);
+  box-shadow: var(--gf-shadow-lg);
+  min-width: 210px;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.gf-user-dropdown-header {
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid var(--gf-border);
+}
+.gf-user-dropdown-header strong {
+  display: block;
+  font-size: 13px;
+  color: var(--gf-text);
+  font-weight: 600;
+}
+
+.gf-user-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 16px;
+  border: none;
+  background: transparent;
+  color: var(--gf-text);
+  font-size: var(--gf-fs-base);
+  font-family: var(--gf-font);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+}
+.gf-user-dropdown-item:hover { background: var(--gf-bg-hover); }
+.gf-user-dropdown-item.gf-logout { color: #dc2626; }
+.gf-user-dropdown-item.gf-logout:hover { background: #fef2f2; }
