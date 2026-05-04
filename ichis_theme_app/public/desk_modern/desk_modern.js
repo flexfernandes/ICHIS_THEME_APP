@@ -34,7 +34,7 @@
 
   var GF_SIDEBAR = [
     { label:"Início",     items:[
-      { icon:"🏠", title:"Início",         route:"gf-modern-desk" },
+      { icon:"🏠", title:"Início",         route:"__home__" },
       { icon:"📊", title:"Dashboard",      route:"dashboard-view" },
     ]},
     { label:"Operações",  items:[
@@ -65,8 +65,7 @@
       if (!r0 || r0 === "") return true;
       if ((r0 === "workspaces" || r0 === "workspace") &&
           (r1 === "" || r1 === "home")) return true;
-      if (r0 === "gf-modern-desk") return false; // já está na moderna
-      return false;
+        return false;
     } catch (e) {
       return false;
     }
@@ -251,9 +250,9 @@
 
   // ── Navegação pública ────────────────────────────────────────
   window.gfDeskNav = function (route) {
-    if (route === "gf-modern-desk") {
-      // Volta para a moderna
-      frappe.set_route("gf-modern-desk");
+    if (route === "__home__") {
+      // Mostra a tela moderna diretamente, sem set_route para page inexistente
+      if (!_active) _show();
       return;
     }
     // Navega para módulo do ERPNext
