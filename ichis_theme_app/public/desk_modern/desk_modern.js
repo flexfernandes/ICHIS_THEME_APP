@@ -149,13 +149,6 @@
         // Conteúdo
         '<main class="gf-content">' +
 
-          // Busca
-          '<div class="gf-search-bar" style="max-width:100%;margin:0">' +
-            '<span class="gf-search-icon">🔍</span>' +
-            '<input id="gf-search-input" class="gf-search-input" type="text" ' +
-              'placeholder="Buscar no sistema... (pressione /)" autocomplete="off">' +
-          '</div>' +
-
           // Hero
           '<div class="gf-hero">' +
             '<div class="gf-hero-left">' +
@@ -187,29 +180,6 @@
       '</div>';
 
     document.body.appendChild(_container);
-
-    // ── Busca global ─────────────────────────────────────────
-    var searchInput = document.getElementById("gf-search-input");
-    if (searchInput) {
-      searchInput.addEventListener("keydown", function (e) {
-        if (e.key !== "Enter") return;
-        var q = searchInput.value.trim();
-        if (!q) return;
-        e.preventDefault();
-        _hide();
-        try {
-          if (frappe.utils && frappe.utils.global_search) frappe.utils.global_search(q);
-          else frappe.set_route("search", q);
-        } catch (ex) { frappe.set_route("search", q); }
-      });
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "/" &&
-            !["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) {
-          e.preventDefault();
-          if (_active && searchInput) { searchInput.focus(); searchInput.select(); }
-        }
-      });
-    }
 
     // ── Notificações (em background, sem bloquear render) ────
     try {
