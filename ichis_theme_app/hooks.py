@@ -1,7 +1,7 @@
 app_name        = "ichis_theme_app"
 app_title       = "GF Theme App"
 app_publisher   = "GREENFARMS"
-app_description = "Central de Identidade Visual e UI Overlay — GREENFARMS"
+app_description = "Central de Identidade Visual — GREENFARMS"
 app_email       = "contato@greenfarms.com.br"
 app_license     = "mit"
 app_version     = "1.0.0"
@@ -47,5 +47,4 @@ after_install = "ichis_theme_app.install.after_install"
 # ──────────────────────────────────────────────────────────────
 fixtures = [
     {"doctype": "Custom Field", "filters": [["module", "=", "Gf Theme Control"]]},
-    {"doctype": "Custom Field", "filters": [["module", "=", "Gf Ui Overlay"]]},
 ]
