@@ -138,8 +138,37 @@
         '</button>';
     }).join("");
 
+    // Inicial do usuário para avatar
+    var userInitial = fullName.charAt(0).toUpperCase();
+
     // ── HTML completo ────────────────────────────────────────
     _container.innerHTML =
+      // Topbar personalizada
+      '<div class="gf-topbar">' +
+        '<span class="gf-topbar-brand">🌿 ' + company + '</span>' +
+        '<div class="gf-topbar-right">' +
+          '<div class="gf-user-menu" id="gf-user-menu">' +
+            '<button class="gf-user-btn" onclick="gfToggleUserMenu()" title="' + fullName + '">' +
+              '<span class="gf-user-avatar">' + userInitial + '</span>' +
+            '</button>' +
+            '<div class="gf-user-dropdown" id="gf-user-dropdown">' +
+              '<div class="gf-user-dropdown-header">' +
+                '<strong>' + fullName + '</strong>' +
+              '</div>' +
+              '<button class="gf-user-dropdown-item" onclick="gfUserAction('profile')">' +
+                '👤 Editar Perfil</button>' +
+              '<button class="gf-user-dropdown-item" onclick="gfUserAction('theme')">' +
+                '🎨 Alternar Tema</button>' +
+              '<button class="gf-user-dropdown-item" onclick="gfUserAction('theme-settings')">' +
+                '⚙️ Configurações do Tema</button>' +
+              '<hr style="margin:4px 0;border:none;border-top:1px solid var(--gf-border)">' +
+              '<button class="gf-user-dropdown-item gf-logout" onclick="gfUserAction('logout')">' +
+                '→ Sair</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+
       // Layout
       '<div class="gf-layout">' +
 
@@ -184,13 +213,24 @@
     // ── Notificações (em background, sem bloquear render) ────
     try {
       frappe.call({
-        method: "frappe.client.get_count",
-        args: { doctype: "Notification Log", filters: [["read","=",0]] },
+        method: "frappe.client.get_list",
+        args: {
+          doctype: "Notification Log",
+          filters: [["read", "=", 0]],
+          fields: ["name"],
+          limit: 99
+        },
         callback: function (r) {
           var el = document.getElementById("gf-notif-count");
-          if (el) el.textContent = (r && r.message !== undefined) ? (r.message || "0") : "0";
+          if (el) {
+            var count = (r && r.message) ? r.message.length : 0;
+            el.textContent = count || "0";
+          }
         },
-        error: function () {}
+        error: function () {
+          var el = document.getElementById("gf-notif-count");
+          if (el) el.textContent = "0";
+        }
       });
     } catch (e) {}
 
@@ -217,6 +257,49 @@
       document.body.classList.remove("gf-booting");
     }
   }
+
+  // ── Menu de usuário ─────────────────────────────────────────
+  window.gfToggleUserMenu = function () {
+    var dd = document.getElementById("gf-user-dropdown");
+    if (!dd) return;
+    var isOpen = dd.style.display === "block";
+    dd.style.display = isOpen ? "none" : "block";
+    // Fecha ao clicar fora
+    if (!isOpen) {
+      setTimeout(function () {
+        document.addEventListener("click", function closeMenu(e) {
+          var menu = document.getElementById("gf-user-menu");
+          if (menu && !menu.contains(e.target)) {
+            dd.style.display = "none";
+            document.removeEventListener("click", closeMenu);
+          }
+        });
+      }, 10);
+    }
+  };
+
+  window.gfUserAction = function (action) {
+    var dd = document.getElementById("gf-user-dropdown");
+    if (dd) dd.style.display = "none";
+    try {
+      if (action === "profile") {
+        _hide();
+        frappe.set_route("Form", "User", frappe.session.user);
+      } else if (action === "theme") {
+        // Chama o toggle de tema nativo do Frappe
+        var btn = document.querySelector(".navbar .toggle-theme, [data-action='toggle_theme']");
+        if (btn) { btn.click(); }
+        else { frappe.ui.toolbar.toggle_dark_mode && frappe.ui.toolbar.toggle_dark_mode(); }
+      } else if (action === "theme-settings") {
+        _hide();
+        frappe.set_route("Form", "GF Theme Settings", "GF Theme Settings");
+      } else if (action === "logout") {
+        frappe.app && frappe.app.logout ? frappe.app.logout() : (window.location.href = "/logout");
+      }
+    } catch (e) {
+      console.warn("[GF Desk Modern] Ação de usuário:", action, e);
+    }
+  };
 
   // ── Navegação pública ────────────────────────────────────────
   window.gfDeskNav = function (route) {
