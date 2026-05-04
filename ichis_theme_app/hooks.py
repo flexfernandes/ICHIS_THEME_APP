@@ -7,34 +7,33 @@ app_license     = "mit"
 app_version     = "1.0.0"
 
 # ──────────────────────────────────────────────────────────────
-# ASSETS
+# ASSETS — Desk (usuário logado)
+# Ordem: tema primeiro, depois desk_modern
 # ──────────────────────────────────────────────────────────────
-
-# Desk (usuário logado)
 app_include_css = [
-    "/assets/ichis_theme_app/css/gf_theme.css?v=17",
-    "/assets/ichis_theme_app/css/gf_overlay.css?v=17",
+    "/assets/ichis_theme_app/css/gf_theme.css?v=18",
+    "/assets/ichis_theme_app/desk_modern/desk_modern.css?v=18",
 ]
 
 app_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme.js?v=17",
-    "/assets/ichis_theme_app/js/gf_overlay.js?v=17",
+    "/assets/ichis_theme_app/js/gf_theme.js?v=18",
+    "/assets/ichis_theme_app/desk_modern/desk_modern.js?v=18",
 ]
 
-# Login (páginas públicas)
+# Login (páginas públicas — só tema)
 web_include_css = [
-    "/assets/ichis_theme_app/css/gf_theme.css?v=17",
+    "/assets/ichis_theme_app/css/gf_theme.css?v=18",
 ]
 
 web_include_js = [
-    "/assets/ichis_theme_app/js/gf_theme.js?v=17",
+    "/assets/ichis_theme_app/js/gf_theme.js?v=18",
 ]
 
 # ──────────────────────────────────────────────────────────────
 # HOME PAGE
 # ──────────────────────────────────────────────────────────────
 role_home_page = {
-    "System User": "gf-modern-desk",
+    "System User":   "gf-modern-desk",
     "Administrator": "gf-modern-desk",
 }
 
