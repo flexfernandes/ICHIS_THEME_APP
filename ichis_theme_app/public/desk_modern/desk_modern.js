@@ -230,16 +230,23 @@
 
   // ── Esconde a tela moderna ───────────────────────────────────
   function _hide() {
-    if (!_active) return;
     _active = false;
+    // Remove classe que oculta o Desk antigo
     document.body.classList.remove("gf-desk-active");
-    _remove(false);
+    document.body.classList.remove("gf-booting");
+    // Remove container da tela moderna
+    var el = document.getElementById("gf-modern-desk-container");
+    if (el) el.remove();
   }
 
   function _remove(keepActive) {
     var el = document.getElementById("gf-modern-desk-container");
     if (el) el.remove();
-    if (!keepActive) _active = false;
+    if (!keepActive) {
+      _active = false;
+      document.body.classList.remove("gf-desk-active");
+      document.body.classList.remove("gf-booting");
+    }
   }
 
   // ── Navegação pública ────────────────────────────────────────
@@ -291,9 +298,12 @@
               return;
             }
 
-            // Não é home — esconde moderna e deixa Frappe renderizar
+            // Não é home — esconde moderna IMEDIATAMENTE e deixa Frappe renderizar
             _hide();
-            super.show();
+            var self = this;
+            var args = arguments;
+            setTimeout(function() { Orig.prototype.show.apply(self, args); }, 30);
+            return;
           }
         };
 
@@ -306,20 +316,20 @@
 
       // Ouve mudanças de rota
       frappe.router.on("change", function () {
-        setTimeout(function () {
-          var r  = frappe.get_route ? frappe.get_route() : [];
-          var r0 = (r[0] || "").toLowerCase();
-          var r1 = (r[1] || "").toLowerCase();
-          var isHome = !r0 ||
-            ((r0 === "workspaces" || r0 === "workspace") &&
-             (r1 === "" || r1 === "home"));
+        // Sem delay — age imediatamente na mudança de rota
+        var r  = frappe.get_route ? frappe.get_route() : [];
+        var r0 = (r[0] || "").toLowerCase();
+        var r1 = (r[1] || "").toLowerCase();
+        var isHome = !r0 ||
+          ((r0 === "workspaces" || r0 === "workspace") &&
+           (r1 === "" || r1 === "home"));
 
-          if (isHome) {
-            _show();
-          } else if (r0 !== "gf-modern-desk") {
-            _hide();
-          }
-        }, 50);
+        if (isHome) {
+          _show();
+        } else {
+          // Qualquer rota que não seja home — esconde moderna
+          _hide();
+        }
       });
 
     }, 100);
