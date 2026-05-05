@@ -99,7 +99,7 @@ function _gfApplyLogin() {
       _gfObserveLogos(logoUrl, s);
     }
 
-    console.log("GF Theme Control: tema de login aplicado. Tema:", s.tema_ativo || "Padrão");
+    console.log("GF Theme Control: tema de login aplicado.");
   });
 }
 
@@ -125,7 +125,7 @@ function _gfApplyDesk() {
       }
 
       _gfApplyVars(s);
-      _gfActivate(s.tema_ativo);
+      _gfActivate();
 
       if (s.substituir_logos_erpnext) {
         var logo = s.logo_navbar || s.logo_global || GF_FALLBACK_LOGO;
@@ -137,7 +137,7 @@ function _gfApplyDesk() {
 
       _gfListenSave();
 
-      console.log("GF Theme Control: tema ativo:", s.tema_ativo);
+      console.log("GF Theme Control: tema ativo (Frappe nativo).");
 
       // Redirecionamento para home gerenciado pelo desk_modern.js
     },
@@ -151,9 +151,11 @@ function _gfApplyDesk() {
 // ── Ativar / Desativar ────────────────────────────────────────
 function _gfActivate(tema) {
   document.body.classList.add("gf-theme-active");
-  document.body.setAttribute("data-gf-tema", tema || "Padrão");
+  // NOTA: data-gf-tema não define mais Light/Black
+  // O tema Light/Black segue EXCLUSIVAMENTE o mecanismo nativo do Frappe
+  // (localStorage["desk_theme"], frappe.ui.dark_mode, data-bs-theme)
   window.gfThemeActive = true;
-  console.log("GF Theme Control: .gf-theme-active ativado. Tema:", tema);
+  console.log("GF Theme Control: .gf-theme-active ativado.");
 }
 
 function _gfDeactivate() {
@@ -164,9 +166,22 @@ function _gfDeactivate() {
 
 // ── Aplicar variáveis CSS ─────────────────────────────────────
 function _gfApplyVars(s) {
-  var tema = s.tema_ativo || "Padrão";
-  var p    = tema === "Black" ? "black_" : "padrao_";
-  var r    = document.documentElement;
+  // Detecta tema nativo do Frappe — NÃO usa tema_ativo do GF Theme Settings
+  var _isDark = false;
+  try {
+    var _lt = localStorage.getItem("desk_theme") || "";
+    if (_lt === "dark") _isDark = true;
+    else if (_lt === "light") _isDark = false;
+    else if (typeof frappe !== "undefined" && frappe.ui &&
+             typeof frappe.ui.dark_mode === "boolean") {
+      _isDark = frappe.ui.dark_mode;
+    } else {
+      var _bs = document.documentElement.getAttribute("data-bs-theme") || "";
+      _isDark = _bs === "dark";
+    }
+  } catch(e){}
+  var p = _isDark ? "black_" : "padrao_";
+  var r = document.documentElement;
 
   function set(cssVar, field, fallback) {
     var val = s[p + field] || fallback;

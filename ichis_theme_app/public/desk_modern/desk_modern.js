@@ -281,20 +281,29 @@
         // 1. Persiste no localStorage (padrão Frappe)
         try { localStorage.setItem("desk_theme", newTheme); } catch(e){}
 
-        // 2. Aplica via Frappe nativo se disponível
+        // 2. Usa o mecanismo nativo do Frappe — aplica GLOBALMENTE em todo o sistema
         try {
-          if (frappe.ui && frappe.ui.set_dark_mode) {
-            frappe.ui.set_dark_mode(!nowDark);
-          } else if (frappe.ui && typeof frappe.ui.dark_mode !== "undefined") {
-            frappe.ui.dark_mode = !nowDark;
+          if (frappe.ui && frappe.ui.toolbar && frappe.ui.toolbar.toggle_dark_mode) {
+            // Método oficial do Frappe — persiste em user_defaults e aplica globalmente
+            frappe.ui.toolbar.toggle_dark_mode();
+          } else {
+            // Fallback: aplica manualmente de forma global
+            document.documentElement.setAttribute("data-bs-theme", newTheme);
+            document.body.setAttribute("data-bs-theme", newTheme);
+            // Classe frappe-dark para compatibilidade
+            if (newTheme === "dark") {
+              document.body.classList.add("frappe-dark");
+            } else {
+              document.body.classList.remove("frappe-dark");
+            }
           }
-        } catch(e){}
+        } catch(e){
+          // Fallback seguro
+          document.documentElement.setAttribute("data-bs-theme", newTheme);
+          document.body.setAttribute("data-bs-theme", newTheme);
+        }
 
-        // 3. Atualiza data-bs-theme (Bootstrap 5 / Frappe v16)
-        document.documentElement.setAttribute("data-bs-theme", newTheme);
-        document.body.setAttribute("data-bs-theme", newTheme);
-
-        // 4. Aplica imediatamente no container
+        // 3. Aplica imediatamente no container da tela moderna
         _applyTheme();
       });
 
