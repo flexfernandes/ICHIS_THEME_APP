@@ -77,8 +77,8 @@
     // Foto do usuário — frappe.boot.user_info.image ou user_image
     var userImage  = (user.image) || (boot.user_image) || "";
     var avatarHtml = userImage
-      ? '<img src="' + userImage + '" style="width:34px;height:34px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none';this.nextSibling.style.display='flex'">'
-        + '<span class="gf-user-avatar" style="display:none">' + initial + '</span>'
+      ? '<img src="' + userImage + '" id="gf-user-img" style="width:34px;height:34px;border-radius:50%;object-fit:cover;">'
+        + '<span class="gf-user-avatar" id="gf-user-initial" style="display:none">' + initial + '</span>'
       : '<span class="gf-user-avatar">' + initial + '</span>';
     var h         = new Date().getHours();
     var greet     = h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite";
