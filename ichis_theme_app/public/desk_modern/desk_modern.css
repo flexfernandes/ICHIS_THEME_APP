@@ -455,6 +455,19 @@ body.gf-desk-active .layout-side-section {
   pointer-events: none !important;
 }
 
+/* Tarja preta = navbar do ERPNext (container do app) */
+body.gf-desk-active .navbar,
+body.gf-desk-active .navbar-default,
+body.gf-desk-active header.navbar,
+body.gf-desk-active .container-fluid.navbar-header {
+  display: none !important;
+}
+
+/* Ajusta a posição da tela moderna para compensar a ausência da navbar */
+body.gf-desk-active #gf-modern-desk-container {
+  top: 0 !important;
+}
+
 /* ═══════════════════════════════════════════════════════════
    BOOT GUARD (oculta antes do JS carregar)
    ═══════════════════════════════════════════════════════════ */
@@ -679,18 +692,21 @@ body.gf-booting .standard-sidebar {
 .gf-user-dropdown-item {
   display: flex;
   align-items: center;
-  gap: 10px;
   width: 100%;
-  padding: 9px 16px;
+  padding: 10px 16px;
   border: none;
   background: transparent;
-  color: var(--gf-text);
-  font-size: var(--gf-fs-base);
+  color: #4a5568;
+  font-size: 13px;
+  font-weight: 600;
   font-family: var(--gf-font);
   cursor: pointer;
   text-align: left;
-  transition: background 0.12s;
+  transition: background 0.12s, color 0.12s;
+  letter-spacing: 0.01em;
 }
-.gf-user-dropdown-item:hover { background: var(--gf-bg-hover); }
-.gf-user-dropdown-item.gf-logout { color: #dc2626; }
-.gf-user-dropdown-item.gf-logout:hover { background: #fef2f2; }
+.gf-user-dropdown-item:hover {
+  background: var(--gf-bg-hover);
+  color: var(--gf-accent);
+}
+/* Sair: neutro, sem vermelho */

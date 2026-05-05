@@ -73,11 +73,23 @@
     var user      = boot.user_info || {};
     var fullName  = user.fullname || boot.full_name || "Usuário";
     var firstName = fullName.split(" ")[0];
-    var initial   = fullName.charAt(0).toUpperCase();
+    var initial    = fullName.charAt(0).toUpperCase();
+    // Foto do usuário — frappe.boot.user_info.image ou user_image
+    var userImage  = (user.image) || (boot.user_image) || "";
+    var avatarHtml = userImage
+      ? '<img src="' + userImage + '" style="width:34px;height:34px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none';this.nextSibling.style.display='flex'">'
+        + '<span class="gf-user-avatar" style="display:none">' + initial + '</span>'
+      : '<span class="gf-user-avatar">' + initial + '</span>';
     var h         = new Date().getHours();
     var greet     = h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite";
     var dateStr   = new Date().toLocaleDateString("pt-BR", { weekday:"short", day:"2-digit", month:"short" });
-    var isDark    = document.body.getAttribute("data-gf-tema") === "Black";
+    // Detecta tema: verifica body attr (gf_theme.js), sessionStorage e frappe.boot
+    var _savedTheme = "";
+    try { _savedTheme = sessionStorage.getItem("gf_tema_ativo") || ""; } catch(e){}
+    var _bootTheme = "";
+    try { _bootTheme = (frappe.boot && frappe.boot.gf_tema_ativo) || ""; } catch(e){}
+    var _bodyTheme = document.body.getAttribute("data-gf-tema") || "";
+    var isDark = (_bodyTheme === "Black") || (_savedTheme === "Black") || (_bootTheme === "Black");
 
     document.body.classList.add("gf-desk-active");
     _remove(true);
@@ -118,15 +130,15 @@
         + '<div class="gf-topbar-right">'
           + '<div class="gf-user-menu" id="gf-user-menu">'
             + '<button class="gf-user-btn" id="gf-user-btn" title="' + fullName + '">'
-              + '<span class="gf-user-avatar">' + initial + '</span>'
+              + avatarHtml
             + '</button>'
             + '<div class="gf-user-dropdown" id="gf-user-dropdown">'
               + '<div class="gf-user-dropdown-header"><strong>' + fullName + '</strong></div>'
-              + '<button class="gf-user-dropdown-item" id="gf-action-profile">👤 Editar Perfil</button>'
-              + '<button class="gf-user-dropdown-item" id="gf-action-theme">🎨 Alternar Tema</button>'
-              + '<button class="gf-user-dropdown-item" id="gf-action-theme-settings">⚙️ Configurações do Tema</button>'
+              + '<button class="gf-user-dropdown-item" id="gf-action-profile">Editar Perfil</button>'
+              + '<button class="gf-user-dropdown-item" id="gf-action-theme"><span id="gf-theme-label">Alternar para Dark</span></button>'
+              + '<button class="gf-user-dropdown-item" id="gf-action-theme-settings">Configurações do Tema</button>'
               + '<hr style="margin:4px 0;border:none;border-top:1px solid var(--gf-border)">'
-              + '<button class="gf-user-dropdown-item gf-logout" id="gf-action-logout">→ Sair</button>'
+              + '<button class="gf-user-dropdown-item" id="gf-action-logout">Sair</button>'
             + '</div>'
           + '</div>'
         + '</div>'
@@ -176,9 +188,52 @@
         _hide();
         frappe.set_route("Form", "User", frappe.session.user);
       });
+      // Atualiza label do botão de tema conforme estado atual
+      function _updateThemeLabel() {
+        var lbl = document.getElementById("gf-theme-label");
+        if (!lbl) return;
+        var currentDark = _container && _container.classList.contains("gf-dark-mode");
+        lbl.textContent = currentDark ? "Alternar para Light" : "Alternar para Dark";
+      }
+      _updateThemeLabel();
+
       document.getElementById("gf-action-theme").addEventListener("click", function () {
         dropdown.style.display = "none";
-        try { frappe.ui.toolbar.toggle_dark_mode && frappe.ui.toolbar.toggle_dark_mode(); } catch (e) {}
+        // Alterna o tema imediatamente sem reload
+        var nowDark = _container && _container.classList.contains("gf-dark-mode");
+        var newTema = nowDark ? "Padrão" : "Black";
+
+        // Aplica visualmente de imediato
+        if (_container) {
+          if (nowDark) _container.classList.remove("gf-dark-mode");
+          else         _container.classList.add("gf-dark-mode");
+        }
+        document.body.setAttribute("data-gf-tema", newTema);
+
+        // Salva no sessionStorage para persistir na sessão
+        try { sessionStorage.setItem("gf_tema_ativo", newTema); } catch(e){}
+
+        // Atualiza label do botão
+        _updateThemeLabel();
+
+        // Persiste no Doctype GF Theme Settings em background
+        try {
+          frappe.call({
+            method: "frappe.client.set_value",
+            args: {
+              doctype: "GF Theme Settings",
+              name: "GF Theme Settings",
+              fieldname: "tema_ativo",
+              value: newTema
+            },
+            callback: function() {
+              // Dispara atualização do gf_theme.js para aplicar variáveis CSS
+              try { frappe.trigger && frappe.trigger("gf_theme_changed"); } catch(e){}
+              // Reaplica variáveis CSS via API do tema
+              if (typeof _gfApplyDesk === "function") { _gfApplyDesk(); }
+            }
+          });
+        } catch(e){}
       });
       document.getElementById("gf-action-theme-settings").addEventListener("click", function () {
         dropdown.style.display = "none";
