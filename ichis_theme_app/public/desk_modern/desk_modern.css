@@ -619,16 +619,31 @@ body.gf-booting .standard-sidebar {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   TOPBAR E MENU DE USUÁRIO
+   OCULTAR NAVBAR DO ERPNEXT (tarja preta)
+   ═══════════════════════════════════════════════════════════ */
+body.gf-desk-active .navbar,
+body.gf-desk-active .navbar-default,
+body.gf-desk-active header.navbar,
+body.gf-desk-active .container-fluid.navbar-header {
+  display: none !important;
+}
+
+/* Container sobe para cobrir área da navbar */
+body.gf-desk-active #gf-modern-desk-container {
+  top: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOPBAR
    ═══════════════════════════════════════════════════════════ */
 .gf-topbar {
-  height: 48px;
+  height: 52px;
   background: var(--gf-bg-navbar);
   border-bottom: 1px solid var(--gf-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 24px;
   flex-shrink: 0;
   box-shadow: var(--gf-shadow-sm);
 }
@@ -637,63 +652,84 @@ body.gf-booting .standard-sidebar {
   font-size: 14px;
   font-weight: 700;
   color: var(--gf-accent);
+  letter-spacing: 0.02em;
 }
 
 .gf-topbar-right {
   display: flex;
   align-items: center;
+  padding-right: 8px; /* espaçamento do avatar em relação à borda */
 }
 
-.gf-user-menu { position: relative; }
+/* ═══════════════════════════════════════════════════════════
+   AVATAR E MENU DO USUÁRIO
+   ═══════════════════════════════════════════════════════════ */
+.gf-user-menu {
+  position: relative;
+}
 
 .gf-user-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--gf-accent);
   color: #fff;
-  border: none;
+  border: 2px solid var(--gf-border);
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--gf-font);
-  transition: opacity 0.15s;
+  transition: opacity 0.15s, border-color 0.15s;
+  overflow: hidden;
+  padding: 0;
 }
-.gf-user-btn:hover { opacity: 0.85; }
+.gf-user-btn:hover {
+  opacity: 0.9;
+  border-color: var(--gf-accent);
+}
 
+.gf-user-avatar {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Dropdown ── */
 .gf-user-dropdown {
   display: none;
   position: absolute;
   right: 0;
-  top: calc(100% + 8px);
+  top: calc(100% + 10px);
   background: var(--gf-bg-card);
   border: 1px solid var(--gf-border);
   border-radius: var(--gf-radius);
   box-shadow: var(--gf-shadow-lg);
-  min-width: 210px;
+  min-width: 220px;
   z-index: 9999;
   overflow: hidden;
 }
 
 .gf-user-dropdown-header {
-  padding: 12px 16px 8px;
+  padding: 14px 18px 10px;
   border-bottom: 1px solid var(--gf-border);
 }
 .gf-user-dropdown-header strong {
   display: block;
   font-size: 13px;
-  color: var(--gf-text);
   font-weight: 600;
+  color: var(--gf-text);
 }
 
 .gf-user-dropdown-item {
-  display: flex;
-  align-items: center;
+  display: block;
   width: 100%;
-  padding: 10px 16px;
+  padding: 11px 18px;
   border: none;
   background: transparent;
   color: #4a5568;
@@ -702,11 +738,24 @@ body.gf-booting .standard-sidebar {
   font-family: var(--gf-font);
   cursor: pointer;
   text-align: left;
-  transition: background 0.12s, color 0.12s;
   letter-spacing: 0.01em;
+  transition: background 0.12s, color 0.12s;
 }
 .gf-user-dropdown-item:hover {
   background: var(--gf-bg-hover);
   color: var(--gf-accent);
 }
-/* Sair: neutro, sem vermelho */
+
+.gf-dropdown-sep {
+  height: 1px;
+  background: var(--gf-border);
+  margin: 4px 0;
+}
+
+/* Dark mode overrides para dropdown */
+.gf-dark-mode .gf-user-dropdown-item {
+  color: #94a3b8;
+}
+.gf-dark-mode .gf-user-dropdown-item:hover {
+  color: var(--gf-accent);
+}
